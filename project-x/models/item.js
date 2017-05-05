@@ -7,7 +7,7 @@ const itemSchema = new Schema({
   title: String,
   description: String,
   type: String,
-  keywords: String,
+  keywords: [String],
   images: [String],
   approxAge: Number,
   userId: { type: Schema.Types.ObjectId, ref: 'User' },
