@@ -11,7 +11,8 @@ const index = require('./routes/index');
 const usersController = require('./routes/usersController');
 const itemsController = require("./routes/itemsController");
 const passport = require("./helpers/passport.js");
-const auth = require("./helpers/auth.js");
+const auth = require('./helpers/auth.js');
+
 
 const app = express();
 
