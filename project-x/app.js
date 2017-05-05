@@ -10,6 +10,7 @@ const session = require("express-session");
 const index = require('./routes/index');
 const usersController = require('./routes/usersController');
 const itemsController = require("./routes/itemsController");
+const passport = require("./helpers/passport.js");
 
 const app = express();
 
@@ -28,6 +29,19 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+//session and passport
+app.use(session({
+  secret: "our-passport-local-strategy-app",
+  resave: true,
+  saveUninitialized: true
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(auth.setCurrentUser);
+
 
 app.use('/', index);
 app.use('/users', usersController);
