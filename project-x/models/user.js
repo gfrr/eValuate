@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+const Item = require('./item');
+
 const userSchema = new Schema({
   name: String,
   lastName: String,
@@ -17,7 +19,7 @@ const userSchema = new Schema({
     type: String,
     enum: ['User','Owner','Professional','Admin'],
     default: 'User'
-  }
+  },
   itemsUser:[{ type: Schema.Types.ObjectId, ref: 'Item' }]
 });
 
