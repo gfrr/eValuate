@@ -11,10 +11,15 @@ const index = require('./routes/index');
 const usersController = require('./routes/usersController');
 const itemsController = require("./routes/itemsController");
 const passport = require("./helpers/passport.js");
+const LocalStrategy = require("passport-local").Strategy;
 const auth = require('./helpers/auth.js');
+const bcrypt = require('bcrypt');
+const flash = require('flash');
 
 
 const app = express();
+
+// mongoose.connect("mongodb://localhost/antiques");
 
 mongoose.connect("mongodb://localhost:27017/antiques");
 
@@ -40,13 +45,14 @@ app.use(session({
   saveUninitialized: true
 }));
 
+app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(auth.setCurrentUser);
 
 
 app.use('/', index);
-app.use('/users', usersController);
+// app.use('/users', usersController);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
