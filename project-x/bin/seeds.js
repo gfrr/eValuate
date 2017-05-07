@@ -10,6 +10,27 @@ const Feedback = require("../models/feedback");
 
 mongoose.connect('mongodb://localhost:27017/antiques');
 
+function createUser(userType){
+  const name = faker.name.findName();
+  const salt = bcrypt.genSaltSync(bcryptSalt);
+  const hashPass = bcrypt.hashSync('test', salt);
+  const address = faker.helpers.createCard().address;
+  const user = {
+    firstName: name.split(" ")[0],
+    lastName: name.split(" ")[1],
+    email: faker.internet.email(name),
+    password: hashPass,
+    address: {
+      street: address.streetC,
+      city: address.city,
+      country: address.country,
+      coordinates: [Number(address.geo.lat), Number(address.geo.lng)],
+    },
+    role: userType,
+  };
+  return user;
+}
+
 //returns an array of random users with the userType role
 function createUserType(number, userType){
   let users = [];
@@ -30,7 +51,6 @@ function createUserType(number, userType){
         coordinates: [Number(address.geo.lat), Number(address.geo.lng)],
       },
       role: userType,
-      itemsUser: [],
     });
   }
   return users;
@@ -53,9 +73,9 @@ function createItems(number){
         description: faker.lorem.sentence(),
         type: faker.commerce.product(),
         keywords: keywords,
+
         images: images,
         approxAge: Math.floor(Math.random() * 1000),
-        userId: undefined,
         coordinates: [Number(address.geo.lat), Number(address.geo.lng)],
       });
     }
@@ -69,23 +89,32 @@ const usersData = createUserType(100, "User");
 const ownersData = createUserType(30, "Owner");
 const professionalsData = createUserType(10, "Professional");
 
-Item.create(itemsData, (err, docs)=> {
-  if(err) throw err;
-  docs.forEach((item) => console.log(item.title));
+
+
+
+
+User.create(ownersData, (err, docs)=> {
+  if(err)  throw err;
+  // docs.forEach((user, index) =>
 });
+
+Item.create(itemsData, (err, docs) => {
+  if (err) throw err;
+});
+
+
+
+
+
+
 
 User.create(usersData, (err, docs)=> {
   if(err) throw err;
-  docs.forEach((user) => console.log(user.firstName));
-});
-
-User.create(ownersData, (err, docs)=> {
-  if(err) { throw err;}
-  docs.forEach((user) => console.log(user.firstName));
+  // docs.forEach((user) => console.log(user.firstName));
 });
 
 User.create(professionalsData, (err, docs)=> {
-  if(err) { throw err;}
-  docs.forEach((user) => console.log(user.firstName));
+  if(err)  throw err;
+  // docs.forEach((user) => console.log(user.firstName));
   mongoose.connection.close();
 });

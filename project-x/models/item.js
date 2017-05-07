@@ -10,7 +10,7 @@ const itemSchema = new Schema({
   keywords: [String],
   images: [String],
   approxAge: Number,
-  userId: { type: Schema.Types.ObjectId, ref: 'User' },
+  userId: { type: Schema.Types.ObjectId, ref: 'User'},
   coordinates: [Number, Number]
 });
 

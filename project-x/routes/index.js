@@ -12,15 +12,6 @@ router.get('/', function(req, res, next) {
   res.render('index');
 });
 
-// router.post('/', function(req, res, next) {
-//   console.log(req.body.email);
-//   console.log(req.body.password);
-//   User.find({},(err,result)=>{
-//     console.log(result);
-//   });
-//
-// });
-
 router.post('/', passport.authenticate("local", {
   successRedirect: "/dashboard",
   failureRedirect: "/",
@@ -42,22 +33,6 @@ router.post('/signup', function(req, res, next) {
   const city = req.body.city;
   const country = req.body.country;
 
-
-  // const salt = bcrypt.genSaltSync(bcryptSalt);
-  // const hashPass = bcrypt.hashSync(password, salt);
-  //
-  // var newUser = User({
-  //   name: name,
-  //   lastName: lastName,
-  //   email: email,
-  //   password: hashPass,
-  //   address: {
-  //     street: street,
-  //     postCode: postCode,
-  //     city: city,
-  //     country: country
-  //   }
-
   User.findOne({"email": email},
       "email",
       (err,user) => {
@@ -68,10 +43,10 @@ router.post('/signup', function(req, res, next) {
       return;
     }
 
-    var salt     = bcrypt.genSaltSync(bcryptSalt);
-    var hashPass = bcrypt.hashSync(password, salt);
+    const salt     = bcrypt.genSaltSync(bcryptSalt);
+    const hashPass = bcrypt.hashSync(password, salt);
 
-    var newUser = User({
+    const newUser = User({
       name: name,
       lastName: lastName,
       email: email,
