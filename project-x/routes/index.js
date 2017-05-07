@@ -92,6 +92,14 @@ router.get('/dashboard', function(req, res, next) {
   res.render('user/dashboard');
 });
 
+router.get('/items', function(req, res, next) {
+  res.render('item/showitems');
+});
+
+router.get('/items/:id/', function(req, res, next) {
+  res.render('item/showitem');
+});
+
 router.get("/logout", (req, res) => {
   req.logout();
   res.redirect("/");

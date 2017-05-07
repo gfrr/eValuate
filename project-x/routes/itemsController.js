@@ -47,15 +47,18 @@ itemsController.post('/:id/delete', auth.checkLoggedIn("/logout"),(req, res, nex
   });
 
 
-//Item public information
+//public information of one item
 itemsController.get("/:id",(req, res, next)=>{
-  res.render('item');
+  res.render('/showitem');
 });
 
-
+//public information of all items
+itemsController.get("/",(req, res, next)=>{
+  res.render('/showitems');
+});
 
 //check if the user or admin access item evaluation page
-itemsController.get("/:id/feedback", auth.checkLoggedIn("/logout"), (req, res, next)=> {
+itemsController.get("/:id/", auth.checkLoggedIn("/logout"), (req, res, next)=> {
   User.find({"_id": req.params.id}, (err, user)=> {
     if(err) next(err);
     if(req.user._id == req.params.id || req.user.role == "Admin") res.render("auth/feedback", {item: item[0]});
@@ -74,7 +77,7 @@ itemsController.post("/:id/", auth.checkLoggedIn("/logout"), (req, res, next)=>{
 });
 
 //Item evaluation deleted by user
-itemsController.post('/:id/feedbackdelete', auth.checkLoggedIn("/logout"), (req, res, next) => {
+itemsController.post('/:id/delete', auth.checkLoggedIn("/logout"), (req, res, next) => {
     const feedback = req.params.feedback;
     Item.findByIdAndRemove(Feedback, (err, item) => {
       if (err){ return next(err); }
