@@ -3,7 +3,6 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const bcryptSalt     = 10;
 const passport = require("../helpers/passport");
-
 const User = require("../models/user");
 
 
@@ -28,10 +27,25 @@ router.post('/signup', function(req, res, next) {
   const lastName = req.body.lastName;
   const email = req.body.email;
   const password = req.body.password;
+  const confirmPassword = req.body.confirmPassword;
   const street = req.body.street;
   const postCode = req.body.postCode;
   const city = req.body.city;
   const country = req.body.country;
+
+
+  const tempInfo = {
+    name, lastName, email, street, postCode, city, country
+  };
+
+  // check if confirm password is same as password
+  if (password != confirmPassword) {
+    res.render('auth/signup', {
+      errorMessage: 'Something went wrong with your password. Please re-enter password',
+      tempInfo
+    });
+
+  }
 
   User.findOne({"email": email},
       "email",
@@ -76,6 +90,14 @@ router.post('/signup', function(req, res, next) {
 
 router.get('/dashboard', function(req, res, next) {
   res.render('user/dashboard');
+});
+
+router.get('/items', function(req, res, next) {
+  res.render('item/showitems');
+});
+
+router.get('/items/:id/', function(req, res, next) {
+  res.render('item/showitem');
 });
 
 router.get("/logout", (req, res) => {

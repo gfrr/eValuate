@@ -1,9 +1,17 @@
-
+<script src="../javascript/password_check.js"></script>
 
 <br>
 <br>
 <h3>Fill in the Form to Sign Up</h3><br>
+    <% if (typeof(errorMessage) != "undefined") { %>
+      <div class="error-message"><%= errorMessage %></div>
+    <% } %>
 <form class="signup" action="/signup" method="post">
+    <script>
+      <% if (typeof(tempInfo) != "undefined") { %>
+         var info = <%= tempInfo %>;
+      <% }  %>
+    </script>
   <ul>
   <li><label for="name">First Name: </label>
   <input type="text" id="name" name="name" required placeholder="Type your first name"></li><br>
