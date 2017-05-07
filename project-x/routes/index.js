@@ -12,15 +12,6 @@ router.get('/', function(req, res, next) {
   res.render('index');
 });
 
-// router.post('/', function(req, res, next) {
-//   console.log(req.body.email);
-//   console.log(req.body.password);
-//   User.find({},(err,result)=>{
-//     console.log(result);
-//   });
-//
-// });
-
 router.post('/', passport.authenticate("local", {
   successRedirect: "/dashboard",
   failureRedirect: "/",
@@ -37,26 +28,25 @@ router.post('/signup', function(req, res, next) {
   const lastName = req.body.lastName;
   const email = req.body.email;
   const password = req.body.password;
+  const confirmPassword = req.body.confirmPassword;
   const street = req.body.street;
   const postCode = req.body.postCode;
   const city = req.body.city;
   const country = req.body.country;
 
+  const tempInfo = {
+    name, lastName, email, street, postCode, city, country
+  };
 
-  // const salt = bcrypt.genSaltSync(bcryptSalt);
-  // const hashPass = bcrypt.hashSync(password, salt);
-  //
-  // var newUser = User({
-  //   name: name,
-  //   lastName: lastName,
-  //   email: email,
-  //   password: hashPass,
-  //   address: {
-  //     street: street,
-  //     postCode: postCode,
-  //     city: city,
-  //     country: country
-  //   }
+  // check if confirm password is same as password
+  if (password != confirmPassword) {
+    res.render('auth/signup', {
+      errorMessage: 'Something went wrong with your password. Please re-enter password',
+      tempInfo
+    });
+
+  }
+
 
   User.findOne({"email": email},
       "email",
