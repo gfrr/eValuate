@@ -16,6 +16,7 @@ const auth = require('./helpers/auth.js');
 const bcrypt = require('bcrypt');
 const flash = require('flash');
 
+
 const app = express();
 
 // mongoose.connect("mongodb://localhost/antiques");
