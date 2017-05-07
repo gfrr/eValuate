@@ -12,7 +12,7 @@ const Item= require("../models/item");
 userController.get('/:id', auth.checkLoggedIn("/logout"), (req, res, next)=> {
   User.find({"_id": req.params.id},(err, users)=>{
     if(err) next(err);
-    res.render('/dashboard',{user[0]})
+    res.render('/dashboard',{user: user[0]});
   });
 });
 
@@ -37,11 +37,12 @@ userController.post("/:id", auth.checkLoggedIn("/logout"), (req, res, next)=> {
       postCode: req.body.postCode,
       city: req.body.city,
       country: req.body.country,
-  };
+  }
+};
   User.findByIdAndUpdate(req.params.id, userInfo, (err, user) => {
     if (err) next(err);
     console.log("change saved");
-    res.redirect("/dashboard",{user[0]})
+    res.redirect("/dashboard",{user: user[0]});
   });
 });
 
@@ -54,7 +55,7 @@ userController.get('/profile', function(req, res, next) {
 });
 
 userController.get('/profile/:id', function(req, res, next) {
-  res.render('profile-show', {user[0]});
+  res.render('profile-show', {user: user[0]});
 });
 //to go to dashboard and chek if is logged in
 // userController.get('/', auth.checkLoggedIn("/logout"), (req, res, next)=> {
@@ -68,4 +69,3 @@ userController.get('/profile/:id', function(req, res, next) {
 
 
 module.exports = userController;
-
