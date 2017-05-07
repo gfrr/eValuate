@@ -3,7 +3,6 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const bcryptSalt     = 10;
 const passport = require("../helpers/passport");
-
 const User = require("../models/user");
 
 
