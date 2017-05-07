@@ -1,10 +1,8 @@
 const express = require('express');
 const userController = express.Router();
-
 const auth = require("../helpers/auth");
 const passport = require("../helpers/passport");
 const flash    = require("connect-flash");
-
 const User= require("../models/user");
 const Item= require("../models/item");
 
@@ -38,7 +36,7 @@ userController.post("/:id", auth.checkLoggedIn("/logout"), (req, res, next)=> {
       city: req.body.city,
       country: req.body.country,
   }
-};
+  };
   User.findByIdAndUpdate(req.params.id, userInfo, (err, user) => {
     if (err) next(err);
     console.log("change saved");
@@ -46,26 +44,14 @@ userController.post("/:id", auth.checkLoggedIn("/logout"), (req, res, next)=> {
   });
 });
 
-
-
-
-
+//public info page with all the users
 userController.get('/profile', function(req, res, next) {
   res.render('profile');
 });
 
+//public info about an specific users -more details
 userController.get('/profile/:id', function(req, res, next) {
   res.render('profile-show', {user: user[0]});
 });
-//to go to dashboard and chek if is logged in
-// userController.get('/', auth.checkLoggedIn("/logout"), (req, res, next)=> {
-//   User.find({},(err, users)=>{
-//     if(err) next(err);
-//     res.render('/dashboard',{users})
-//   });
-// });
-
-
-
 
 module.exports = userController;
