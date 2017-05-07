@@ -11,7 +11,6 @@ const itemSchema = new Schema({
   images: [String],
   approxAge: Number,
   userId: { type: Schema.Types.ObjectId, ref: 'User' },
-  coordinates: [Number, Number]
 });
 
 

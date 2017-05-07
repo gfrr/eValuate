@@ -1,4 +1,3 @@
-
 const mongoose = require('mongoose');
 const faker = require("faker");
 const bcrypt = require("bcrypt");
@@ -7,16 +6,14 @@ const User = require("../models/user");
 const Item = require("../models/item");
 const Feedback = require("../models/feedback");
 
-
 mongoose.connect('mongodb://localhost:27017/antiques');
 
 //returns an array of random users with the userType role
-function createUserType(number, userType){
+function createUserType(number, userType, password = "test", name = faker.name.findName()){
   let users = [];
   for(let i = 0; i < number; i++){
-    const name = faker.name.findName();
     const salt = bcrypt.genSaltSync(bcryptSalt);
-    const hashPass = bcrypt.hashSync('test', salt);
+    const hashPass = bcrypt.hashSync(password, salt);
     const address = faker.helpers.createCard().address;
     users.push({
       firstName: name.split(" ")[0],
@@ -36,56 +33,65 @@ function createUserType(number, userType){
   return users;
 }
 
-//returns an array of random items
-function createItems(number){
-    let items = [];
+function createItem(){
+  let keywords = [];
+  let images = [];
+  let address = faker.helpers.createCard().address;
+  for(let j = 0; j < Math.floor(Math.random() * 4) + 1; j++){
+    keywords.push(faker.commerce.productAdjective);
+    images.push(faker.image.image());
+  }
+  const item = {
+    title: faker.commerce.productName(),
+    description: faker.lorem.sentence(),
+    type: faker.commerce.product(),
+    keywords: keywords,
+    images: images,
+    approxAge: Math.floor(Math.random() * 1000),
+    userId: undefined,
 
-    for(let i = 0; i < number; i++){
-      let keywords = [];
-      let images = [];
-      let address = faker.helpers.createCard().address;
-      for(let j = 0; j < Math.floor(Math.random() * 4) + 1; j++){
-        keywords.push(faker.commerce.productAdjective);
-        images.push(faker.image.image());
-      }
-      items.push({
-        title: faker.commerce.productName(),
-        description: faker.lorem.sentence(),
-        type: faker.commerce.product(),
-        keywords: keywords,
-        images: images,
-        approxAge: Math.floor(Math.random() * 1000),
-        userId: undefined,
-        coordinates: [Number(address.geo.lat), Number(address.geo.lng)],
-      });
-    }
-    return items;
+  };
+  return item;
 }
 
+//generating admin => USER: Admin PW: demigod
+const Admin = User(createUserType(1, "Admin", "demigod", "Admin")[0]);
+Admin.save();
+
+
+
+function generateOwnersAndItems(number){
+for(var i = 0; i < number; i++){
+  let userData = createUserType(1, "Owner")[0];
+  let user = User(userData);
+  var test;
+  user.save();
+  let itemData = createItem();
+  itemData.userId = user._id;
+  console.log(itemData);
+  let item = Item(itemData);
+  item.save((error) => {
+    if (!error) {
+        Item.find({"title": item.title})
+            .populate('userId')
+            .exec((error, items) => {
+              console.log(item);
+            });
+          }
+    });
+  }
+}
 
 //initializing db with fake data
-const itemsData = createItems(30);
-const usersData = createUserType(100, "User");
-const ownersData = createUserType(30, "Owner");
-const professionalsData = createUserType(10, "Professional");
+generateOwnersAndItems(30);
+const usersData = createUserType(20, "User");
+const professionalsData = createUserType(15, "Professional");
 
-Item.create(itemsData, (err, docs)=> {
-  if(err) throw err;
-  docs.forEach((item) => console.log(item.title));
-});
 
 User.create(usersData, (err, docs)=> {
   if(err) throw err;
-  docs.forEach((user) => console.log(user.firstName));
 });
-
-User.create(ownersData, (err, docs)=> {
-  if(err) { throw err;}
-  docs.forEach((user) => console.log(user.firstName));
-});
-
 User.create(professionalsData, (err, docs)=> {
   if(err) { throw err;}
-  docs.forEach((user) => console.log(user.firstName));
   mongoose.connection.close();
 });
