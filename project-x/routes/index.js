@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const bcryptSalt     = 10;
 const passport = require("../helpers/passport");
 const User = require("../models/user");
+const auth = require("../helpers/auth");
 
 
 /* GET home page. */
@@ -23,7 +24,7 @@ router.get('/signup', function(req, res, next) {
 });
 
 router.post('/signup', function(req, res, next) {
-  const name = req.body.name;
+  const firstName = req.body.name;
   const lastName = req.body.lastName;
   const email = req.body.email;
   const password = req.body.password;
@@ -34,7 +35,7 @@ router.post('/signup', function(req, res, next) {
   const country = req.body.country;
 
   const tempInfo = {
-    name, lastName, email, street, postCode, city, country
+    firstName, lastName, email, street, postCode, city, country
   };
 
   // check if confirm password is same as password
@@ -61,7 +62,7 @@ router.post('/signup', function(req, res, next) {
     var hashPass = bcrypt.hashSync(password, salt);
 
     var newUser = User({
-      name: name,
+      firstName: firstName,
       lastName: lastName,
       email: email,
       password: hashPass,
@@ -88,8 +89,9 @@ router.post('/signup', function(req, res, next) {
 });
 });
 
-router.get('/dashboard', function(req, res, next) {
-  res.render('user/dashboard');
+router.get('/dashboard', auth.checkLoggedIn("/logout"), function(req, res, next) {
+
+  res.render('user/dashboard', {user: req.user});
 });
 
 router.get('/items', function(req, res, next) {
