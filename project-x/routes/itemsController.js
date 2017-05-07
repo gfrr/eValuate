@@ -23,7 +23,7 @@ const Item= require("../models/item");
     User.findByIdAndUpdate(req.params.id, itemInfo, (err, item) => {
       if (err) next(err);
       console.log("change saved");
-      res.redirect("/item",{item[0]})
+      res.redirect("/item",{item: item[0]});
     });
   });
 

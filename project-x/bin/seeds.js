@@ -1,22 +1,3 @@
-/*
-const feedbackSchema = new Schema({
-  comments: String,
-  estimatedValue: Number,
-  userId: { type: Schema.Types.ObjectId, ref: 'User' },
-  itemId: { type: Schema.Types.ObjectId, ref: 'Item' },
-});
-
-const itemSchema = new Schema({
-  title: String, faker.commerce.productName()
-  description: String,
-  type: String,
-  keywords: String,
-  images: [String],
-  approxAge: Number,
-  userId: { type: Schema.Types.ObjectId, ref: 'User' },
-  coordinates: [Number, Number]
-});
-*/
 
 const mongoose = require('mongoose');
 const faker = require("faker");
@@ -81,6 +62,8 @@ function createItems(number){
     return items;
 }
 
+
+//initializing db with fake data
 const itemsData = createItems(30);
 const usersData = createUserType(100, "User");
 const ownersData = createUserType(30, "Owner");
