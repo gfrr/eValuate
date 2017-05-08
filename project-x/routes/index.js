@@ -7,7 +7,9 @@ const User = require("../models/user");
 const flash = require('connect-flash');
 const auth = require("../helpers/auth");
 
-
+router.get("/test", (req, res, next) => {
+	res.render("test");
+});
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -85,7 +87,7 @@ router.post('/signup', function(req, res, next) {
           errorMessage: "Something went wrong"
         });
       } else {
-        res.redirect("/dashboard");
+        res.redirect("/login");
       }
     });
 });

@@ -16,6 +16,7 @@ const auth = require('./helpers/auth.js');
 const bcrypt = require('bcrypt');
 const flash = require('connect-flash');
 const MongoStore = require("connect-mongo")(session);
+const apiController = require("./routes/apiController");
 
 
 const app = express();
@@ -56,6 +57,7 @@ app.use(auth.setCurrentUser);
 app.use('/', index);
 app.use('/users', usersController);
 app.use('/items', itemsController);
+app.use("/api", apiController);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
