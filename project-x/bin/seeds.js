@@ -9,9 +9,11 @@ const Feedback = require("../models/feedback");
 mongoose.connect('mongodb://localhost:27017/antiques');
 
 //returns an array of random users with the userType role
-function createUserType(number, userType, password = "test", name = faker.name.findName()){
+function createUserType(number, userType,  password = "test" ){
   let users = [];
+
   for(let i = 0; i < number; i++){
+    name = faker.name.findName();
     const salt = bcrypt.genSaltSync(bcryptSalt);
     const hashPass = bcrypt.hashSync(password, salt);
     const address = faker.helpers.createCard().address;
@@ -41,6 +43,7 @@ function randomImage(type){
   return images;
 }
 
+
 //creates an item
 function createItem(){
   let keywords = [];
@@ -64,8 +67,25 @@ function createItem(){
   return item;
 }
 
-//generating admin => USER: Admin PW: demigod
-const Admin = User(createUserType(1, "Admin", "demigod", "Admin")[0]);
+
+//generating admin => USER: Admin PW: demigod"
+let salt = bcrypt.genSaltSync(bcryptSalt);
+let hashPass = bcrypt.hashSync("demigod", salt);
+let address = faker.helpers.createCard().address;
+const Admin = User({
+  firstName: "Admin",
+  lastName: "Admin",
+  email: "admin@admin.com",
+  password: hashPass,
+  address: {
+    street: address.streetC,
+    city: address.city,
+    country: address.country,
+    coordinates: [Number(address.geo.lat), Number(address.geo.lng)],
+  },
+  role: "Admin",
+  itemsUser: [],
+});
 Admin.save();
 
 function generateOwnersAndItems(number){
