@@ -23,15 +23,15 @@
   <input type="password" id="password" name="password" required placeholder="Choose a secure password"></li><br>
   <li><label for="confirmPassword">Confirm Password: </label>
   <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Type your password again"></li><br>
-  <li><label for=""><strong>Address</strong></label></li><br>
-  <li><label for="street">Street: </label>
-  <input type="text" id="street" name="street" required placeholder="Type your street and number"></li><br>
-  <li><label for="postCode">Post Code: </label>
-  <input type="text" id="postCode" name="postCode" required placeholder="Type your post code"></li><br>
-  <li><label for="city">City: </label>
-  <input type="text" id="city" name="city" required placeholder="Type your city"></li><br>
-  <li><label for="country">Country: </label>
-  <select name="country" required>
+  <li><label for=""><strong>Write full address here</strong></label>
+  <input type="address" id="address" name="address" required placeholder="Type your address"></li><br>
+  
+
+  <input type="hidden" id="street" name="street"></li><br>
+  <input type="hidden" id="postCode" name="postCode"></li><br>
+  <input type="hidden" id="city" name="city" ></li><br>
+  <input type="hidden" id="country" name="country"></li><br>
+  <!-- <select name="country" required>
     <option value="">Select your Country...</option>
     <option value="AF">Afghanistan</option>
     <option value="AL">Albania</option>
@@ -279,9 +279,14 @@
     <option value="YE">Yemen</option>
     <option value="ZR">Zaire</option>
     <option value="ZM">Zambia</option>
-    <option value="ZW">Zimbabwe</option>
+    <option value="ZW">Zimbabwe</option> -->
+
 </select></li><br>
 </ul>
   <button type="submit" name="button">Register</button>
 </form>
 <br>
+<script type="text/javascript" src="./javascript/autocomplete.js"></script>
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCiw_CHXHt9NP7Ki0qfMMJYy2jRU3XtGGs&libraries=places"></script>
