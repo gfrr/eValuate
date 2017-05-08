@@ -15,3 +15,10 @@ ul {
   color: red;
   font-weight: strong;
 }
+
+.note {
+  font-style: italic;
+  color: gray;
+  font-size: 11px;
+  margin-top: -20px;
+}

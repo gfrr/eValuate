@@ -9,17 +9,16 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 const index = require('./routes/index');
 const usersController = require('./routes/usersController');
-const itemsController = require("./routes/itemsController");
+const itemsController = require('./routes/itemsController');
 const passport = require("./helpers/passport.js");
 const LocalStrategy = require("passport-local").Strategy;
 const auth = require('./helpers/auth.js');
 const bcrypt = require('bcrypt');
-const flash = require('flash');
+const flash = require('connect-flash');
+const MongoStore = require("connect-mongo")(session);
 
 
 const app = express();
-
-// mongoose.connect("mongodb://localhost/antiques");
 
 mongoose.connect("mongodb://localhost:27017/antiques");
 
@@ -41,8 +40,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 //session and passport
 app.use(session({
   secret: "our-passport-local-strategy-app",
-  resave: true,
-  saveUninitialized: true
+  cookie: { maxAge: 60000 },
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60 // 1 day
+  })
 }));
 
 app.use(flash());

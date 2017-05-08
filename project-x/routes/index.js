@@ -4,17 +4,18 @@ const bcrypt = require('bcrypt');
 const bcryptSalt     = 10;
 const passport = require("../helpers/passport");
 const User = require("../models/user");
+const flash = require('connect-flash');
 
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index');
+  res.render('index', req.flash());
 });
 
 router.post('/', passport.authenticate("local", {
   successRedirect: "/dashboard",
   failureRedirect: "/",
-  failureFlash: false,
+  failureFlash: true,
   passReqToCallback: true
 }));
 
@@ -23,7 +24,7 @@ router.get('/signup', function(req, res, next) {
 });
 
 router.post('/signup', function(req, res, next) {
-  const name = req.body.name;
+  const firstName = req.body.name;
   const lastName = req.body.lastName;
   const email = req.body.email;
   const password = req.body.password;
@@ -34,7 +35,7 @@ router.post('/signup', function(req, res, next) {
   const country = req.body.country;
 
   const tempInfo = {
-    name, lastName, email, street, postCode, city, country
+    firstName, lastName, email, street, postCode, city, country
   };
 
   // check if confirm password is same as password
@@ -61,7 +62,7 @@ router.post('/signup', function(req, res, next) {
     var hashPass = bcrypt.hashSync(password, salt);
 
     var newUser = User({
-      name: name,
+      firstName: firstName,
       lastName: lastName,
       email: email,
       password: hashPass,
@@ -92,13 +93,13 @@ router.get('/dashboard', function(req, res, next) {
   res.render('user/dashboard');
 });
 
-router.get('/items', function(req, res, next) {
-  res.render('item/showitems');
-});
-
-router.get('/items/:id/', function(req, res, next) {
-  res.render('item/showitem');
-});
+// router.get('/items', function(req, res, next) {
+//   res.render('item/showitems');
+// });
+//
+// router.get('/items/:id/', function(req, res, next) {
+//   res.render('item/showitem');
+// });
 
 router.get("/logout", (req, res) => {
   req.logout();
