@@ -1,0 +1,8 @@
+<% usr.forEach((user) => { %>
+  <p> <%= user %></p>
+    <% if(isUserLoggedIn){ %>
+      <p><%=typeof(currentUser._id)%> , <%=typeof(user._id)%></p>
+      <% if(currentUser.role == "Admin" || String(currentUser._id) == String(user._id)){ %>
+    <a href="/">edit</a>
+
+<% }}});%>

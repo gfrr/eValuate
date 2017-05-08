@@ -7,12 +7,8 @@ const User = require("../models/user");
 const flash = require('connect-flash');
 const auth = require("../helpers/auth");
 
-router.get("/test", (req, res, next) => {
-	res.render("test");
-});
-
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', (req, res, next) => {
   res.render('index', req.flash());
 });
 
@@ -23,11 +19,11 @@ router.post('/', passport.authenticate("local", {
   passReqToCallback: true
 }));
 
-router.get('/signup', function(req, res, next) {
+router.get('/signup', (req, res, next) => {
   res.render('auth/signup');
 });
 
-router.post('/signup', function(req, res, next) {
+router.post('/signup', (req, res, next) => {
   const firstName = req.body.name;
   const lastName = req.body.lastName;
   const email = req.body.email;
@@ -48,7 +44,6 @@ router.post('/signup', function(req, res, next) {
       errorMessage: 'Something went wrong with your password. Please re-enter password',
       tempInfo
     });
-
   }
 
 
@@ -62,10 +57,10 @@ router.post('/signup', function(req, res, next) {
       return;
     }
 
-    var salt     = bcrypt.genSaltSync(bcryptSalt);
-    var hashPass = bcrypt.hashSync(password, salt);
+    const salt     = bcrypt.genSaltSync(bcryptSalt);
+    const hashPass = bcrypt.hashSync(password, salt);
 
-    var newUser = User({
+    const newUser = User({
       firstName: firstName,
       lastName: lastName,
       email: email,
@@ -87,15 +82,24 @@ router.post('/signup', function(req, res, next) {
           errorMessage: "Something went wrong"
         });
       } else {
-        res.redirect("/login");
+        res.redirect("/");
       }
     });
 });
 });
 
-router.get('/dashboard', auth.checkLoggedIn("/logout"), function(req, res, next) {
+//to go to dashboard  personal data and chek if is logged in
+router.get('/dashboard', auth.checkLoggedIn("/logout"), (req, res, next)=> {
+  User.find({"_id": req.user._id},(err, users)=>{
+    if(err) next(err);
+    res.render('user/dashboard', {user: users[0]});
+  });
+});
 
-  res.render('user/dashboard', {user: req.user});
+
+router.get("/logout", (req, res) => {
+  req.logout();
+  res.redirect("/");
 });
 
 // router.get('/items', function(req, res, next) {
@@ -106,9 +110,6 @@ router.get('/dashboard', auth.checkLoggedIn("/logout"), function(req, res, next)
 //   res.render('item/showitem');
 // });
 
-router.get("/logout", (req, res) => {
-  req.logout();
-  res.redirect("/");
-});
+
 
 module.exports = router;

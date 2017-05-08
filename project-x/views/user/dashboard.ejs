@@ -1,6 +1,6 @@
 <h1> Welcome to your dashboard <%= user.firstName %> ! &#128521; </h1>
 
-<script src="../javascript/password_check.js"></script>
+
 <br>
 <br>
 
@@ -8,7 +8,7 @@
       <div class="error-message"><%= errorMessage %></div>
     <% } %>
 
-<form class="dashboard" action="users/<%=user._id%>/edit" method="post">
+<form class="dashboard" action="users/<%=user._id%>/edit" method="get">
 
     <script>
       <% if (typeof(tempInfo) != "undefined") { %>
@@ -27,7 +27,7 @@
   <li><label for="postCode">Post Code: <%= user.address.postCode %> </label>
   <li><label for="city">City: <%= user.address.city %> </label>
   <li><label for="country">Country: <%= user.address.country %></label><br><br>
-  <li><button type="submit" class="btn btn-primary" name="button">Edit Information</button></li>
+  <li><button class="btn btn-primary" name="button">Edit Information</button></li>
   </ul>
 </form>
 <br>
