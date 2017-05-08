@@ -135,3 +135,7 @@ input{
 .nav-tabs {
     text-align:center;
 }
+
+.avatar-thumb {
+  height: 75px;
+}
