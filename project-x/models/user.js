@@ -20,7 +20,7 @@ const userSchema = new Schema({
     enum: ['User','Owner','Professional','Admin'],
     default: 'User'
   },
-
+  itemsUser: [{ type: Schema.Types.ObjectId, ref: 'Item' }]
 });
 
 

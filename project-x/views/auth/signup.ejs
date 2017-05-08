@@ -1,12 +1,11 @@
-<script src="../javascript/password_check.js"></script>
 
-<br>
-<br>
+<div class="main">
 <h3>Fill in the Form to Sign Up</h3><br>
     <% if (typeof(errorMessage) != "undefined") { %>
       <div class="error-message"><%= errorMessage %></div>
     <% } %>
 <form class="signup" action="/signup" method="post">
+
     <script>
       <% if (typeof(tempInfo) != "undefined") { %>
          var info = <%= tempInfo %>;
@@ -25,7 +24,7 @@
   <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Type your password again"></li><br>
   <li><label for=""><strong>Write full address here</strong></label>
   <input type="address" id="address" name="address" required placeholder="Type your address"></li><br>
-  
+
 
   <input type="hidden" id="street" name="street"></li><br>
   <input type="hidden" id="postCode" name="postCode"></li><br>
