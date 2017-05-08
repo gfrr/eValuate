@@ -5,7 +5,7 @@ const auth = require("../helpers/auth");
 const passport = require("../helpers/passport");
 const flash    = require("connect-flash");
 const multer = require('multer');
-const upload = multer({ dest: './public/uploads/' });
+const upload = multer({ dest: '../public/uploads/' });
 
 const User= require("../models/user");
 const Item= require("../models/item");
@@ -18,6 +18,7 @@ itemsController.get("/new", (req, res, next)=> {
 
 itemsController.post("/new", upload.single('photo'), (req, res, next)=> {
   console.log("entering post New item");
+  console.log(req.file);
   pic = new Picture({
     pic_path: `/uploads/${req.file.filename}`,
     pic_name: req.file.originalname
