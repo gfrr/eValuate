@@ -99,7 +99,39 @@ input{
   padding-left: 30px;
   font-size: 16px;
   line-height: 40px;
-  border: 2px solid gray;
+  /*border: 2px solid gray;*/
   border-radius: 7px;
+}
 
+.imgbrowse {
+  max-height: 100px;
+}
+
+.row {
+  width: 900px;
+  margin: 0 auto;
+}
+
+.col-xs-4 {
+  display: inline;
+  border: 1px solid rgb(186, 186, 186);
+  border-radius: 20px;
+  text-align: center;
+  align-items: center;
+  min-height: 175px;
+  margin: 3px;
+  max-width: 230px;
+}
+
+.header-center {
+  text-align: center;
+}
+.nav-tabs > li {
+    float:none;
+    display:inline-block;
+    zoom:1;
+}
+
+.nav-tabs {
+    text-align:center;
 }

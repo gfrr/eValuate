@@ -12,9 +12,9 @@ userController.get("/", (req, res, next)=>{
     if(err) next(err);
     let usr = [];
     users.forEach((user)=>{
-      if(user.role !== "Admin") usr.push(user);
+      if(user.role === "Professional") usr.push(user);
     });
-    res.render("user/index", {usr});
+    res.render("user/showexperts", {usr});
   });
 
 });
