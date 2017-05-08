@@ -1,21 +1,15 @@
 <h1> Welcome to your dashboard <%= user.firstName %> ! &#128521; </h1>
 
-
 <br>
 <br>
-
     <% if (typeof(errorMessage) != "undefined") { %>
       <div class="error-message"><%= errorMessage %></div>
     <% } %>
-
-<form class="dashboard" action="users/<%=user._id%>/edit" method="get">
-
     <script>
       <% if (typeof(tempInfo) != "undefined") { %>
          var info = <%= tempInfo %>;
       <% }  %>
     </script>
-
 <ul>
   <li><strong>First Name:</stong><%= user.firstName %> </li>
   <li><strong>Last Name:</stong> <%= user.lastName %></li>
@@ -28,8 +22,16 @@
   <li><strong>City: </strong> <%= user.address.city %> </li>
   <li><strong>Country:</strong>  <%= user.address.country %></li>
 </ul>
+
+<form class="dashboard" action="users/<%=user._id%>/edit" method="get">
   <button name="button">Edit Information</button>
 </form>
+<br>
+<br>
+<form class="dashboard" action="users/<%=user._id%>/expert" method="get">
+  <button name="button">Become an Expert</button>
+</form>
+
 <br>
 <br>
 

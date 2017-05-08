@@ -56,7 +56,17 @@ userController.get("/:id/edit", auth.checkLoggedIn("/logout"), (req, res, next)=
       res.render("auth/edit-user", {user: users[0]});}
     else res.redirect("/logout");
   });
+});
 
+userController.get("/:id/expert", auth.checkLoggedIn("/logout"), (req, res, next)=> {
+  User.find({"_id": req.params.id}, (err, users)=> {
+    if(err) next(err);
+    console.log(users);
+    if(req.user._id == req.params.id || req.user.role == "Admin") {
+      console.log("kawabonga");
+      res.render("auth/becomexpert", {user: users[0]});}
+    else res.redirect("/logout");
+  });
 });
 
 
