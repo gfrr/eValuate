@@ -17,16 +17,16 @@
     </script>
 
 <ul>
-  <li><label for="name">First Name:<%= user.firstName %> </label>
-  <li><label for="lastName">Last Name: <%= user.lastName %> </label>
-  <li><label for="email">E-mail: <%= user.email %>  </label>
+  <li><strong>First Name:</stong><%= user.firstName %> </li>
+  <li><strong>Last Name:</stong> <%= user.lastName %></li>
+  <li><strong>E-mail:</stong> <%= user.email %></li>
   <br>
   <br>
-  <li><label for="address"><strong>Address: </strong></label></li>
-  <li><label for="street">Street: <%= user.address.street %></label></li>
-  <li><label for="postCode">Post Code: <%= user.address.postCode %> </label>
-  <li><label for="city">City: <%= user.address.city %> </label>
-  <li><label for="country">Country: <%= user.address.country %></label>
+  <li><strong>Address: </strong></li>
+  <li><strong>Street:</strong>  <%= user.address.street %></li>
+  <li><strong>Post Code:</strong>  <%= user.address.postCode %> </li>
+  <li><strong>City: </strong> <%= user.address.city %> </li>
+  <li><strong>Country:</strong>  <%= user.address.country %></li>
 </ul>
   <button name="button">Edit Information</button>
 </form>
@@ -46,15 +46,20 @@
 <h4> <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Evaluated </h4>
 <br>
 <br>
-<div class="container" id="avaliated">
+<div class="container" id="evaluated">
   <div class="row">
     <div class="col-sm-6 col-md-4">
       <div class="thumbnail">
-        <img src="../images/stamps/s28.png" id="imageofuser">
+        <img src="../images/stamps/s28.jpg" id="imageofuser">
         <div class="caption">
-          <h3>Item 1</h3>
-          <p> This is Andreas, keywords</p>
-          <p><a href="#" class="btn btn-default" role="button">Details</a> <a href="#" class="btn btn-primary" role="button">Sale it!</a></p>
+          <h3>item</h3>
+          <p>keywords</p>
+          <p>
+            <a href="#" class="btn btn-default" role="button">Details</a>
+            <a href="#" class="btn btn-default" role="button">Edit</a>
+            <a href="#" class="btn btn-default" role="button">Remove</a>
+            <a href="#" class="btn btn-primary" role="button">Sell it!</a>
+          </p>
         </div>
       </div>
     </div>
@@ -65,15 +70,20 @@
 <h4> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Not evaluated </h4>
 <br>
 <br>
-<div class="container" id="not-avaliated">
+<div class="container" id="not-evaluated">
   <div class="row">
     <div class="col-sm-6 col-md-4">
       <div class="thumbnail">
-        <img src="../images/stamps/s28.png" id="imageofuser">
+        <img src="../images/stamps/s24.jpg" id="imageofuser">
         <div class="caption">
           <h3>Item 1</h3>
-          <p> This is Andreas, keywords</p>
-          <p><a href="#" class="btn btn-default" role="button">Details</a> <a href="#" class="btn btn-primary" role="button">Sale it!</a></p>
+          <p> keywords</p>
+          <p>
+            <a href="#" class="btn btn-default" role="button">Details</a>
+            <a href="#" class="btn btn-default" role="button">Edit</a>
+            <a href="#" class="btn btn-default" role="button">Remove</a>
+            <a href="#" class="btn btn-primary" role="button">Sell it!</a>
+          </p>
         </div>
       </div>
     </div>
@@ -88,11 +98,16 @@
   <div class="row">
     <div class="col-sm-6 col-md-4">
       <div class="thumbnail">
-        <img src="../images/stamps/s28.png" id="imageofuser">
+        <img src="../images/stamps/s22.jpg" id="imageofuser">
         <div class="caption">
           <h3>Item 1</h3>
-          <p> This is Andreas, keywords</p>
-          <p><a href="#" class="btn btn-default" role="button">Details</a> <a href="#" class="btn btn-primary" role="button">Sale it!</a></p>
+          <p>keywords</p>
+          <p>
+            <a href="#" class="btn btn-default" role="button">Details</a>
+            <a href="#" class="btn btn-default" role="button">Edit</a>
+            <a href="#" class="btn btn-default" role="button">Remove</a>
+            <a href="#" class="btn btn-primary" role="button">Sell it!</a>
+          </p>
         </div>
       </div>
     </div>
@@ -107,11 +122,15 @@
   <div class="row">
     <div class="col-sm-6 col-md-4">
       <div class="thumbnail">
-        <img src="../images/stamps/s28.png" id="imageofuser">
+        <img src="../images/stamps/s18.jpg" id="imageofuser">
         <div class="caption">
           <h3>Item 1</h3>
-          <p> This is Andreas, keywords</p>
-          <p><a href="#" class="btn btn-default" role="button">Details</a> <a href="#" class="btn btn-primary" role="button">Make an offer!</a></p>
+          <p>
+            <a href="#" class="btn btn-default" role="button">Details</a>
+            <a href="#" class="btn btn-default" role="button">Edit</a>
+            <a href="#" class="btn btn-default" role="button">Remove</a>
+            <a href="#" class="btn btn-primary" role="button">Not sell</a>
+          </p>
         </div>
       </div>
     </div>
@@ -135,11 +154,16 @@
   <div class="row">
     <div class="col-sm-6 col-md-4">
       <div class="thumbnail">
-        <img src="../images/stamps/s28.png" id="imageofuser">
+        <img src="../images/stamps/s15.jpg" id="imageofuser">
         <div class="caption">
           <h3>Item 1</h3>
-          <p> This is Andreas, keywords</p>
-          <p><a href="#" class="btn btn-default" role="button">Details</a> <a href="#" class="btn btn-primary" role="button"> Buy it!</a></p>
+          <p>keywords</p>
+          <p>
+            <a href="#" class="btn btn-default" role="button">Details</a>
+            <a href="#" class="btn btn-default" role="button">Remove</a>
+            <a href="#" class="btn btn-default" role="button">Comment</a>
+            <a href="#" class="btn btn-primary" role="button">Buy it!</a>
+          </p>
         </div>
       </div>
     </div>
@@ -162,11 +186,16 @@
   <div class="row">
     <div class="col-sm-6 col-md-4">
       <div class="thumbnail">
-        <img src="../images/stamps/s28.png" id="imageofuser">
+        <img src="../images/stamps/s10.jpg" id="imageofuser">
         <div class="caption">
           <h3>Item 1</h3>
           <p> keywords</p>
-          <p><a href="#" class="btn btn-default" role="button">Details</a> <a href="#" class="btn btn-primary" role="button"> Get notification!</a></p>
+          <p>
+            <a href="#" class="btn btn-default" role="button">Details</a>
+            <a href="#" class="btn btn-default" role="button">Remove</a>
+            <a href="#" class="btn btn-default" role="button">Comment</a>
+            <a href="#" class="btn btn-primary" role="button">Notify!</a>
+          </p>
         </div>
       </div>
     </div>
