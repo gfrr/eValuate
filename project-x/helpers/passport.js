@@ -26,6 +26,7 @@ passport.use(new LocalStrategy({
       return next(err);
     }
     if (!user) {
+
       console.log("error1");
       return next(null, false, { message: "* Incorrect email" });
     }
