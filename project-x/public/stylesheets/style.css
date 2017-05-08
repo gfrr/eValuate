@@ -15,3 +15,26 @@ ul {
   color: red;
   font-weight: strong;
 }
+
+.thumbnail{
+    height: 380px;
+    overflow: auto;
+}
+
+.thumbnail img{
+    /*width: 100%;*/
+    height: 200px;
+    display: block;
+}
+
+.caption{
+  text-align: center;
+}
+
+.panel-default{
+  text-align: center;
+}
+
+.centerthebutton{
+    text-align: center;
+}
