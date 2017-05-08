@@ -48,8 +48,6 @@ itemsController.post("/new", upload.single('photo'), (req, res, next)=> {
 
 });
 
-
-
 // check if is the user or admin gets the right to go to edit page
 itemsController.get("/:id/edit", auth.checkLoggedIn("/logout"), (req, res, next)=> {
   User.find({"_id": req.params.id}, (err, user)=> {
