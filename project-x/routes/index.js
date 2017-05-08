@@ -7,7 +7,9 @@ const User = require("../models/user");
 const flash = require('connect-flash');
 const auth = require("../helpers/auth");
 
-
+router.get("/test", (req, res, next) => {
+	res.render("test");
+});
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
