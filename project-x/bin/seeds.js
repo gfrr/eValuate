@@ -33,10 +33,19 @@ function createUserType(number, userType, password = "test", name = faker.name.f
   return users;
 }
 
+//returns an array of random images depending on the type passed (i.e coin || stamp)
+function randomImage(type){
+  let images = [];
+  if(type == "coin") images.push((`./images/coins/c${Math.floor(Math.random()*19)+1}.jpg`));
+  else images.push((`./images/stamps/s${Math.floor(Math.random()*28)+1}.jpg`));
+  return images;
+}
+
 //creates an item
 function createItem(){
   let keywords = [];
   let images = [];
+  let type = Math.floor(Math.random()*2) ? "coin" : "stamp";
   let address = faker.helpers.createCard().address;
   for(let j = 0; j < Math.floor(Math.random() * 4) + 1; j++){
     keywords.push(faker.commerce.productAdjective);
@@ -45,9 +54,9 @@ function createItem(){
   const item = {
     title: faker.commerce.productName(),
     description: faker.lorem.sentence(),
-    type: faker.commerce.product(),
+    type: type,
     keywords: keywords,
-    images: images,
+    images: randomImage(type),
     approxAge: Math.floor(Math.random() * 1000),
     userId: undefined,
 
@@ -70,14 +79,10 @@ for(var i = 0; i < number; i++){
   console.log(itemData);
   let item = Item(itemData);
   item.save((error) => {
-    if (!error) {
-        Item.find({"title": item.title})
-            .populate('userId')
-            .exec((error, items) => {
-              console.log(item);
-            });
-          }
+    if (!error) Item.find({"title": item.title}).populate('userId');
     });
+  user.itemsUser = item._id;
+  console.log(user);
   }
 }
 

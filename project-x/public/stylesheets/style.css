@@ -1,6 +1,7 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  box-sizing: border-box;
 }
 
 a {
@@ -14,4 +15,32 @@ ul {
 .error-message {
   color: red;
   font-weight: strong;
+}
+
+.main {
+  display: flex;
+  flex-flow: column;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+#jumbo {
+  width: 100%;
+  height: 500px;
+  background: url("../images/site/landing.jpg");
+  background-
+  background-size: auto;
+  background-repeat: no-repeat;
+  background-position: center;
+
+}
+
+#main-text {
+  background: rgba(0,0,0, 0.5);
+  color: white;
+  text-align: center;
+  font-size: 70px;
+  z-index: 1;
+
 }
