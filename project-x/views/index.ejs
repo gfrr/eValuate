@@ -12,6 +12,7 @@
   <div class="error-message"><%- error %></div>
 <% } %>
 <br>
+<% if(!isUserLoggedIn){ %>
 <form class="login" action="/" method="post">
   <label for="email">E-mail: </label>
   <input type="email" id="email" name="email" placeholder="Enter your email"><br>
@@ -21,3 +22,7 @@
 </form>
 <br>
 <p>Don't have an account? Register <a href="/signup"> here </a></p>
+<% } %>
+<% if(isUserLoggedIn){ %>
+
+<%}%>
