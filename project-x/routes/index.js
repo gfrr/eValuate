@@ -5,6 +5,8 @@ const bcryptSalt     = 10;
 const passport = require("../helpers/passport");
 const User = require("../models/user");
 const flash = require('connect-flash');
+const auth = require("../helpers/auth");
+
 
 
 /* GET home page. */
@@ -89,8 +91,9 @@ router.post('/signup', function(req, res, next) {
 });
 });
 
-router.get('/dashboard', function(req, res, next) {
-  res.render('user/dashboard');
+router.get('/dashboard', auth.checkLoggedIn("/logout"), function(req, res, next) {
+
+  res.render('user/dashboard', {user: req.user});
 });
 
 // router.get('/items', function(req, res, next) {

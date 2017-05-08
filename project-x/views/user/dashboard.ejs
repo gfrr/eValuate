@@ -1,1 +1,174 @@
-<h1> Test of Dashboard </h1>
+<h1> Welcome to your dashboard <%= user.firstName %> ! &#128521; </h1>
+
+<script src="../javascript/password_check.js"></script>
+<br>
+<br>
+
+    <% if (typeof(errorMessage) != "undefined") { %>
+      <div class="error-message"><%= errorMessage %></div>
+    <% } %>
+
+<form class="dashboard" action="/dashboard" method="post">
+
+    <script>
+      <% if (typeof(tempInfo) != "undefined") { %>
+         var info = <%= tempInfo %>;
+      <% }  %>
+    </script>
+
+<ul>
+  <li><label for="name">First Name:<%= user.firstName %> </label>
+  <li><label for="lastName">Last Name: <%= user.lastName %> </label>
+  <li><label for="email">E-mail: <%= user.email %>  </label>
+  <br>
+  <br>
+  <li><label for="address"><strong>Address: </strong></label></li>
+  <li><label for="street">Street: <%= user.address.street %></label></li>
+  <li><label for="postCode">Post Code: <%= user.address.postCode %> </label>
+  <li><label for="city">City: <%= user.address.city %> </label>
+  <li><label for="country">Country: <%= user.address.country %></label>
+</ul>
+  <button type="submit" name="button">Edit Information</button>
+</form>
+<br>
+<br>
+
+<div class="panel panel-default">
+  <h3> Your Items </h3>
+</div>
+<div class="centerthebutton">
+  <button class="btn btn-default" aria-label="Left Align">
+    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add
+  </button>
+</div>
+<br>
+<br>
+<h4> <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Evaluated </h4>
+<br>
+<br>
+<div class="container" id="avaliated">
+  <div class="row">
+    <div class="col-sm-6 col-md-4">
+      <div class="thumbnail">
+        <img src="../images/stamps/s28.png" id="imageofuser">
+        <div class="caption">
+          <h3>Item 1</h3>
+          <p> This is Andreas, keywords</p>
+          <p><a href="#" class="btn btn-default" role="button">Details</a> <a href="#" class="btn btn-primary" role="button">Sale it!</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+<h4> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Not evaluated </h4>
+<br>
+<br>
+<div class="container" id="not-avaliated">
+  <div class="row">
+    <div class="col-sm-6 col-md-4">
+      <div class="thumbnail">
+        <img src="../images/stamps/s28.png" id="imageofuser">
+        <div class="caption">
+          <h3>Item 1</h3>
+          <p> This is Andreas, keywords</p>
+          <p><a href="#" class="btn btn-default" role="button">Details</a> <a href="#" class="btn btn-primary" role="button">Sale it!</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+<h4> <span class="glyphicon glyphicon-hourglass" aria-hidden="true"></span> Pending for professional evealuation </h4>
+<br>
+<br>
+<div class="container" id="pending">
+  <div class="row">
+    <div class="col-sm-6 col-md-4">
+      <div class="thumbnail">
+        <img src="../images/stamps/s28.png" id="imageofuser">
+        <div class="caption">
+          <h3>Item 1</h3>
+          <p> This is Andreas, keywords</p>
+          <p><a href="#" class="btn btn-default" role="button">Details</a> <a href="#" class="btn btn-primary" role="button">Sale it!</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+<h4> <span class="glyphicon glyphicon-tag" aria-hidden="true"></span> For Sale </h4>
+<br>
+<br>
+<div class="container" id="forsale">
+  <div class="row">
+    <div class="col-sm-6 col-md-4">
+      <div class="thumbnail">
+        <img src="../images/stamps/s28.png" id="imageofuser">
+        <div class="caption">
+          <h3>Item 1</h3>
+          <p> This is Andreas, keywords</p>
+          <p><a href="#" class="btn btn-default" role="button">Details</a> <a href="#" class="btn btn-primary" role="button">Make an offer!</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+
+
+<div class="panel panel-default">
+<h3> Favorites </h3>
+</div>
+<div class="centerthebutton">
+  <button class="btn btn-default" aria-label="Left Align">
+   <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add
+  </button>
+</div>
+<br>
+<br>
+<div class="container" id="favorites">
+  <div class="row">
+    <div class="col-sm-6 col-md-4">
+      <div class="thumbnail">
+        <img src="../images/stamps/s28.png" id="imageofuser">
+        <div class="caption">
+          <h3>Item 1</h3>
+          <p> This is Andreas, keywords</p>
+          <p><a href="#" class="btn btn-default" role="button">Details</a> <a href="#" class="btn btn-primary" role="button"> Buy it!</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+
+<div class="panel panel-default">
+<h3> Wishlist </h3>
+</div>
+<div class="centerthebutton">
+  <button class="btn btn-default addbutton" aria-label="Center Align">
+    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add
+  </button>
+</div>
+<br>
+<br>
+<div class="container" id="wishlist">
+  <div class="row">
+    <div class="col-sm-6 col-md-4">
+      <div class="thumbnail">
+        <img src="../images/stamps/s28.png" id="imageofuser">
+        <div class="caption">
+          <h3>Item 1</h3>
+          <p> keywords</p>
+          <p><a href="#" class="btn btn-default" role="button">Details</a> <a href="#" class="btn btn-primary" role="button"> Get notification!</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
