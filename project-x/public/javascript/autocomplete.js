@@ -1,7 +1,9 @@
 $(document).ready(() => {
-init();
-google.maps.event.addDomListener(window, 'load', init);
-});
+    init();
+    google.maps.event.addDomListener(window, 'load', init);
+    });
+
+
 
 function init() {
   const input = document.getElementById('address');
@@ -13,7 +15,7 @@ function init() {
       return;
     }
     const location = {};
-// Location details
+    // Location details
     for (let i = 0; i < place.address_components.length; i++) {
       if (place.address_components[i].types[0] === 'postal_code') {
       location.postalcode = place.address_components[i].long_name;
@@ -42,12 +44,10 @@ function init() {
     }
     location.lat = place.geometry.location.lat();
     location.lng = place.geometry.location.lng();
-  
-    $( "#city" ).val(location.city)
-    $( "#street" ).val(location.street)
-    $( "#postCode" ).val(location.postalcode)
-    $( "#country" ).val(location.country)
+
+    $( "#city" ).val(location.city);
+    $( "#street" ).val(location.street);
+    $( "#postCode" ).val(location.postalcode);
+    $( "#country" ).val(location.country);
   });
-
-
 }
