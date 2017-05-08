@@ -8,7 +8,7 @@
       <div class="error-message"><%= errorMessage %></div>
     <% } %>
 
-<form class="dashboard" action="/dashboard" method="post">
+<form class="dashboard" action="users/<%=user._id%>/edit" method="post">
 
     <script>
       <% if (typeof(tempInfo) != "undefined") { %>

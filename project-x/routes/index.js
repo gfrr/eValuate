@@ -83,7 +83,7 @@ router.post('/signup', function(req, res, next) {
           errorMessage: "Something went wrong"
         });
       } else {
-        res.redirect("/dashboard");
+        res.redirect("/login");
       }
     });
 });
