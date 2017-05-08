@@ -5,11 +5,6 @@
       <div class="error-message"><%= errorMessage %></div>
     <% } %>
 <form class="signup" action="/signup" method="post">
-    <script>
-      <% if (typeof(tempInfo) != "undefined") { %>
-         var info = <%= tempInfo %>;
-      <% }  %>
-    </script>
   <ul>
   <li><label for="name">First Name: </label>
   <input type="text" id="name" name="name" required placeholder="Type your first name"></li><br>
@@ -36,4 +31,6 @@
   <button type="submit" name="button">Register</button>
 </form>
 <br>
+ <script src="https://maps.googleapis.com/maps/api/js?key=APIKEY=places"></script>
+
 <script type="text/javascript" src="./javascript/autocomplete.js"></script>
