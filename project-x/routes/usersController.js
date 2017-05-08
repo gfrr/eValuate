@@ -25,6 +25,7 @@ userController.get("/:id/edit", auth.checkLoggedIn("/logout"), (req, res, next)=
 
 //user edit its own info
 userController.post("/:id", auth.checkLoggedIn("/logout"), (req, res, next)=> {
+  console.log(req);
   const userInfo = {
     name: req.body.name,
     lastName: req.body.lastName,

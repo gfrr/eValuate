@@ -12,6 +12,9 @@ ul {
   list-style: none;
 }
 
+input{
+  width: 100%;
+}
 .error-message {
   color: red;
   font-weight: strong;
@@ -34,6 +37,7 @@ ul {
 
 .panel-default{
   text-align: center;
+  background-color: #e7e7e7;
 }
 
 .centerthebutton{
@@ -76,6 +80,8 @@ ul {
   text-align: center;
   font-size: 70px;
   z-index: 1;
+
+
 }
 
 .itemholder {
@@ -95,4 +101,5 @@ ul {
   line-height: 40px;
   border: 2px solid gray;
   border-radius: 7px;
+
 }

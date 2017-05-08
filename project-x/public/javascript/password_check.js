@@ -1,6 +1,6 @@
 $(document).ready (()=> {
 
-  console.log(info);
+
   // $('#name').val(name);
   // $('#lastName').val(lastName);
   // $('#email').val(email);
