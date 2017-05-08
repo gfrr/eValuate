@@ -16,6 +16,7 @@
   <li><strong>E-mail:</stong> <%= user.email %></li>
   <br>
   <br>
+
   <li><strong>Address: </strong></li>
   <li><strong>Street:</strong>  <%= user.address.street %></li>
   <li><strong>Post Code:</strong>  <%= user.address.postCode %> </li>
@@ -25,6 +26,7 @@
 
 <form class="dashboard" action="users/<%=user._id%>/edit" method="get">
   <button name="button">Edit Information</button>
+
 </form>
 <br>
 <br>
