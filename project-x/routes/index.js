@@ -4,18 +4,20 @@ const bcrypt = require('bcrypt');
 const bcryptSalt     = 10;
 const passport = require("../helpers/passport");
 const User = require("../models/user");
+const flash = require('connect-flash');
 const auth = require("../helpers/auth");
+
 
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index');
+  res.render('index', req.flash());
 });
 
 router.post('/', passport.authenticate("local", {
   successRedirect: "/dashboard",
   failureRedirect: "/",
-  failureFlash: false,
+  failureFlash: true,
   passReqToCallback: true
 }));
 
@@ -94,13 +96,13 @@ router.get('/dashboard', auth.checkLoggedIn("/logout"), function(req, res, next)
   res.render('user/dashboard', {user: req.user});
 });
 
-router.get('/items', function(req, res, next) {
-  res.render('item/showitems');
-});
-
-router.get('/items/:id/', function(req, res, next) {
-  res.render('item/showitem');
-});
+// router.get('/items', function(req, res, next) {
+//   res.render('item/showitems');
+// });
+//
+// router.get('/items/:id/', function(req, res, next) {
+//   res.render('item/showitem');
+// });
 
 router.get("/logout", (req, res) => {
   req.logout();

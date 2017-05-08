@@ -1,21 +1,23 @@
-<div class="main">
-  <div id="jumbo">
-    <div id="main-text">
-      <h1>PROJECT X</h1>
-    </div>
-  </div>
 
-  <input width="200px" type="text" id="search" placeholder="Search for an item or an expert"><br>
-  <p>or <a href="/">Browse</a> the latest items </p>
-  <br>
-  <br>
-  <form class="login" action="/" method="post">
-    <label for="email">E-mail: </label>
-    <input type="email" id="email" name="email" placeholder="Enter your email"><br>
-    <label for="password">Password </label>
-    <input type="password" id="password" name="password" placeholder="Enter your password"><br>
-    <button type="submit" name="button">Sign in</button>
-  </form>
-  <br>
-  <p>Don't have an account? Register <a href="/signup"> here </a></p>
-</div>
+    <h1>project-x</h1>
+    <p>Welcome to project-x</p>
+
+<br>
+<br>
+<input width="200px" type="text" id="search" placeholder="Search for an item or an expert"><br>
+<p>or <a href="/">Browse</a> the latest items </p>
+<br>
+<br>
+<% if (typeof(error) != "undefined") { %>
+  <div class="error-message"><%- error %></div>
+<% } %>
+<br>
+<form class="login" action="/" method="post">
+  <label for="email">E-mail: </label>
+  <input type="email" id="email" name="email" placeholder="Enter your email"><br>
+  <label for="password">Password </label>
+  <input type="password" id="password" name="password" placeholder="Enter your password"><br>
+  <button type="submit" name="button">Sign in</button>
+</form>
+<br>
+<p>Don't have an account? Register <a href="/signup"> here </a></p>
