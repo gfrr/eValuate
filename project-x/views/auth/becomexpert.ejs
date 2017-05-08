@@ -1,0 +1,40 @@
+<div class="main">
+<h3>Fill in the Form to Become an expert </h3><br>
+    <% if (typeof(errorMessage) != "undefined") { %>
+      <div class="error-message"><%= errorMessage %></div>
+    <% } %>
+<form class="becomexpert" action="/signup" method="post">
+
+    <script>
+      <% if (typeof(tempInfo) != "undefined") { %>
+         var info = <%= tempInfo %>;
+      <% }  %>
+    </script>
+
+  <ul>
+
+  <input type="file" id="cv" name="cv" required placeholder="Upload your cv"></li><br>
+  <li><button class="btn btn-primary" type="submit" name="button">Add</button></li>
+
+  <input type="file" id="certificate" name="certificate" required placeholder="Upload your certificate"></li><br>
+  <li><button class="btn btn-primary" type="submit" name="button">Add</button></li>
+
+  <input type="file" id="photo" name="photo" required placeholder="Upload your photo"></li><br>
+  <li><button class="btn btn-primary" type="submit" name="button">Add</button></li>
+
+  <li><label for="website"> Website: </label>
+  <input type="website" id="website" name="website" required placeholder="Type your website"></li><br>
+
+  <input type="hidden" id="street" name="street"></li><br>
+  <input type="hidden" id="postCode" name="postCode"></li><br>
+  <input type="hidden" id="city" name="city" ></li><br>
+  <input type="hidden" id="country" name="country"></li><br>
+
+</select></li><br>
+</ul>
+
+  <button type="submit" name="button">Register as Expert</button>
+
+</form>
+<br>
+<script type="text/javascript" src="./javascript/autocomplete.js"></script>
