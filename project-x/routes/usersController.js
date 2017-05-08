@@ -10,7 +10,7 @@ const Item= require("../models/item");
 userController.get('/:id', auth.checkLoggedIn("/logout"), (req, res, next)=> {
   User.find({"_id": req.params.id},(err, users)=>{
     if(err) next(err);
-    res.render('/dashboard',{user: user[0]});
+    res.render('dashboard', {user: user[0]});
   });
 });
 

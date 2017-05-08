@@ -5,8 +5,7 @@ const auth = require("../helpers/auth");
 const passport = require("../helpers/passport");
 const flash    = require("connect-flash");
 const multer = require('multer');
-const upload = multer({ dest: './public/uploads/' });
-
+const upload = multer({ dest: 'public/uploads/' });
 const User= require("../models/user");
 const Item= require("../models/item");
 const Picture = require('../models/picture');
@@ -17,34 +16,33 @@ itemsController.get("/new", (req, res, next)=> {
 });
 
 itemsController.post("/new", upload.single('photo'), (req, res, next)=> {
-  console.log("entering post New item");
+  console.log(req.file);
   pic = new Picture({
     pic_path: `/uploads/${req.file.filename}`,
     pic_name: req.file.originalname
   });
 
   pic.save((err) => {
-    next();
+
   });
 
+
+  console.log(pic)
   const itemInfo = {
     title: req.body.title,
     description: req.body.description,
     type: req.body.type,
-    keywords: req.body.keyword.split(' '),
-    images: pic,
+    keywords: req.body.keywords.split(' '),
+    images: [pic],
     approxAge: req.body.approxAge,
-    userId: req.user.id
+    userId: req.user._id
   };
 
-  console.log(itemInfo);
-
   const newItem = new Item(itemInfo);
-  console.log(newItem);
 
-  newItem.save((err)=>{
+  newItem.save((err, item)=>{
         if (err) { next(err); } else {
-          res.redirect('/items/showitem/:id');
+          res.redirect(`/items/${item._id}`);
         }
       });
 
@@ -92,8 +90,9 @@ itemsController.post('/:id/delete', auth.checkLoggedIn("/logout"),(req, res, nex
 
 //public information of one item
 itemsController.get("/:id",(req, res, next)=>{
-  Item.findById(req.params.id, (err,movie)=> {
+  Item.findById(req.params.id, (err,item)=> {
     if (err) { next(err); }
+    console.log(item);
     res.render('item/showitem',{item: item});
   });
 });
@@ -104,13 +103,13 @@ itemsController.get("/",(req, res, next)=>{
 });
 
 //check if the user or admin access item evaluation page
-itemsController.get("/:id/", auth.checkLoggedIn("/logout"), (req, res, next)=> {
-  User.find({"_id": req.params.id}, (err, user)=> {
-    if(err) next(err);
-    if(req.user._id == req.params.id || req.user.role == "Admin") res.render("auth/feedback", {item: item[0]});
-    else res.redirect("/logout");
-  });
-});
+// itemsController.get("/:id/", auth.checkLoggedIn("/logout"), (req, res, next)=> {
+//   User.find({"_id": req.params.id}, (err, user)=> {
+//     if(err) next(err);
+//     if(req.user._id == req.params.id || req.user.role == "Admin") res.render("auth/feedback", {item: item[0]});
+//     else res.redirect("/logout");
+//   });
+// });
 
 //Item evaluated by user
 itemsController.post("/:id/", auth.checkLoggedIn("/logout"), (req, res, next)=>{

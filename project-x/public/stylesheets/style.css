@@ -42,7 +42,7 @@ input{
 
 .centerthebutton{
     text-align: center;
-
+}
 
 .note {
   font-style: italic;
@@ -80,4 +80,26 @@ input{
   text-align: center;
   font-size: 70px;
   z-index: 1;
+
+
+}
+
+.itemholder {
+  display: flex;
+  width: 800px;
+}
+
+.items-img {
+  width: 300px;
+}
+
+.description-holder {
+  padding-right: 60px;
+  padding-top: 30px;
+  padding-left: 30px;
+  font-size: 16px;
+  line-height: 40px;
+  border: 2px solid gray;
+  border-radius: 7px;
+
 }

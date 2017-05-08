@@ -1,14 +1,27 @@
-<h1> Test of show ONE item </h1>
 
-<img src="../images/mokey1.png">
+<h1> <%= item.type %>: <%= item.title %> </h1>
 
 <br>
 <br>
+<div class="itemholder">
+<div class="image-holder">
+  <img class="items-img" src=<%=item.images[0].pic_path%> alt="" ></img>
+</div>
+<div class="description-holder">
+  <ul>
+    <li><strong>Title: </strong><%=item.title %></li>
+    <li><strong>Type: </strong><%=item.type %></li>
+    <li><strong>Description: </strong><%= item.description%></li>
+    <li><strong>Item's Estimated Age: </strong><%=item.approxAge %></li>
+  </ul>
+</div>
+</div>
+
+<br><br><br>
 
 <form class="login" action="/" method="post">
-<label for="feedback">feedback: </label>
+<label for="feedback">Feedback: </label>
 <input type="feedback" id="feedback" name="feedback" placeholder="Enter your feedback"><br>
-<br>
 <br>
 <button type="submit" name="button">Post feedback</button>
 </form>
