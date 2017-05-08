@@ -5,7 +5,7 @@ const auth = require("../helpers/auth");
 const passport = require("../helpers/passport");
 const flash    = require("connect-flash");
 const multer = require('multer');
-const upload = multer({ dest: '../public/uploads/' });
+const upload = multer({ dest: 'public/uploads/' });
 const User= require("../models/user");
 const Item= require("../models/item");
 const Picture = require('../models/picture');
@@ -16,6 +16,7 @@ itemsController.get("/new", (req, res, next)=> {
 });
 
 itemsController.post("/new", upload.single('photo'), (req, res, next)=> {
+  console.log(req.file);
   pic = new Picture({
     pic_path: `/uploads/${req.file.filename}`,
     pic_name: req.file.originalname
@@ -25,12 +26,14 @@ itemsController.post("/new", upload.single('photo'), (req, res, next)=> {
 
   });
 
+
+  console.log(pic)
   const itemInfo = {
     title: req.body.title,
     description: req.body.description,
     type: req.body.type,
     keywords: req.body.keywords.split(' '),
-    images: pic,
+    images: [pic],
     approxAge: req.body.approxAge,
     userId: req.user._id
   };
@@ -87,6 +90,7 @@ itemsController.post('/:id/delete', auth.checkLoggedIn("/logout"),(req, res, nex
 itemsController.get("/:id",(req, res, next)=>{
   Item.findById(req.params.id, (err,item)=> {
     if (err) { next(err); }
+    console.log(item);
     res.render('item/showitem',{item: item});
   });
 });
