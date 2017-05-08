@@ -4,10 +4,53 @@ const itemsController = express.Router();
 const auth = require("../helpers/auth");
 const passport = require("../helpers/passport");
 const flash    = require("connect-flash");
+const multer = require('multer');
+const upload = multer({ dest: './public/uploads/' });
 
 const User= require("../models/user");
 const Item= require("../models/item");
+const Picture = require('../models/picture');
 const Feedback= require("../models/feedback");
+
+itemsController.get("/new", (req, res, next)=> {
+  res.render('item/new');
+});
+
+itemsController.post("/new", upload.single('photo'), (req, res, next)=> {
+  console.log("entering post New item");
+  pic = new Picture({
+    pic_path: `/uploads/${req.file.filename}`,
+    pic_name: req.file.originalname
+  });
+
+  pic.save((err) => {
+    next();
+  });
+
+  const itemInfo = {
+    title: req.body.title,
+    description: req.body.description,
+    type: req.body.type,
+    keywords: req.body.keyword.split(' '),
+    images: pic,
+    approxAge: req.body.approxAge,
+    userId: req.user.id
+  };
+
+  console.log(itemInfo);
+
+  const newItem = new Item(itemInfo);
+  console.log(newItem);
+
+  newItem.save((err)=>{
+        if (err) { next(err); } else {
+          res.redirect('/items/showitem/:id');
+        }
+      });
+
+});
+
+
 
 // check if is the user or admin gets the right to go to edit page
 itemsController.get("/:id/edit", auth.checkLoggedIn("/logout"), (req, res, next)=> {
@@ -49,7 +92,10 @@ itemsController.post('/:id/delete', auth.checkLoggedIn("/logout"),(req, res, nex
 
 //public information of one item
 itemsController.get("/:id",(req, res, next)=>{
-  res.render('/showitem');
+  Item.findById(req.params.id, (err,movie)=> {
+    if (err) { next(err); }
+    res.render('item/showitem',{item: item});
+  });
 });
 
 //public information of all items

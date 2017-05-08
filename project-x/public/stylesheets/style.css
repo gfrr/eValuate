@@ -17,7 +17,14 @@ ul {
   font-weight: strong;
 }
 
-.main {
+
+.note {
+  font-style: italic;
+  color: gray;
+  font-size: 11px;
+  margin-top: -20px;
+
+  .main {
   display: flex;
   flex-flow: column;
   width: 100%;
@@ -47,5 +54,6 @@ ul {
   text-align: center;
   font-size: 70px;
   z-index: 1;
+
 
 }
