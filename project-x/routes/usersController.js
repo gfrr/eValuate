@@ -1,10 +1,10 @@
-const express = require('express');
+const express        = require('express');
 const userController = express.Router();
-const auth = require("../helpers/auth");
-const passport = require("../helpers/passport");
-const flash    = require("connect-flash");
-const User= require("../models/user");
-const Item= require("../models/item");
+const auth           = require("../helpers/auth");
+const passport       = require("../helpers/passport");
+const flash          = require("connect-flash");
+const User           = require("../models/user");
+const Item           = require("../models/item");
 
 //public info page with all the users
 userController.get("/", (req, res, next)=>{
@@ -41,7 +41,7 @@ userController.post("/:id", auth.checkLoggedIn("/logout"), (req, res, next)=> {
   User.findByIdAndUpdate(req.params.id, userInfo, (err, user) => {
     if (err) next(err);
     console.log("change saved");
-    res.redirect("/dashboard",{user: user[0]});
+    res.redirect("/users", {user: user[0]});
   });
 });
 
