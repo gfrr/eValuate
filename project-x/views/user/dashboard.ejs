@@ -5,11 +5,6 @@
     <% if (typeof(errorMessage) != "undefined") { %>
       <div class="error-message"><%= errorMessage %></div>
     <% } %>
-    <script>
-      <% if (typeof(tempInfo) != "undefined") { %>
-         var info = <%= tempInfo %>;
-      <% }  %>
-    </script>
 <ul>
   <li><strong>First Name:</stong><%= user.firstName %> </li>
   <li><strong>Last Name:</stong> <%= user.lastName %></li>
@@ -53,25 +48,6 @@
 <br>
 
 <div class="container" id="evaluated">
-  <div class="row">
-   <%users.itemsUser.forEach(item)=>{ %>
-    <div class="col-sm-6 col-md-4">
-      <div class="thumbnail">
-        <img src=<%= user.item.images[0] %>  id="imageofuser">
-        <div class="caption">
-          <h3><%= item.title %></h3>
-          <p>keywords</p>
-          <p>
-            <a href="#" class="btn btn-default" role="button">Details</a>
-            <a href="#" class="btn btn-default" role="button">Edit</a>
-            <a href="#" class="btn btn-default" role="button">Remove</a>
-            <a href="#" class="btn btn-primary" role="button">Sell it!</a>
-          </p>
-        </div>
-        <% }) %>
-      </div>
-    </div>
-  </div>
 </div>
 
 
@@ -81,23 +57,7 @@
 <br>
 <br>
 <div class="container" id="not-evaluated">
-  <div class="row">
-    <div class="col-sm-6 col-md-4">
-      <div class="thumbnail">
-        <img src="../images/stamps/s24.jpg" id="imageofuser">
-        <div class="caption">
-          <h3>Item 1</h3>
-          <p> keywords</p>
-          <p>
-            <a href="#" class="btn btn-default" role="button">Details</a>
-            <a href="#" class="btn btn-default" role="button">Edit</a>
-            <a href="#" class="btn btn-default" role="button">Remove</a>
-            <a href="#" class="btn btn-primary" role="button">Sell it!</a>
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
+
 </div>
 <br>
 <br>
@@ -211,3 +171,9 @@
     </div>
   </div>
 </div>
+<input type="hidden" id="currentUserId" value= <%=currentUser._id%>>
+<input type="hidden" id="currentUserItems" value= <%=currentUser.itemsUser %>>
+
+<%= currentUser %>
+<script src="./javascript/APIHandler.js"></script>
+<script src="./javascript/test_api.js"></script>
