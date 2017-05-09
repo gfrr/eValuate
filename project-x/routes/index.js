@@ -31,7 +31,7 @@ router.post('/signup', (req, res, next) => {
   const confirmPassword = req.body.confirmPassword;
   const coordinates = [Number(req.body.lat), Number(req.body.lng)];
   const street = req.body.street;
-  const postCode = req.body.postalcode;
+  const postCode = req.body.postCode;
   const city = req.body.city;
   const country = req.body.country;
 
