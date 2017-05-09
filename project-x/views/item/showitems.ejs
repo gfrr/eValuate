@@ -1,17 +1,30 @@
 
-
-<h1> Show all Items </h1>
-
-<div class>
-
-<img src="../images/mokey1.png" width="100px">
-<img src="../images/monkeybike.jpg" width="100px">
-
+<br>
+<h1 class="header-center"> Browse </h1>
+<br><br>
+<!-- <ul>
+  <% items.forEach((item)=>{ %>
+    <li>
+      <%= item.title %> - <%= item.description %> <a href="/item/<%= item._id %>"> View </a>
+    </li>
+  <% }) %>
+</ul> -->
+<ul class="nav nav-tabs">
+  <li role="presentation" class="active"><a href="#">Items</a></li>
+  <li role="presentation"><a href="/users">Experts</a></li>
+</ul>
+<div class="row-fluid">
+<ul>
+  <% items.forEach((item)=>{ %>
+    <div class="col-xs-4">
+      <br>
+    <li>
+      <img class="imgbrowse" src=<%= item.images[0] %> alt="">
+      <br>
+      <%= item.title %>
+      <br><a class="btn btn-primary" href="/items/<%= item._id %>" >View More</a>
+     </li>
+   </div>
+  <% }) %>
+</ul>
 </div>
-
-<br>
-<br>
-<input width="200px" type="text" id="search" placeholder="Search for an item or an expert"><br>
-<p>or <a href="/">Browse</a> the latest items </p>
-<br>
-<br>
