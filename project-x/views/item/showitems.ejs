@@ -2,13 +2,7 @@
 <br>
 <h1 class="header-center"> Browse </h1>
 <br><br>
-<!-- <ul>
-  <% items.forEach((item)=>{ %>
-    <li>
-      <%= item.title %> - <%= item.description %> <a href="/item/<%= item._id %>"> View </a>
-    </li>
-  <% }) %>
-</ul> -->
+
 <ul class="nav nav-tabs">
   <li role="presentation" class="active"><a href="#">Items</a></li>
   <li role="presentation"><a href="/users">Experts</a></li>
@@ -19,7 +13,7 @@
     <div class="col-xs-4">
       <br>
     <li>
-      <img class="imgbrowse" src=<%= item.images[0] %> alt="">
+      <img class="imgbrowse" src=<%= item.images[0].image %> alt="">
       <br>
       <%= item.title %>
       <br><a class="btn btn-primary" href="/items/<%= item._id %>" >View More</a>
