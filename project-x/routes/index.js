@@ -29,8 +29,9 @@ router.post('/signup', (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
   const confirmPassword = req.body.confirmPassword;
+  const coordinates = [Number(req.body.lat), Number(req.body.lng)];
   const street = req.body.street;
-  const postCode = req.body.postCode;
+  const postCode = req.body.postalcode;
   const city = req.body.city;
   const country = req.body.country;
 
@@ -66,10 +67,11 @@ router.post('/signup', (req, res, next) => {
       email: email,
       password: hashPass,
       address: {
-        street: street,
-        postCode: postCode,
-        city: city,
-        country: country
+        street,
+        postCode,
+        city,
+        country,
+        coordinates,
       }
 
     });

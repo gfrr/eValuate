@@ -32,7 +32,7 @@ function init() {
       if (place.address_components[i].types[0] === 'sublocality_level_1') {
       location.neighborhood = place.address_components[i].long_name;
       }
-      if (place.address_components[i].types[0] === 'administrative_area_level_2') {
+      if (place.address_components[i].types[0] === 'locality') {
       location.city = place.address_components[i].long_name;
       }
       if (place.address_components[i].types[0] === 'administrative_area_level_1') {
@@ -49,5 +49,10 @@ function init() {
     $( "#street" ).val(location.street);
     $( "#postCode" ).val(location.postalcode);
     $( "#country" ).val(location.country);
+    $("#lat").val(location.lat);
+    $("#lng").val(location.lng);
+    if(!location.hasOwnProperty("street")) {
+      $("#address").val("");
+    }
   });
 }
