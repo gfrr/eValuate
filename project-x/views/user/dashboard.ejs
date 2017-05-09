@@ -38,6 +38,7 @@
 <br>
 
 <div class="panel panel-default">
+
   <h3> Your Items </h3>
 </div>
 <div class="centerthebutton">
@@ -50,13 +51,15 @@
 <h4> <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Evaluated </h4>
 <br>
 <br>
+
 <div class="container" id="evaluated">
   <div class="row">
+   <%users.itemsUser.forEach(item)=>{ %>
     <div class="col-sm-6 col-md-4">
       <div class="thumbnail">
-        <img src="../images/stamps/s28.jpg" id="imageofuser">
+        <img src=<%= user.item.images[0] %>  id="imageofuser">
         <div class="caption">
-          <h3>item</h3>
+          <h3><%= item.title %></h3>
           <p>keywords</p>
           <p>
             <a href="#" class="btn btn-default" role="button">Details</a>
@@ -65,10 +68,13 @@
             <a href="#" class="btn btn-primary" role="button">Sell it!</a>
           </p>
         </div>
+        <% }) %>
       </div>
     </div>
   </div>
 </div>
+
+
 <br>
 <br>
 <h4> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Not evaluated </h4>

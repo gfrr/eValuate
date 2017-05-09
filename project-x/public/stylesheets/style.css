@@ -148,7 +148,13 @@ input{
   height: 75px;
 }
 
+
+.bexpert{
+    width: 100%;
+}
+
 #browselink {
   font-size: 20px;
   font-weight: 200;
+
 }
