@@ -20,7 +20,7 @@ function test(result){
          <h3>${result.title}</h3>
          <p>${result.keywords}</p>
          <p>
-           <a href="#" class="btn btn-default" role="button">Details</a>
+           <a href="/items/${result._id}" class="btn btn-default" role="button">Details</a>
            <a href="#" class="btn btn-default" role="button">Edit</a>
            <a href="#" class="btn btn-default" role="button">Remove</a>
          </p>
