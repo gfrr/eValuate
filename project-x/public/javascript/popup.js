@@ -1,14 +1,31 @@
 $(document).ready(() => {
 
-  $(".linkview").click(function(e){
+    $(".linkviewcv").click(function(e){
       e.preventDefault();
       $('body').append($('<div/>')
-        .attr("id", "newDiv1")
-        .addClass("newDiv")
+        .attr("id", "popup")
+        .addClass("popup")
         .append("<span/>")
-          .text("hello world"));
-        });
-        
+          .html(`<script src="/javascript/popup.js"></script>
+          <a class="closelink" href="#"><img class="close-icon" src="/images/close.svg" alt=""></a><br>
+          <img class="cvimage" src="/images/cv.png" alt="">`).fadeIn(500));
+    });
+
+    // $(".linkviewcertificate").click(function(e){
+    //   e.preventDefault();
+    //   $('body').append($('<div/>')
+    //     .attr("id", "popup")
+    //     .addClass("popup")
+    //     .append("<span/>")
+    //       .html(`<script src="/javascript/popup.js"></script>
+    //       <a class="closelink" href="#">Close</a>
+    //       <img class="cvimage" src="/images/cv.png" alt="">`).fadeIn(500));
+    // });
+
+    $(".closelink").click(function(e){
+        e.preventDefault();
+        $('.popup').remove();
+    });
 });
 
 
