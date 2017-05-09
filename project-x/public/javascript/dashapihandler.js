@@ -22,11 +22,10 @@ function test(result){
          <h3>${result.title}</h3>
          <p>${result.keywords}</p>
          <p>
-           <a href="#" class="btn btn-default" role="button">Details</a>
+           <a href="/items/${result._id}" class="btn btn-default" role="button">Details</a>
            <a href="#" class="btn btn-default" role="button">Edit</a>
            <a href="/dashboard/remove/${result._id}" class="btn btn-danger" role="button">Remove</a>
            <a href="#" class="btn btn-primary" role="button">Sell it!</a>
-           <input type="hidden" id="itemId" value=${result._id}>
          </p>
        </div>
 

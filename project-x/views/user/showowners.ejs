@@ -1,0 +1,24 @@
+<br>
+<h1 class="header-center"> Browse </h1>
+<br><br>
+
+<ul class="nav nav-tabs">
+  <li role="presentation"><a href="#">Items</a></li>
+  <li role="presentation" ><a href="#">Owners</a></li>
+  <li role="presentation" class="active"><a href="/user">Owners</a></li>
+</ul>
+<div class="row-fluid">
+<ul>
+  <% usr.forEach((user)=>{ %>
+    <div class="col-xs-4">
+      <br>
+    <li>
+      <img class="avatar-thumb" src="/images/user.svg" %> alt="">
+      <br>
+      <%= user.firstName %>&nbsp<%= user.lastName %> <br>
+      <br><a class="btn btn-primary" href="/users/<%= user._id %>" >View More</a>
+     </li>
+   </div>
+  <% }) %>
+</ul>
+</div>
