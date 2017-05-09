@@ -29,7 +29,7 @@ itemsController.get("/new", (req, res, next)=> {
 itemsController.post("/new", upload.single('photo'), (req, res, next)=> {
   console.log(req.file);
   pic = new Picture({
-    pic_path: `/uploads/${req.file.filename}`,
+    image: `/uploads/${req.file.filename}`,
     pic_name: req.file.originalname
   });
 

@@ -21,7 +21,11 @@ userController.get("/", (req, res, next)=>{
 
 //public info about an specific users -more details
 userController.get('/:id', (req, res, next) => {
-  res.render('profile-show', {user: user[0]});
+  User.findById(req.params.id, (err,user)=> {
+    if (err) { next(err); }
+    console.log("the user: " + user);
+    res.render('user/showexpert',{user: user});
+  });
 });
 
 //user edit its own info

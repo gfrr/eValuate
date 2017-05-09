@@ -107,6 +107,10 @@ input{
   max-height: 100px;
 }
 
+.image-holder {
+  padding-top: 25px;
+}
+
 .row {
   width: 900px;
   margin: 0 auto;
@@ -139,4 +143,9 @@ input{
 
 .avatar-thumb {
   height: 75px;
+}
+
+#browselink {
+  font-size: 20px;
+  font-weight: 200;
 }
