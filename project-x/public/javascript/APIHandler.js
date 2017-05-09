@@ -35,8 +35,34 @@ class APIHandler {
     });
   }
 
+  deleteOneRegister (type, id) {
+    $.ajax ({
+      url: this.BASE_URL + "/api/" + type + "/" + String(id),
+      method: "DELETE",
+      success: ()=> {
+        console.log(`${id} deleted`);
 
+      },
+      error: (error) => {
+        console.log(error);
+    },
+    });
+  }
 
+  updateOneRegister (type, id, userData) {
+    $.ajax ({
+      url: this.BASE_URL + "/api/" + type + "/" + String(id),
+      method: "PATCH",
+      data: userData,
+      success: (patchResponse) => {
+        console.log(patchResponse);
+        console.log("id", id, "userdata", userData);
+      },
+      error: (error)=> {
+          console.log("patching failed");
+      }
+    });
+  }
 
   // createOneRegister (userData) {
   //  $.ajax ({
@@ -56,36 +82,7 @@ class APIHandler {
   //  });
   // }
   //
-  // updateOneRegister (userData, id) {
-  //   $.ajax ({
-  //     url: this.BASE_URL + "/characters/" + String(id),
-  //     method: "PATCH",
-  //     data: userData,
-  //     success: (patchResponse) => {
-  //       $('#edit-character-form button').removeClass("fail");
-  //       $('#edit-character-form button').addClass("success");
-  //       console.log(patchResponse);
-  //     },
-  //     error: (error)=> {
-  //       $('#edit-character-form button').removeClass("success");
-  //       $('#edit-character-form button').addClass("fail");
-  //     }
-  //   });
-  // }
+
   //
-  // deleteOneRegister (id) {
-  //   $.ajax ({
-  //     url: this.BASE_URL + "/characters/" + String(id),
-  //     method: "DELETE",
-  //     success: ()=> {
-  //       $('#delete-one').removeClass("fail");
-  //       $('#delete-one').addClass("success");
-  //
-  //     },
-  //     error: (error) => {
-  //       $('#delete-one').removeClass("success");
-  //       $('#delete-one').addClass("fail");
-  //   },
-  //   });
-  // }
+
 }
