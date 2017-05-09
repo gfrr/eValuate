@@ -41,11 +41,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 //session and passport
 app.use(session({
   secret: "our-passport-local-strategy-app",
-  cookie: { maxAge: 60000 },
-  store: new MongoStore({
-    mongooseConnection: mongoose.connection,
-    ttl: 24 * 60 * 60 // 1 day
-  })
+  resave: true,
+  saveUninitialized: true
 }));
 
 app.use(flash());
@@ -61,14 +58,14 @@ app.use("/api", apiController);
 
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use((req, res, next) =>{
   const err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use((err, req, res, next) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
