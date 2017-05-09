@@ -12,12 +12,13 @@
   <li><label for="email">E-mail: </label>
   <input type="email" id="email" name="email" value=<%= user.email %>></li><br>
   <li><label for=""><strong>Write full address here</strong></label>
-  <input type="address" id="address" name="address" required value=<%= user.address.city%>></li><br>
+  <input type="address" id="address" name="address" required value= "<%= user.address.street%>, <%=user.address.city%>" %>></li><br>
   <input type="hidden" id="street" name="street"></li><br>
   <input type="hidden" id="postCode" name="postCode"></li><br>
   <input type="hidden" id="city" name="city" ></li><br>
   <input type="hidden" id="country" name="country"></li><br>
-
+  <input type="hidden" id="lat" name="lat"></li><br>
+  <input type="hidden" id="lng" name="lng"></li><br>
 
 </select></li><br>
 </ul>
@@ -61,7 +62,7 @@
           if (place.address_components[i].types[0] === 'sublocality_level_1') {
           location.neighborhood = place.address_components[i].long_name;
           }
-          if (place.address_components[i].types[0] === 'administrative_area_level_2') {
+          if (place.address_components[i].types[0] === 'locality') {
           location.city = place.address_components[i].long_name;
           }
           if (place.address_components[i].types[0] === 'administrative_area_level_1') {
@@ -73,16 +74,20 @@
         }
         location.lat = place.geometry.location.lat();
         location.lng = place.geometry.location.lng();
+        var test = location.city;
 
-        $( "#city" ).val(location.city);
+        $( "#city" ).val(test);
         $( "#street" ).val(location.street);
         $( "#postCode" ).val(location.postalcode);
         $( "#country" ).val(location.country);
-        if(!location.hasOwnProperty("city")) {
+        $("#lat").val(location.lat);
+        $("#lng").val(location.lng);
+        if(!location.hasOwnProperty("street")) {
           $("#address").val("");
-          $("#address").attr("value", "Select at least a city");
         }
+        console.log($("#street").val());
         console.log(location);
+        console.log(location.lat, location.lng);
       });
     }
 

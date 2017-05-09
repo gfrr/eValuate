@@ -4,36 +4,30 @@
       <div class="error-message"><%= errorMessage %></div>
     <% } %>
 <form class="becomexpert" action="/signup" method="post">
-
     <script>
       <% if (typeof(tempInfo) != "undefined") { %>
          var info = <%= tempInfo %>;
       <% }  %>
     </script>
 
-  <ul>
+<ul>
 
-  <input type="file" id="cv" name="cv" required placeholder="Upload your cv"></li><br>
-  <li><button class="btn btn-primary" type="submit" name="button">Add</button></li>
+  <li><label for="CV">Upload your CV</label>
+  <input type="file" id="cv"  name="cv" required placeholder="Upload your cv"></li><br><br>
 
-  <input type="file" id="certificate" name="certificate" required placeholder="Upload your certificate"></li><br>
-  <li><button class="btn btn-primary" type="submit" name="button">Add</button></li>
+  <li><label for="CV">Upload your certificate</label>
+  <input type="file" id="certificate" name="certificate" required placeholder="Upload your certificate"></li><br><br>
 
-  <input type="file" id="photo" name="photo" required placeholder="Upload your photo"></li><br>
-  <li><button class="btn btn-primary" type="submit" name="button">Add</button></li>
+  <li><label for="CV">Upload photo</label>
+  <input type="file" id="photo" name="photo" required placeholder="Upload your photo"></li><br><br>
 
   <li><label for="website"> Website: </label>
-  <input type="website" id="website" name="website" required placeholder="Type your website"></li><br>
+  <input type="website" id="website" name="website" required placeholder="Type your website"></li><br><br>
 
-  <input type="hidden" id="street" name="street"></li><br>
-  <input type="hidden" id="postCode" name="postCode"></li><br>
-  <input type="hidden" id="city" name="city" ></li><br>
-  <input type="hidden" id="country" name="country"></li><br>
-
-</select></li><br>
 </ul>
 
-  <button type="submit" name="button">Register as Expert</button>
+  <button type="submit" name="button">Register as Expert</button><br>
+  <label> confirmation takes around two weeks</label>
 
 </form>
 <br>
