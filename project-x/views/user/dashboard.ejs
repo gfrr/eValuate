@@ -120,6 +120,7 @@
 </div>
 
 
+
 <!-- if local evaluation display this-->
   <!-- <p> you will earn €20 for local  evaluation<p>
   <button> accept local  evaluation request </button><span>
@@ -133,5 +134,9 @@
 </div> -->
 
 <%= currentUser %>
+
+<input type="hidden" id="currentUserId" value= <%=currentUser._id%>>
+<input type="hidden" id="currentUserItems" value= <%=currentUser.itemsUser %>>
+
 <script src="./javascript/APIHandler.js"></script>
 <script src="./javascript/dashapihandler.js"></script>

@@ -10,7 +10,13 @@ const itemSchema = new Schema({
   keywords: [String],
   images: [Schema.Types.Mixed],
   approxAge: Number,
-  userId: { type: Schema.Types.ObjectId, ref: 'User' }
+  currentOffers: [Schema.Types.Mixed],
+  userId: { type: Schema.Types.ObjectId, ref: 'User' },
+  status: {
+    type: String,
+    enum: ['NotEvaluated','Pending','Evaluated','Rejected'],
+    default: 'NotEvaluated'
+  }
 });
 
 
