@@ -1,6 +1,7 @@
 const dbAPI = new APIHandler("http://localhost:3000");
 
 $(document).ready(()=>{
+  click();
   console.log($("#currentUserItems").val().split(","));
   let itemsIds = $("#currentUserItems").val().split(",");
   if (itemsIds){
@@ -8,21 +9,9 @@ $(document).ready(()=>{
       dbAPI.getOneRegister("items", id, test);
     });
   }
-  click();
+
 
 });
-
-
-function click(){
-  $('.rm').on('click', (e) => {
-      console.log($("#currentUserId").val(), $("#itemId").val());
-      var userId = $("#currentUserId").val(), itemId = $("#itemId").val();
-     dbAPI.updateOneRegister("users", userId, itemId);
-     dbAPI.deleteOneRegister("items", itemId);
-   });
-}
-
-
 function test(result){
  $("#evaluated").append(`<div class="row">
 
@@ -35,17 +24,32 @@ function test(result){
          <p>
            <a href="#" class="btn btn-default" role="button">Details</a>
            <a href="#" class="btn btn-default" role="button">Edit</a>
-           <button id="rm" class="btn btn-danger">Remove</button>
+           <a href="/dashboard/remove/${result._id}" class="btn btn-danger" role="button">Remove</a>
            <a href="#" class="btn btn-primary" role="button">Sell it!</a>
+           <input type="hidden" id="itemId" value=${result._id}>
          </p>
        </div>
 
      </div>
    </div>
-   <input type="hidden" id="itemId" value=${result._id}>
+
  </div>`);
- click();
+  click();
 }
+
+function click(id){
+  $('.rm').on('click', (e) => {
+      console.log($(".rm"));
+      console.log($(this).text());
+      // console.log($(".currentUserId").val(), $(".itemId").val());
+      // var userId = $(".currentUserId").val(), itemId = $(".itemId").val();
+    //  dbAPI.updateOneRegister("users", userId, itemId);
+    //  dbAPI.deleteOneRegister("items", itemId);
+   });
+}
+
+
+
 /*
 <div class="container" id="evaluated">
   <div class="row">

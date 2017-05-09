@@ -5,6 +5,7 @@ const bcryptSalt     = 10;
 const passport = require("../helpers/passport");
 const User = require("../models/user");
 const flash = require('connect-flash');
+const Item = require("../models/item");
 const auth = require("../helpers/auth");
 
 /* GET home page. */
@@ -98,6 +99,15 @@ router.get('/dashboard', auth.checkLoggedIn("/logout"), (req, res, next)=> {
   });
 });
 
+router.get("/dashboard/remove/:item_id", (req, res, next)=>{
+  Item.findByIdAndRemove(req.params.item_id, (err)=> {
+      if(err) next(err);
+  });
+  User.findByIdAndUpdate(req.user._id, {$pull:{itemsUser: req.params.item_id}}, (err, user) => {
+    if(err) next(err);
+    res.redirect("/dashboard");
+  });
+});
 
 router.get("/logout", (req, res) => {
   req.logout();
