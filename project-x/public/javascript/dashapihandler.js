@@ -23,7 +23,6 @@ function test(result){
            <a href="#" class="btn btn-default" role="button">Details</a>
            <a href="#" class="btn btn-default" role="button">Edit</a>
            <a href="#" class="btn btn-default" role="button">Remove</a>
-           <a href="#" class="btn btn-primary" role="button">Sell it!</a>
          </p>
        </div>
 
