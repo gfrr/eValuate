@@ -1,10 +1,13 @@
 const dbAPI = new APIHandler("http://localhost:3000");
 
 $(document).ready(()=>{
-  console.log($("#currentUserItems").val());
+  console.log($("#currentUserItems").val().split(","));
   // dbAPI.getOneRegister("users", $("#currentUserId").val());
+  let itemsIds = $("#currentUserItems").val().split(",");
+  itemsIds.forEach((id)=>{
+    dbAPI.getOneRegister("items", id, test);
+  });
 
-  dbAPI.getOneRegister("items", $("#currentUserItems").val(), test);
 });
 
 function test(result){

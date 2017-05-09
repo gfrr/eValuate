@@ -1,13 +1,12 @@
 const express = require('express');
 const itemsController = express.Router();
-
 const auth = require("../helpers/auth");
 const passport = require("../helpers/passport");
 const flash    = require("connect-flash");
 const multer = require('multer');
 const upload = multer({ dest: 'public/uploads/' });
-const User= require("../models/user");
-const Item= require("../models/item");
+const User  = require("../models/user");
+const Item  = require("../models/item");
 const Picture = require('../models/picture');
 const Feedback= require("../models/feedback");
 
@@ -27,7 +26,6 @@ itemsController.get("/new", (req, res, next)=> {
 });
 
 itemsController.post("/new", upload.single('photo'), (req, res, next)=> {
-  console.log(req.file);
   pic = new Picture({
     image: `/uploads/${req.file.filename}`,
     pic_name: req.file.originalname
@@ -54,7 +52,11 @@ itemsController.post("/new", upload.single('photo'), (req, res, next)=> {
           res.redirect(`/items/${item._id}`);
         }
       });
-  
+
+  User.findOneAndUpdate({_id: req.user._id}, {$push:{itemsUser: newItem._id}}, (err, doc) =>{
+      if(err) console.log("Something wrong when updating data!");
+      console.log(doc);
+  });
 
 });
 
