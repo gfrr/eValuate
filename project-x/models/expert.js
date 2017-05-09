@@ -10,6 +10,8 @@ const expertSchema = new Schema({
   photo: String,
   website: String,
   focus: [], // i.e. Stamps, Coins etc. It can be one or more.
+  pending: [],
+  completed: [],
   userId: [{ type: Schema.Types.ObjectId, ref: 'User' }]
 });
 

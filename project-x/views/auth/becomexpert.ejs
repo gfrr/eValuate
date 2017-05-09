@@ -4,17 +4,15 @@
       <div class="error-message"><%= errorMessage %></div>
     <% } %>
 <form class="becomexpert" action="/signup" method="post">
-    <script>
-      <% if (typeof(tempInfo) != "undefined") { %>
-         var info = <%= tempInfo %>;
-      <% }  %>
-    </script>
 
 <ul>
-
-  <li><label for="focus"> Type of Expert: </label>
-  <input type="checkbox" name="focus" value="Stamps"> Stamps<br>
-  <input type="checkbox" name="focus" value="Coins" checked> Coins<br>
+  <li><label for="focus"> Type of Expert: </label><br></li>
+  <div class="checkboxcontainer">
+    <ul class="checkbox-list">
+      <li class="checkbox-list"><input type="checkbox" name="focus" value="Stamps" checked="checked"> Stamps </li>
+      <li class="checkbox-list"><input type="checkbox" name="focus" value="Coins"> Coins </li>
+    </ul>
+  </div>
 
   <li><label for="CV">Upload your CV</label>
   <input type="file" id="cv"  name="cv" required placeholder="Upload your cv"></li><br><br>
@@ -27,12 +25,9 @@
 
   <li><label for="website"> Website: </label>
   <input type="website" id="website" name="website" required placeholder="Type your website"></li><br><br>
-
-</ul>
-
-  <button type="submit" name="button">Register as Expert</button><br>
-  <label> confirmation takes around two weeks</label>
-
+  <li><button type="submit" class="btn btn-primary" name="button">Register as Expert</button><br></li><br>
+  <li><label> Confirmation takes up to two days</label></li>
+  </ul>
 </form>
 <br>
-<script type="text/javascript" src="./javascript/autocomplete.js"></script>
+<!-- <script type="text/javascript" src="./javascript/autocomplete.js"></script> -->
