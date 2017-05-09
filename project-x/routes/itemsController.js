@@ -11,6 +11,17 @@ const Item= require("../models/item");
 const Picture = require('../models/picture');
 const Feedback= require("../models/feedback");
 
+//public information of all items
+itemsController.get("/",(req, res, next)=>{
+  Item.find({},(err,items) => {
+    if (err) {
+      next(err);
+    } else {
+      res.render('item/showitems',{items});
+    }
+  });
+});
+
 itemsController.get("/new", (req, res, next)=> {
   res.render('item/new');
 });
@@ -18,7 +29,7 @@ itemsController.get("/new", (req, res, next)=> {
 itemsController.post("/new", upload.single('photo'), (req, res, next)=> {
   console.log(req.file);
   pic = new Picture({
-    pic_path: `/uploads/${req.file.filename}`,
+    image: `/uploads/${req.file.filename}`,
     pic_name: req.file.originalname
   });
 
@@ -26,8 +37,6 @@ itemsController.post("/new", upload.single('photo'), (req, res, next)=> {
 
   });
 
-
-  console.log(pic)
   const itemInfo = {
     title: req.body.title,
     description: req.body.description,
@@ -95,10 +104,7 @@ itemsController.get("/:id",(req, res, next)=>{
   });
 });
 
-//public information of all items
-itemsController.get("/",(req, res, next)=>{
-  res.render('/showitems');
-});
+
 
 //check if the user or admin access item evaluation page
 // itemsController.get("/:id/", auth.checkLoggedIn("/logout"), (req, res, next)=> {
@@ -127,6 +133,5 @@ itemsController.post('/:id/delete', auth.checkLoggedIn("/logout"), (req, res, ne
       return res.redirect('/items');
     });
   });
-
 
 module.exports = itemsController;
