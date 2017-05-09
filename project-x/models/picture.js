@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const Item = require('./item');
 
 const pictureSchema = new Schema({
-  pic_path: String, // change it to image
+  image: String, // change it to image
   pic_name: String
 }, {
   timestamps: { createdAt: "created_at", updatedAt: "updated_at" }
