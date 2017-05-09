@@ -16,13 +16,17 @@
   <li><strong>Street:</strong>  <%= user.address.street %></li>
   <li><strong>Post Code:</strong>  <%= user.address.postCode %> </li>
   <li><strong>City: </strong> <%= user.address.city %> </li>
-  <li><strong>Country:</strong>  <%= user.address.country %></li>
+  <li><strong>Country:</strong>  <%= user.address.country %></li><br>
+
+
 </ul>
 
 <form class="dashboard" action="users/<%=user._id%>/edit" method="get">
   <button name="button">Edit Information</button>
-
 </form>
+
+
+
 <br>
 <br>
 <form class="dashboard" action="users/<%=user._id%>/expert" method="get">
@@ -37,8 +41,8 @@
   <h3> Your Items </h3>
 </div>
 <div class="centerthebutton">
-  <button class="btn btn-default" aria-label="Left Align">
-    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add
+  <a href="/items/new" class="btn btn-default"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add</a>
+
   </button>
 </div>
 <br>
