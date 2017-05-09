@@ -38,8 +38,8 @@ function createUserType(number, userType,  password = "test" ){
 //returns an array of random images depending on the type passed (i.e coin || stamp)
 function randomImage(type){
   let images = [];
-  if(type == "coin") images.push((`/images/coins/c${Math.floor(Math.random()*19)+1}.jpg`));
-  else images.push((`/images/stamps/s${Math.floor(Math.random()*28)+1}.jpg`));
+  if(type == "coin") images.push({image: `/images/coins/c${Math.floor(Math.random()*19)+1}.jpg`});
+  else images.push({image: `/images/stamps/s${Math.floor(Math.random()*28)+1}.jpg`});
   return images;
 }
 
