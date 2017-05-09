@@ -17,7 +17,7 @@ const bcrypt = require('bcrypt');
 const flash = require('connect-flash');
 const MongoStore = require("connect-mongo")(session);
 const apiController = require("./routes/apiController");
-
+const dashboardController = require("./routes/dashboardController");
 
 const app = express();
 
@@ -52,6 +52,7 @@ app.use(auth.setCurrentUser);
 
 
 app.use('/', index);
+app.use("/", dashboardController);
 app.use('/items', itemsController);
 app.use('/users', usersController);
 app.use("/api", apiController);

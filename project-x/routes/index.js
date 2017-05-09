@@ -91,23 +91,7 @@ router.post('/signup', (req, res, next) => {
 });
 });
 
-//to go to dashboard  personal data and chek if is logged in
-router.get('/dashboard', auth.checkLoggedIn("/logout"), (req, res, next)=> {
-  User.find({"_id": req.user._id},(err, users)=>{
-    if(err) next(err);
-    res.render('user/dashboard', {user: users[0]});
-  });
-});
 
-router.get("/dashboard/remove/:item_id", (req, res, next)=>{
-  Item.findByIdAndRemove(req.params.item_id, (err)=> {
-      if(err) next(err);
-  });
-  User.findByIdAndUpdate(req.user._id, {$pull:{itemsUser: req.params.item_id}}, (err, user) => {
-    if(err) next(err);
-    res.redirect("/dashboard");
-  });
-});
 
 router.get("/logout", (req, res) => {
   req.logout();

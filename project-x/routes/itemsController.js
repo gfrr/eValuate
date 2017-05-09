@@ -62,9 +62,14 @@ itemsController.post("/new", upload.single('photo'), (req, res, next)=> {
 
 // check if is the user or admin gets the right to go to edit page
 itemsController.get("/:id/edit", auth.checkLoggedIn("/logout"), (req, res, next)=> {
-  User.find({"_id": req.params.id}, (err, user)=> {
+
+
+  Item.find({"_id": req.params.id}, (err, item)=> {
     if(err) next(err);
-    if(req.user._id == req.params.id || req.user.role == "Admin") res.render("auth/edit", {item: item[0]});
+      console.log(req.user.id);
+        console.log(item[0].userId);
+
+    if(req.user._id == String(item[0].userId) || req.user.role == "Admin") res.render("auth/edit-item", {item: item[0]});
     else res.redirect("/logout");
   });
 });
