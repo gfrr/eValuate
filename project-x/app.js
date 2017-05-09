@@ -41,11 +41,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 //session and passport
 app.use(session({
   secret: "our-passport-local-strategy-app",
-  cookie: { maxAge: 180000 },
-  store: new MongoStore({
-    mongooseConnection: mongoose.connection,
-    ttl: 24 * 60 * 60 // 1 day
-  })
+  resave: true,
+  saveUninitialized: true
 }));
 
 app.use(flash());

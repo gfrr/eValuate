@@ -39,7 +39,7 @@ userController.post("/:id", auth.checkLoggedIn("/logout"), (req, res, next)=> {
     // password: bcrypt.hashSync(password, salt),
     address:{
       street: req.body.street,
-      postCode: req.body.postalcode,
+      postCode: req.body.postCode,
       city: req.body.city,
       country: req.body.country,
       coordinates: [Number(req.body.lat), Number(req.body.lng)],
