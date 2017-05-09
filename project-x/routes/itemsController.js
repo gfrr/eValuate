@@ -54,6 +54,7 @@ itemsController.post("/new", upload.single('photo'), (req, res, next)=> {
           res.redirect(`/items/${item._id}`);
         }
       });
+  
 
 });
 

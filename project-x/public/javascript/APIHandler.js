@@ -12,6 +12,7 @@ class APIHandler {
         response.forEach((elem, index)=>{
           if(index === 0) console.log("empty");
            else {
+
              console.log(elem);
           }
         });
@@ -21,18 +22,21 @@ class APIHandler {
     });
   }
 
-  getOneRegister (type, id) {
+  getOneRegister (type, id, callback = undefined) {
     $.ajax ({
       url: this.BASE_URL + "/api/" + type + "/" + String(id),
       method: "GET",
       dataType: "json",
       success: (response)=> {
-        this._clearVision();
-        console.log(response);
+        if(typeof(callback) === "undefined") console.log("no callback");
+        else callback(response);
       },
       error: (error) => console.log(`${id} not found`),
     });
   }
+
+
+
 
   // createOneRegister (userData) {
   //  $.ajax ({

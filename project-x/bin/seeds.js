@@ -51,7 +51,7 @@ function createItem(){
   let type = Math.floor(Math.random()*2) ? "coin" : "stamp";
   let address = faker.helpers.createCard().address;
   for(let j = 0; j < Math.floor(Math.random() * 4) + 1; j++){
-    keywords.push(faker.commerce.productAdjective);
+    keywords.push(faker.commerce.productAdjective());
     images.push(faker.image.image());
   }
   const item = {
