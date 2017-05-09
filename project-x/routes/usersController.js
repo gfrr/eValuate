@@ -6,6 +6,7 @@ const flash          = require("connect-flash");
 const User           = require("../models/user");
 const Item           = require("../models/item");
 
+
 //public info page with all the users
 userController.get("/", (req, res, next)=>{
   User.find({}, (err, users)=>{
@@ -31,24 +32,24 @@ userController.get('/:id', (req, res, next) => {
 //user edit its own info
 userController.post("/:id", auth.checkLoggedIn("/logout"), (req, res, next)=> {
   console.log(req.body.address);
-  // const userInfo = {
-  //   name: req.body.name,
-  //   lastName: req.body.lastName,
-  //   email: req.body.email,
-  //   password: req.body.password,
-  //   address:{
-  //     street: req.body.street,
-  //     postCode: req.body.postCode,
-  //     city: req.body.city,
-  //     country: req.body.country,
-  // }
-  // };
-  // User.findByIdAndUpdate(req.params.id, userInfo, (err, user) => {
-  //   if (err) next(err);
-  //   console.log("change saved");
-  //   res.redirect("/users", {user: user[0]});
-  // });
-  res.redirect("/");
+  const userInfo = {
+    firstName: req.body.name,
+    lastName: req.body.lastName,
+    email: req.body.email,
+    // password: bcrypt.hashSync(password, salt),
+    address:{
+      street: req.body.street,
+      postCode: req.body.postCode,
+      city: req.body.city,
+      country: req.body.country,
+      coordinates: [Number(req.body.lat), Number(req.body.lng)],
+  }
+  };
+  User.findByIdAndUpdate(req.params.id, userInfo, (err, user) => {
+    if (err) next(err);
+    console.log("change saved");
+    res.redirect("/dashboard");
+  });
 });
 
 // check if is the user or admin dets the right to go to edit page
