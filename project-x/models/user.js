@@ -13,7 +13,7 @@ const userSchema = new Schema({
     postCode: String,
     city: String,
     country: String,
-    coordinates: [Number, Number]
+    coordinates: [Number, Number] //lat and lng
   },
   role: {
     type: String,
