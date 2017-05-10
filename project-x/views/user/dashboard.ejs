@@ -29,9 +29,11 @@
 
 <br>
 <br>
+<% if (user.role !== "Professional"){ %>
 <form class="dashboard" action="users/<%=user._id%>/expert" method="get">
   <button name="button">Become an Expert</button>
 </form>
+<%}%>
 
 <br>
 <br>
@@ -70,13 +72,13 @@
 <br>
 <br>
 <div class="container" id="pending">
-  
+
 </div>
-<br>
+<!-- <br>
 <br>
 <h4> <span class="glyphicon glyphicon-tag" aria-hidden="true"></span> For Sale </h4>
 <br>
-<br>
+<br> -->
 
 
 
@@ -86,7 +88,7 @@
 
 
   <!-- if accepted  to be expert display this-->
-
+<% if (user.role == "Professional"){ %>
 <div class="panel panel-default">
   <h3> Items for Evaluation </h3>
 </div>
@@ -107,7 +109,7 @@
     </div>
   </div>
 </div>
-
+<%}%>
 
 
 <!-- if local evaluation display this-->
