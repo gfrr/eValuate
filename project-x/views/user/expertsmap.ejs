@@ -1,16 +1,18 @@
 <h2 style="text-align: center"> These are the experts close by: </h2>
 
-<input type="hidden" id="latitude" value="<%=currentUser.address.coordinates[0] %>">
-<input type="hidden" id="longitude" value="<%=currentUser.address.coordinates[1] %>">
+
   <div class="container-fluid centered">
-    <select id="selectradius" name="radius" required>
+    <select id="selectradius" name="radius" onchange="restartMap()">
       <option value="">Select a Radius...</option>
       <option value="10">10km</option>
       <option value="25">25km</option>
       <option value="50">50km</option>
       <option value="100">100km</option>
+      <option value="250">250km</option>
     </select><br>
   </div>
+  <input type="hidden" id="latitude" value="<%=currentUser.address.coordinates[0] %>">
+  <input type="hidden" id="longitude" value="<%=currentUser.address.coordinates[1] %>">
   <div class="container-fluid centered">
 
     <div id="map" class="map-style">
