@@ -327,3 +327,15 @@ fieldset[disabled] .custom-file-input::-webkit-file-upload-button.focus {
   border-radius: 5px;
   text-align: center;
 }
+
+.centered {
+  width: 100%;
+  display: inline-flex;
+  align-content: center;
+}
+
+.map-style {
+  height: 500px;
+  width: 700px;
+  margin: 0 auto;
+}
