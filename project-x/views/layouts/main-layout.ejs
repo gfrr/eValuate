@@ -33,7 +33,7 @@
             <li><a href="/items/new">Add an item </a></li>
             <li><a href="/items">View current items</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="/users?experts">View experts close-by </a></li>
+            <li><a href="/users/<%=currentUser._id%>/map">View experts close-by </a></li>
             <li role="separator" class="divider"></li>
             <% if (currentUser !== "Professional"){ %>
             <li><a href="/users/<%=currentUser._id%>/expert">Become an expert </a></li>
