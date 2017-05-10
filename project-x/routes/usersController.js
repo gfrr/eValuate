@@ -88,13 +88,12 @@ userController.get("/:id/expert", auth.checkLoggedIn("/logout"), (req, res, next
   });
 });
 
-userController.get('/:id/notifications',auth.checkLoggedIn("/logout"), (req, res, next)=> {
-  User.find({"_id": req.params.id}, (err, users)=> {
+
+userController.get('/:id/map',auth.checkLoggedIn("/logout"), (req, res, nect)=> {
+  User.find({"_id": req.params.id}, (err, user)=>{
     if(err) next(err);
-    console.log(users);
-    if(req.user._id == req.params.id || req.user.role == "Admin") {
-      res.render("user/notifications", {user: users[0]});}
-    else res.redirect("/logout");
+    res.render("user/expertsmap",{user: user[0]});
+
   });
 });
 

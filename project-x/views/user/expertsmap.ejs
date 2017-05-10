@@ -1,0 +1,21 @@
+<h2> These are the experts close by: </h2>
+<select name="radius" required>
+  <option value="">Select a Radius...</option>
+  <option value="10">10km</option>
+  <option value="25">25km</option>
+  <option value="50">50km</option>
+  <option value="100">100km</option>
+</select><br>
+<input type="hidden" id="latitude" value="<%=user.address.coordinates[0] %>">
+<input type="hidden" id="longitude" value="<%=user.address.coordinates[1] %>">
+  <div class="container-fluid centered">
+    <div id="map" class="map-style">
+
+    </div>
+  </div>
+
+
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=KEY">
+    </script>
+    <script type="text/javascript" src="/javascript/main.js"></script>
