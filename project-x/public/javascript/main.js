@@ -39,11 +39,7 @@ function updateMap(position, radius, zoomIndex) {
     };
 
     var icon = 'http://maps.google.com/mapfiles/ms/icons/green-dot.png';
-    if(places.description === "coffeeshop"){
-      icon = 'http://maps.google.com/mapfiles/ms/icons/red-dot.png';
-    }
-
-    var pin = new google.maps.Marker({position, map, title, icon});
+    var pin = new google.maps.Marker({position, map, name, icon});
     markers.push(pin);
   });
 
