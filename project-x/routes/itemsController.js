@@ -49,13 +49,25 @@ itemsController.post("/new", upload.single('photo'), (req, res, next)=> {
 
   newItem.save((err, item)=>{
         if (err) { next(err); } else {
+          User.find({_id: req.user._id}, (err, user)=> {
+            if(err) console.log("Something wrong when updating data!");
+            if(user[0].role == "User") user[0].role = "Owner";
+            user[0].itemsUser.push(newItem._id);
+            user[0].save();
+            console.log(user[0]);
+          });
+          // User.findOneAndUpdate({_id: req.user._id}, {$push:{itemsUser: newItem._id}}, (err, doc) =>{
+          //     if(err) console.log("Something wrong when updating data!");
+          //     console.log(doc);
+          // });
+          // User.findOneAndUpdate({_id: req.user._id}, {$set: {status: "Owner"}}, (err, doc)=>{
+          //     if(err) console.log("Something wrong when updating data!");
+          //     console.log(doc);
+          // });
           res.redirect(`/items/${item._id}`);
         }
       });
-  User.findOneAndUpdate({_id: req.user._id}, {$push:{itemsUser: newItem._id}}, (err, doc) =>{
-      if(err) console.log("Something wrong when updating data!");
-      console.log(doc);
-  });
+
 
 });
 

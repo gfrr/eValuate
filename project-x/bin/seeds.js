@@ -62,6 +62,8 @@ function createItem(){
     images: randomImage(type),
     approxAge: Math.floor(Math.random() * 1000),
     userId: undefined,
+    status: "NotEvaluated",
+    currentOffers: [],
 
   };
   return item;
