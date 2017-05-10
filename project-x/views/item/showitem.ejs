@@ -25,10 +25,19 @@
   <ul>
     <li><label for="makeoffer">Offer Amount (EUR): </label><input id="offer" type="number" style="text-align: center; font-size: 20px;" name="makeoffer" value="0"></li><br>
     <input type="hidden" name="item-id" value="<%=item._id %>">
-    <input type="text" name="user-id" value="<%=currentUser._id %>">
+    <input type="hidden" name="user-id" value="<%=currentUser._id %>">
     <li><button id="makeoffer" class="btn btn-primary btn-round" type="button" name="button">Make<bR>Offer!</button></li><br>
     <li><strong> Highest Offer: </strong><div id="highestoffer"><br>
-      No Offers
+    <% let tmpArray = []; %>
+    <% let highOffer;  %>
+    <% let cOffers = item.currentOffers;  %>
+    <% if (cOffers.length === 0) { highOffer = "No Offers";} else { %>
+    <%   cOffers.forEach((offer)=>{   %>
+    <%     tmpArray.push(offer.amount);%>
+    <%   }); %>
+    <%   highOffer = Math.max.apply(null, tmpArray);%>
+    <% } %>
+    <div id="offer-label"><%= highOffer %></div>
     </div></li>
   </ul>
 </form>

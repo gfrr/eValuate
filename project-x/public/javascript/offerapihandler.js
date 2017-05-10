@@ -15,11 +15,24 @@ $(document).ready(()=>{
 
     console.log(thisOffer);
     itemsAPI.updateOneItem(thisOffer,itemId);
+    itemsAPI.getOneRegister("items", itemId, updatePage);
   });
 
 });
 
-
+function updatePage (response) {
+  console.log(response.currentOffers);
+  let tmpArray = [];
+  let highOffer;
+  let cOffers = response.currentOffers;
+  if (cOffers.length === 0) { highOffer = "No Offers";} else {
+    cOffers.forEach((offer)=>{
+      tmpArray.push(offer.amount);
+    });
+    highOffer = Math.max.apply(null, tmpArray);
+  }
+  $('#offer-label').html(highOffer);
+}
 
 function showFeedback (postResponse) {
   console.log('post success');
