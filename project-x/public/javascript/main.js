@@ -1,10 +1,33 @@
 
 
-  function startMap(radius, zoomIndex) {
+  function startMap() {
+
+    let radius;
+    let zoomIndex;
+    let tmpRadius = String(document.getElementById("selectradius").value);
+    if (tmpRadius === "10") {
+      radius = 10000;
+      zoomIndex = 12;
+    } else if (tmpRadius === "25") {
+      radius = 25000;
+      zoomIndex = 11;
+    } else if (tmpRadius === "50") {
+      radius = 50000;
+      zoomIndex = 10;
+    } else if (tmpRadius === "100") {
+      radius = 100000;
+      zoomIndex = 8;
+    } else {
+      radius = 10000;
+      zoomIndex = 12;
+    }
+    console.log("this is the radius " + radius);
+
     var position = {
   	    lat: Number(document.getElementById("latitude").value),
   	    lng: Number(document.getElementById("longitude").value)
     };
+    console.log("this is the position: " + position);
     console.log(position);
     const map = new google.maps.Map(
       document.getElementById('map'),
@@ -109,6 +132,15 @@ function getDistance(lat1, lon1, lat2, lon2) {
 
 $(document).ready(()=>{
 
+
+  startMap();
+
+
+
+});
+
+function restartMap() {
+$(document).ready(()=>{
   let radius;
   let zoomIndex;
   let tmpRadius = String(document.getElementById("selectradius").value);
@@ -123,13 +155,34 @@ $(document).ready(()=>{
     zoomIndex = 10;
   } else if (tmpRadius === "100") {
     radius = 100000;
-    zoomIndex = 8;
+    zoomIndex = 9;
+  } else if (tmpRadius === "250") {
+    radius = 2500000;
+    zoomIndex = 7;
   } else {
     radius = 10000;
     zoomIndex = 12;
   }
-  startMap(radius,zoomIndex);
+  console.log("this is the radius " + radius);
 
-
-
+  var position = {
+      lat: Number(document.getElementById("latitude").value),
+      lng: Number(document.getElementById("longitude").value)
+  };
+  console.log("this is the position: " + position);
+  console.log(position);
+  const map = new google.maps.Map(
+    document.getElementById('map'),
+      {
+        zoom: zoomIndex,
+        center: position
+      }
+  );
+  var myMarker = new google.maps.Marker({
+    position: position,
+    map: map,
+    title: "You are here"
+  });
+  updateMap(map,position,radius,zoomIndex);
 });
+}
