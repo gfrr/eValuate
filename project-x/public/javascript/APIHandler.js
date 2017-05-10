@@ -35,6 +35,19 @@ class APIHandler {
     });
   }
 
+  getUserItems(id, callback) {
+    $.ajax ({
+      url: this.BASE_URL + "/api/items/" + String(id) +"/items_user",
+      method: "GET",
+      dataType: "json",
+      success: (response)=> {
+        if(typeof(callback) === "undefined") console.log("no callback");
+        else callback(response);
+      },
+      error: (error) => console.log(error),
+    });
+  }
+
   getOneExpert(id, callback = undefined){
     $.ajax({
       url: this.BASE_URL + "/api/experts/" + String(id),
