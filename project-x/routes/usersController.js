@@ -13,7 +13,6 @@ userController.get("/", (req, res, next)=>{
     if(err) next(err);
     let usr = [];
     let route;
-    console.log(req.query)
     for (let query in req.query){
       route = query;
     }
@@ -23,12 +22,15 @@ userController.get("/", (req, res, next)=>{
       });
       res.render("user/showusers", {usr});
     };
+
     if (route === "owners"){
       users.forEach((user)=>{
         if(user.role === "Owner") usr.push(user);
       });
+
       res.render("user/showusers", {usr});
       };
+
 });
 });
 
@@ -82,6 +84,9 @@ userController.get("/:id/expert", auth.checkLoggedIn("/logout"), (req, res, next
   });
 });
 
+userController.post("/:id/expert/submit", auth.checkLoggedIn("/logout"), (req, res, next)=> {
+  
+});
 
 userController.get('/:id/notifications',auth.checkLoggedIn("/logout"), (req, res, next)=> {
   User.find({"_id": req.params.id}, (err, users)=> {

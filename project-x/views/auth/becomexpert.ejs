@@ -3,7 +3,7 @@
     <% if (typeof(errorMessage) != "undefined") { %>
       <div class="error-message"><%= errorMessage %></div>
     <% } %>
-<form class="becomexpert" action="/signup" method="post">
+<form class="becomexpert" action="/" method="post">
 
 <ul>
   <li><label for="focus"> Type of Expert: </label><br></li>
@@ -16,10 +16,6 @@
 
   <li><label for="CV">Upload your CV</label>
   <input type="file" id="cv"  name="cv" required placeholder="Upload your cv"></li><br><br>
-
-  <li><label for="CV">Upload your certificate</label>
-  <input type="file" id="certificate" name="certificate" required placeholder="Upload your certificate"></li><br><br>
-
   <li><label for="CV">Upload photo</label>
   <input type="file" id="photo" name="photo" required placeholder="Upload your photo"></li><br><br>
 
@@ -30,4 +26,3 @@
   </ul>
 </form>
 <br>
-<!-- <script type="text/javascript" src="./javascript/autocomplete.js"></script> -->
