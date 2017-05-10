@@ -52,13 +52,40 @@ itemsController.post("/new", upload.single('photo'), (req, res, next)=> {
           res.redirect(`/items/${item._id}`);
         }
       });
-
   User.findOneAndUpdate({_id: req.user._id}, {$push:{itemsUser: newItem._id}}, (err, doc) =>{
       if(err) console.log("Something wrong when updating data!");
       console.log(doc);
   });
 
 });
+
+//public information of one item
+itemsController.get("/:id",(req, res, next)=>{
+  Item.findById(req.params.id, (err,item)=> {
+    if (err) { next(err); }
+
+    res.render('item/showitem',{item: item});
+  });
+});
+
+//Item edited by user
+itemsController.post("/:id", auth.checkLoggedIn("/logout"), (req, res, next)=> {
+    const itemInfo = {
+      title: req.body.title,
+      description: req.body.description,
+      keywords: req.body.keywords.split(' '),
+      approxAge: req.body.approxAge,
+
+    };
+
+      Item.findByIdAndUpdate(req.params.id, itemInfo, (err, item) => {
+        if (err) next(err);
+        console.log("change saved");
+    });
+
+
+    res.redirect(`/items/${req.params.id}`);
+  });
 
 // check if is the user or admin gets the right to go to edit page
 itemsController.get("/:id/edit", auth.checkLoggedIn("/logout"), (req, res, next)=> {
@@ -74,22 +101,6 @@ itemsController.get("/:id/edit", auth.checkLoggedIn("/logout"), (req, res, next)
   });
 });
 
-//Item edited by user
-itemsController.post("/:id", auth.checkLoggedIn("/logout"), (req, res, next)=> {
-    const itemInfo = {
-        title: req.body.title,
-        description: req.body.description,
-        type: req.body.type,
-        keywords: req.body.keywords,
-        images: [req.body.images],
-        approxAge: req.body.approxAge,
-    };
-    User.findByIdAndUpdate(req.params.id, itemInfo, (err, item) => {
-      if (err) next(err);
-      console.log("change saved");
-      res.redirect("/items",{item: item[0]});
-    });
-  });
 
 //Item deleted by user
 itemsController.post('/:id/delete', auth.checkLoggedIn("/logout"),(req, res, next) => {
@@ -99,18 +110,10 @@ itemsController.post('/:id/delete', auth.checkLoggedIn("/logout"),(req, res, nex
       if (err){ return next(err); }
       return res.redirect('/items');
     });
-
   });
 
 
-//public information of one item
-itemsController.get("/:id",(req, res, next)=>{
-  Item.findById(req.params.id, (err,item)=> {
-    if (err) { next(err); }
-    console.log(item);
-    res.render('item/showitem',{item: item});
-  });
-});
+
 
 
 
@@ -123,15 +126,15 @@ itemsController.get("/:id",(req, res, next)=>{
 //   });
 // });
 
-//Item evaluated by user
-itemsController.post("/:id/", auth.checkLoggedIn("/logout"), (req, res, next)=>{
-  const itemFeedback = req.body.feedback;
-  User.findByIdAndUpdate(req.params.id, itemFeedback, (err, item) => {
-    if (err) next(err);
-    console.log("change saved");
-    res.redirect("/items",{item: item[0]});
-  });
-});
+// //Item evaluated by user
+// itemsController.post("/:id/", auth.checkLoggedIn("/logout"), (req, res, next)=>{
+//   const itemFeedback = req.body.feedback;
+//   User.findByIdAndUpdate(req.params.id, itemFeedback, (err, item) => {
+//     if (err) next(err);
+//     console.log("change saved");
+//     res.redirect("/items",{item: item[0]});
+//   });
+// });
 
 //Item evaluation deleted by user
 itemsController.post('/:id/delete', auth.checkLoggedIn("/logout"), (req, res, next) => {
