@@ -100,6 +100,15 @@ router.get('/search/:word?', (req, res) => {
 		});
 	});
 
+  router.get('/search/:word?', (req, res) => {
+    var word = req.query.word
+  		User.find({title: word}, (error, item) => {
+  			if (error) res.status(500).json({message: error});
+  			 else console.log(item)
+         res.status(200).json(item);
+  		});
+  	});
+
 router.post('/search', (req, res, next)=>{
    res.redirect("/")
 })

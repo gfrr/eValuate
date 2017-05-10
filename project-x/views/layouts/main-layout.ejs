@@ -47,12 +47,20 @@
       <ul class="nav navbar-nav navbar-right">
         <li id="browselink"><a href="/items"> Browse </a></li>
 
+<!-- search owner or experts -->
         <form class="navbar-form navbar-left">
+          <select class="dropdown">
+            <option id="SearchItems">Search Items</option>
+            <option id="SearchUsers">Search Users</option>
+          </select>
           <div class="form-group">
-            <input id="search" type="text" class="form-control" placeholder="Search items or experts">
+            <input id="search" type="text" class="form-control" placeholder="Search">
           </div>
-          <button id="searchButton" type="submit" class="btn btn-default"><a id="searchUrl">Search </a></button>
+          <button id="searchButton" type="submit" class="btn btn-default"><a id="searchUrl"> Search </a></button>
         </form>
+
+<!-- search items   -->
+
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
