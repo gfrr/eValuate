@@ -91,7 +91,9 @@ router.post('/signup', (req, res, next) => {
 });
 });
 
-
+router.get('/search', (req, res, next)=>{
+   res.redirect("/")
+})
 
 router.get("/logout", (req, res) => {
   req.logout();
