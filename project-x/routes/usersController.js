@@ -15,23 +15,18 @@ userController.get("/", (req, res, next)=>{
     let route;
     for (let query in req.query){
       route = query;
-    }
-    if (route === "experts"){
+    } if (route === "experts"){
       users.forEach((user)=>{
         if(user.role === "Professional") usr.push(user);
       });
-      res.render("user/showusers", {usr});
-    };
-
-    if (route === "owners"){
+      res.render("user/showexperts", {usr});
+    } else {
       users.forEach((user)=>{
         if(user.role === "Owner") usr.push(user);
       });
-
-      res.render("user/showusers", {usr});
-      };
-
-});
+      res.render("user/showowners", {usr});
+      }
+    });
 });
 
 
@@ -95,7 +90,7 @@ userController.get("/:id/expert", auth.checkLoggedIn("/logout"), (req, res, next
 });
 
 userController.post("/:id/expert/submit", auth.checkLoggedIn("/logout"), (req, res, next)=> {
-  
+
 });
 
 userController.get('/:id/notifications',auth.checkLoggedIn("/logout"), (req, res, next)=> {
