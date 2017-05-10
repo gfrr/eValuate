@@ -39,6 +39,16 @@ userController.get("/", (req, res, next)=>{
 userController.get('/:id', (req, res, next) => {
   User.findById(req.params.id, (err,user)=> {
     if (err) { next(err); }
+    let items = [];
+    user.itemsUser.forEach((item)=>{
+      Item.findById(item,(err,itm)=>{
+        if (err) next(err);
+        // console.log(itm);
+        items.push(itm);
+        console.log(items);
+      });
+    });
+    console.log("items",items);
     console.log("the user: " + user);
     res.render('user/showuser',{user: user});
   });
