@@ -42,7 +42,6 @@ class APIHandler {
       method: "DELETE",
       success: ()=> {
         console.log(`${id} deleted`);
-
       },
       error: (error) => {
         console.log(error);
@@ -55,15 +54,28 @@ class APIHandler {
       url: this.BASE_URL + "/api/" + type + "/" + String(id),
       method: "PATCH",
       data: userData,
-      success: (patchResponse) => {
-        console.log(patchResponse);
-        console.log("id", id, "userdata", userData);
-      },
+
       error: (error)=> {
           console.log("patching failed");
       }
     });
   }
+
+  updateOneItem (newItemInfo,id) {
+      $.ajax({
+          url: this.BASE_URL + "/api/items/" + String(id),
+          method: 'PATCH',
+          data: newItemInfo,
+          success: (patchResponse) => {
+            console.log("success");
+          },
+          error: (error)=> {
+              console.log("patching failed");
+          }
+      });
+    }
+
+
 
   // createOneRegister (userData) {
   //  $.ajax ({

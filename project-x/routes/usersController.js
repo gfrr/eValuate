@@ -20,14 +20,17 @@ userController.get("/", (req, res, next)=>{
       users.forEach((user)=>{
         if(user.role === "Professional") usr.push(user);
       });
-      res.render("user/showexperts", {usr});
-    }
+      res.render("user/showusers", {usr});
+    };
+
     if (route === "owners"){
       users.forEach((user)=>{
         if(user.role === "Owner") usr.push(user);
       });
-      res.render("user/showowners", {usr});
-      }
+
+      res.render("user/showusers", {usr});
+      };
+
 });
 });
 
@@ -37,7 +40,7 @@ userController.get('/:id', (req, res, next) => {
   User.findById(req.params.id, (err,user)=> {
     if (err) { next(err); }
     console.log("the user: " + user);
-    res.render('user/showexpert',{user: user});
+    res.render('user/showuser',{user: user});
   });
 });
 
