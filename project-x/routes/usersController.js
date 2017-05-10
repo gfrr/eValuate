@@ -90,10 +90,9 @@ userController.get("/:id/expert", auth.checkLoggedIn("/logout"), (req, res, next
 
 
 userController.get('/:id/map',auth.checkLoggedIn("/logout"), (req, res, nect)=> {
-  User.find({"_id": req.params.id}, (err, user)=>{
+  User.find({"role": "Professional"},{"_id": 0}, (err, experts)=>{
     if(err) next(err);
-    res.render("user/expertsmap",{user: user[0]});
-
+      res.render("user/expertsmap", {experts});
   });
 });
 
