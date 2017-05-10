@@ -91,7 +91,16 @@ router.post('/signup', (req, res, next) => {
 });
 });
 
-router.get('/search', (req, res, next)=>{
+router.get('/search/:word?', (req, res) => {
+  var word = req.query.word
+		User.find({lastName: word}, (error, user) => {
+			if (error) res.status(500).json({message: error});
+			 else console.log(user)
+       res.status(200).json(user);
+		});
+	});
+
+router.post('/search', (req, res, next)=>{
    res.redirect("/")
 })
 
