@@ -49,13 +49,25 @@ itemsController.post("/new", upload.single('photo'), (req, res, next)=> {
 
   newItem.save((err, item)=>{
         if (err) { next(err); } else {
+          User.find({_id: req.user._id}, (err, user)=> {
+            if(err) console.log("Something wrong when updating data!");
+            if(user[0].role == "User") user[0].role = "Owner";
+            user[0].itemsUser.push(newItem._id);
+            user[0].save();
+            console.log(user[0]);
+          });
+          // User.findOneAndUpdate({_id: req.user._id}, {$push:{itemsUser: newItem._id}}, (err, doc) =>{
+          //     if(err) console.log("Something wrong when updating data!");
+          //     console.log(doc);
+          // });
+          // User.findOneAndUpdate({_id: req.user._id}, {$set: {status: "Owner"}}, (err, doc)=>{
+          //     if(err) console.log("Something wrong when updating data!");
+          //     console.log(doc);
+          // });
           res.redirect(`/items/${item._id}`);
         }
       });
-  User.findOneAndUpdate({_id: req.user._id}, {$push:{itemsUser: newItem._id}}, (err, doc) =>{
-      if(err) console.log("Something wrong when updating data!");
-      console.log(doc);
-  });
+
 
 });
 
@@ -144,5 +156,31 @@ itemsController.post('/:id/delete', auth.checkLoggedIn("/logout"), (req, res, ne
       return res.redirect('/items');
     });
   });
+
+//
+// itemsController.get('/:id/offer', (req, res, next) => {
+//   console.log("success");
+// });
+//
+// itemsController.post('/:id/', auth.checkLoggedIn("/logout"), (req, res, next)=> {
+//   let offerInfo = {};
+//   console.log(req.body.makeoffer);
+//   if (req.body.makeoffer.val() !== 0) {
+//     offerInfo = {
+//       currentOffer: req.body.makeoffer.val(),
+//       bidder: req.user._id
+//     };
+//   }
+//   console.log(offerInfo);
+//   console.log(req.params.id);
+//
+//   Item.findByIdAndUpdate(req.params.id, {$push:{currentOffers: offerInfo}}, (err, item) => {
+//     if (err) next(err);
+//     console.log("change saved");
+//     res.redirect("/items",{item: item[0]});
+//   });
+//
+// });
+
 
 module.exports = itemsController;

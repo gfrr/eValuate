@@ -70,4 +70,15 @@ userController.get("/:id/expert", auth.checkLoggedIn("/logout"), (req, res, next
 });
 
 
+userController.get('/:id/notifications',auth.checkLoggedIn("/logout"), (req, res, next)=> {
+  User.find({"_id": req.params.id}, (err, users)=> {
+    if(err) next(err);
+    console.log(users);
+    if(req.user._id == req.params.id || req.user.role == "Admin") {
+      console.log("kawabonga");
+      res.render("user/notifications", {user: users[0]});}
+    else res.redirect("/logout");
+  });
+});
+
 module.exports = userController;

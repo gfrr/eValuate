@@ -88,30 +88,38 @@ input{
 
 .itemholder {
   display: flex;
-  width: 800px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.image-holder {
+  padding-top: 40px;
+  width:15%;
 }
 
 .items-img {
-  width: 300px;
+  max-width:100%;
+  height: auto;
+  display:block;
 }
+
 
 .description-holder {
   padding-right: 60px;
   padding-top: 30px;
   padding-left: 30px;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 40px;
   /*border: 2px solid gray;*/
   border-radius: 7px;
+  width: auto;
 }
 
 .imgbrowse {
   max-height: 100px;
 }
 
-.image-holder {
-  padding-top: 25px;
-}
+
 
 .row {
   width: 900px;
@@ -146,9 +154,6 @@ input{
 .avatar-thumb {
   height: 75px;
 }
-
-
-
 
 .bexpert{
     width: 100%;
@@ -259,4 +264,34 @@ fieldset[disabled] .custom-file-input::-webkit-file-upload-button.focus {
 .custom-file-input::-webkit-file-upload-button .badge {
   color: #618894;
   background-color: #fff;
+}
+
+.btn-round {
+  height: 75px;
+  width: 75px;
+  border-radius: 50%;
+}
+
+.offer-holder {
+  width: 20%;
+  padding-top: 24px;
+  text-align: center;
+  line-height: 25px;
+}
+
+#highestoffer {
+  font-size: 20px;
+}
+
+.container-fluid {
+  flex-direction: row;
+}
+
+.col-sm-2 {
+  text-align: center;
+}
+
+.profile-img {
+  height: auto;
+  width: 225px;
 }
