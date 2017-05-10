@@ -34,7 +34,7 @@
             <li role="separator" class="divider"></li>
             <li><a href="/users?experts">View experts close-by </a></li>
             <li role="separator" class="divider"></li>
-            <% if (user.role !== "Professional"){ %>
+            <% if (currentUser !== "Professional"){ %>
             <li><a href="/users/<%=currentUser._id%>/expert">Become an expert </a></li>
             <%}%>
           </ul>
