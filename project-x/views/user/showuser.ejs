@@ -22,7 +22,7 @@
 <% }; %>
   <% if(isUserLoggedIn){ %>
             <% if (String(user._id) !== String(currentUser._id)){ %>
-    <li><button type="submit" class="btn btn-primary" name="button"> Request evaluation  </button></li>
+    <li><button type="submit" id="evaluate" class="btn btn-primary" name="button"> Request evaluation  </button></li>
 
         <% }; %>
       <% }; %>
@@ -34,9 +34,9 @@
   </ul>
 </div>
 </div>
-
+<div id="items"></div>
 <br><br><br>
-
+<input type="hidden" id="userId" value=<%= currentUser._id%>>
 <form class="login" action="/" method="post">
 <label for="feedback">Feedback: </label
 <input type="feedback" id="feedback" name="feedback" placeholder="Enter your feedback"><br>
@@ -45,3 +45,7 @@
 </form>
 <br>
 <p> <a href="/users">All the experts </a> <br>Check them out! </p>
+
+
+<script src="../javascript/APIHandler.js"></script>
+<script src="../javascript/users.js"></script>

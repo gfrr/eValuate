@@ -77,7 +77,12 @@ router.patch("/users/:user_id", (req, res) => {
 		});
 	});
 
-
+	router.get("/items/:user_id/items_user", (req, res)=>{
+		Item.find({userId: req.params.user_id}, (error, items)=>{
+			if (error) res.status(500).json({message: error});
+			 else res.status(200).json(items);
+		});
+	});
 	router.delete("/items/:item_id", (req, res)=> {
 		Item.findByIdAndRemove(req.params.item_id, (error)=> {
 			 if(error) res.status(500).json({message: error});
