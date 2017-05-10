@@ -25,6 +25,7 @@ function test(result){
            <a href="/items/${result._id}" class="btn btn-default" role="button">Details</a>
            <a href="/items/${result._id}/edit" class="btn btn-default" role="button">Edit</a>
            <a href="/dashboard/remove/${result._id}" class="btn btn-danger" role="button">Remove</a>
+           <a href="/items/${result._id}" class="btn btn-default" role="button">Offers</a>
          </p>
        </div>
 
