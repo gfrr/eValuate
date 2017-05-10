@@ -12,8 +12,11 @@ $(document).ready(()=>{
 
 
 });
-function test(result){
- $("#evaluated").append(`<div class="row">
+
+
+function test(result, target){
+  console.log(target.toLowerCase());
+ $(`#${target.toLowerCase()}`).append(`<div class="row">
 
    <div class="col-sm-6 col-md-4">
      <div class="thumbnail">

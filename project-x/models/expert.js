@@ -6,7 +6,6 @@ const User = require('./user');
 
 const expertSchema = new Schema({
   cv: String,
-  certificate: String,
   photo: String,
   website: String,
   focus: [], // i.e. Stamps, Coins etc. It can be one or more.
