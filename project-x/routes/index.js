@@ -5,6 +5,7 @@ const bcryptSalt     = 10;
 const passport = require("../helpers/passport");
 const User = require("../models/user");
 const flash = require('connect-flash');
+const Item = require("../models/item");
 const auth = require("../helpers/auth");
 
 /* GET home page. */
@@ -90,13 +91,6 @@ router.post('/signup', (req, res, next) => {
 });
 });
 
-//to go to dashboard  personal data and chek if is logged in
-router.get('/dashboard', auth.checkLoggedIn("/logout"), (req, res, next)=> {
-  User.find({"_id": req.user._id},(err, users)=>{
-    if(err) next(err);
-    res.render('user/dashboard', {user: users[0]});
-  });
-});
 
 
 router.get("/logout", (req, res) => {

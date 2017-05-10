@@ -36,7 +36,6 @@ userController.post("/:id", auth.checkLoggedIn("/logout"), (req, res, next)=> {
     firstName: req.body.name,
     lastName: req.body.lastName,
     email: req.body.email,
-    // password: bcrypt.hashSync(password, salt),
     address:{
       street: req.body.street,
       postCode: req.body.postCode,
@@ -47,7 +46,6 @@ userController.post("/:id", auth.checkLoggedIn("/logout"), (req, res, next)=> {
   };
   User.findByIdAndUpdate(req.params.id, userInfo, (err, user) => {
     if (err) next(err);
-    console.log("change saved");
     res.redirect("/dashboard");
   });
 });
@@ -56,9 +54,7 @@ userController.post("/:id", auth.checkLoggedIn("/logout"), (req, res, next)=> {
 userController.get("/:id/edit", auth.checkLoggedIn("/logout"), (req, res, next)=> {
   User.find({"_id": req.params.id}, (err, users)=> {
     if(err) next(err);
-    console.log(users);
     if(req.user._id == req.params.id || req.user.role == "Admin") {
-      console.log("kawabonga");
       res.render("auth/edit-user", {user: users[0]});}
     else res.redirect("/logout");
   });
@@ -67,9 +63,7 @@ userController.get("/:id/edit", auth.checkLoggedIn("/logout"), (req, res, next)=
 userController.get("/:id/expert", auth.checkLoggedIn("/logout"), (req, res, next)=> {
   User.find({"_id": req.params.id}, (err, users)=> {
     if(err) next(err);
-    console.log(users);
     if(req.user._id == req.params.id || req.user.role == "Admin") {
-      console.log("kawabonga");
       res.render("auth/becomexpert", {user: users[0]});}
     else res.redirect("/logout");
   });

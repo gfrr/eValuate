@@ -34,20 +34,44 @@ router.route('/users')
     	});
 
 
-router.route('/users/:user_id')
-	.get((req, res) => {
+router.get('/users/:user_id', (req, res) => {
 		User.findById(req.params.user_id, (error, user) => {
 			if (error) res.status(500).json({message: error});
 			 else res.status(200).json(user);
 		});
 	});
 
-	router.route('/items/:item_id').get((req,res)=>{
+router.patch("/users/:user_id", (req, res) => {
+		console.log("patch called");
+		console.log(req.body);
+		let itemId;
+		for(let prop in req.body){
+			itemId = prop;
+		}
+		console.log(itemId);
+		User.findByIdAndUpdate(req.params.user_id, {$pull:{itemsUser: itemId}}, (err, user) => {
+			if(err) res.status(500).json({message: err});
+			else res.status(200).json("user updated");
+	  });
+	});
+
+	router.get('/items/:item_id', (req,res)=>{
 		Item.findById(req.params.item_id, (error, item) => {
 			if (error) res.status(500).json({message: error});
 			 else res.status(200).json(item);
 		});
 	});
+
+
+	router.delete("/items/:item_id", (req, res)=> {
+		Item.findByIdAndRemove(req.params.item_id, (error)=> {
+			 if(error) res.status(500).json({message: error});
+			 else res.status(200).json("item deleted");
+
+		});
+	});
+
+
   // router.route('/search')
   // 	.get((req, res) => {
   // 		const latitude = req.query.lat;
@@ -62,7 +86,7 @@ router.route('/users/:user_id')
   // 									res.status(200).json(restaurants);
   // 								}
   // 							});
-  // 	})
+  //
 
 
 module.exports = router;
