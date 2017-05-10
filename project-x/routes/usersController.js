@@ -12,13 +12,26 @@ userController.get("/", (req, res, next)=>{
   User.find({}, (err, users)=>{
     if(err) next(err);
     let usr = [];
-    users.forEach((user)=>{
-      if(user.role === "Professional") usr.push(user);
-    });
-    res.render("user/showexperts", {usr});
-  });
-
+    let route;
+    console.log(req.query)
+    for (let query in req.query){
+      route = query;
+    }
+    if (route === "experts"){
+      users.forEach((user)=>{
+        if(user.role === "Professional") usr.push(user);
+      });
+      res.render("user/showexperts", {usr});
+    };
+    if (route === "owners"){
+      users.forEach((user)=>{
+        if(user.role === "Owner") usr.push(user);
+      });
+      res.render("user/showowners", {usr});
+      };
 });
+});
+
 
 //public info about an specific users -more details
 userController.get('/:id', (req, res, next) => {
