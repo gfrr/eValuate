@@ -7,14 +7,20 @@
 <br>
 <div class="itemholder">
 <div class="image-holder">
-  <img class="items-img" src="/images/user.svg" alt="" ></img>
+  <img class="profile-img" src="/images/user.svg" alt="" ></img>
 </div>
 <div class="description-holder">
   <ul>
     <li><strong>Name: </strong><%=user.firstName %>&nbsp<%=user.lastName %></li>
     <li><strong>City: </strong><%=user.address.city %></li>
     <li><strong>Country: </strong><%= user.address.country%></li>
-    <li><strong>Collections: </strong><%= user.itemsUser %></li>
+        <% if (user.role === "Professional"){ %>
+    <li><strong>Qualifications: </strong>lorem ipsum text and ipsum lorem</li>
+    <li><strong>CV (Resume): </strong> <a href="#" class="linkviewcv">View</a></li>
+    <li><strong>Certificates: </strong> <a href="#" class="linkview">View</a></li>
+        <% }; %>
+
+    <li><strong>Collections: </strong><a href="/items/<%=user.itemsUser[0]%>" class="linkview">item</a></li>
     <li><strong><a href="#">Contact</a> </strong></li>
   </ul>
 </div>
@@ -29,4 +35,4 @@
 <button type="submit" class="btn btn-primary" name="button">Post feedback</button>
 </form>
 <br>
-<p> <a href="/users">All the owners </a> <br>Check them out! </p>
+<p> <a href="/users">All the experts </a> <br>Check them out! </p>
