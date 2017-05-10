@@ -1,1 +1,26 @@
-huzah!
+<br>
+<br>
+<h3>Edit item: </h3><br>
+    <% if (typeof(errorMessage) != "undefined") { %>
+      <div class="error-message"><%= errorMessage %></div>
+    <% } %>
+<% if(typeof(item)!== "undefined") { %>
+
+
+<form class="additem" action="/items/<%= item._id%>" method="post">
+  <ul>
+  <li><label for="title">Title: </label>
+  <input type="text" id="title" name="title" required value="<%= item.title %>"></li><br>
+  <li><label for="description">Description: </label>
+  <input type="text" id="description" name="description" required value="<%= item.description %>"></li><br>
+  <li><label for="type">Type: </label>
+  <li><label for="keywords">Keywords: </label>
+  <input type="text" id="keywords" name="keywords" required value="<%= item.keywords.join(" ") %>"></li><br>
+  <p class="note">* Insert single word tags separated by a space related to your item's description i.e. sky blue dog australia president jfk etc.</p>
+  <li><label for="approxAge">Item's estimated age: </label>
+  <input type="number" id="approxAge" name="approxAge" required value="<%= item.approxAge %>"></li><br>
+  <li><button class="btn btn-primary" type="submit" name="button">Edit</button></li>
+  </ul>
+</form>
+<br>
+<% } %>

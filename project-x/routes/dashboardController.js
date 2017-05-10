@@ -25,6 +25,10 @@ router.get("/dashboard/remove/:item_id", auth.checkLoggedIn("/logout"), (req, re
   });
 });
 
+/*
+if(req.user._id == String(item[0].userId) || req.user.role == "Admin") res.render("auth/edit-item", {item: item[0]});
+else res.redirect("/logout");
+*/
 
 
 module.exports = router;
