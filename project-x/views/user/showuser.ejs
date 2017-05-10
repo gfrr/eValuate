@@ -20,7 +20,7 @@
     <li><strong>Certificates: </strong> <a href="#" class="linkview">View</a></li>
         <% }; %>
 
-    <li><strong>Collections: </strong><a href="/items/<%=user.itemsUser[0]%>" class="linkview">item</a></li>
+    <li><strong>Collections: </strong><a href="/items/<%=user.itemsUser[0]%>" class="linkview">item <%=user.itemsUser[0].title%> </a></li>
     <li><strong><a href="#">Contact</a> </strong></li>
   </ul>
 </div>
@@ -29,7 +29,7 @@
 <br><br><br>
 
 <form class="login" action="/" method="post">
-<label for="feedback">Feedback: </label>
+<label for="feedback">Feedback: </label
 <input type="feedback" id="feedback" name="feedback" placeholder="Enter your feedback"><br>
 <br>
 <button type="submit" class="btn btn-primary" name="button">Post feedback</button>
