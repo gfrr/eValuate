@@ -24,7 +24,7 @@
 </ul>
 
 <form class="dashboard" action="users/<%=user._id%>/edit" method="get">
-  <button name="button">Edit Information</button>
+  <button class="btn btn-primary" name="button">Edit Information</button>
 </form>
 
 
@@ -33,7 +33,7 @@
 <br>
 <% if (user.role !== "Professional"){ %>
 <form class="dashboard" action="users/<%=user._id%>/expert" method="get">
-  <button name="button">Become an Expert</button>
+  <button class="btn btn-primary" name="button">Become an Expert</button>
 </form>
 <%}%>
 
@@ -45,7 +45,7 @@
   <h3> Your Items </h3>
 </div>
 <div class="centerthebutton">
-  <a href="/items/new" class="btn btn-default"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add</a>
+  <a href="/items/new" class="btn btn-info"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add</a>
 
   </button>
 </div>
