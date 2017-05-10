@@ -14,6 +14,7 @@ $("#evaluate").click(()=>{
 
 function printItems(response){
   console.log(response);
+  const expertId = $("#expertId").val();
   if(typeof(response)!== "undefined"){
     response.forEach((item)=>{
       console.log(item);
@@ -28,7 +29,7 @@ function printItems(response){
             <li><strong>Description: </strong>${item.description}</li>
             <li><strong>Item's Estimated Age: </strong>${item.approxAge}</li>
             <li><strong> </strong>${item.approxAge}</li>
-
+            <a href="/items/${item._id}/requesteval?${expertId}" class="btn btn-default" role="button">Request Evaluation</a>
           </a></li>
         </div>
         `);
