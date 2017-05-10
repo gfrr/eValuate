@@ -125,7 +125,14 @@ itemsController.post('/:id/delete', auth.checkLoggedIn("/logout"),(req, res, nex
   });
 
 
-
+itemsController.get("/:id/requesteval", auth.checkLoggedIn("/logout"), (req, res, next)=>{
+  console.log(req.query);
+   let expertId;
+  for(let query in req.query){
+    expertId = query;
+  }
+  res.redirect("/users?experts");
+});
 
 
 
