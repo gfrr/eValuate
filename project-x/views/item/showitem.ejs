@@ -1,3 +1,5 @@
+<script src="../javascript/APIHandler.js"></script>
+<script src="../javascript/offerapihandler.js"></script>
 
 <h1 style="text-align: center"> <%= item.title %> </h1>
 
@@ -19,10 +21,12 @@
 <div class="col-sm-2">
   <% if(isUserLoggedIn) { %>
   <% if(String(currentUser._id) != String(item.userId)){ %>
-    <form class="makeoffer" action="/offer/<%= item._id %>" method="post">
+    <form class="makeoffer">
   <ul>
     <li><label for="makeoffer">Offer Amount (EUR): </label><input id="offer" type="number" style="text-align: center; font-size: 20px;" name="makeoffer" value="0"></li><br>
-    <li><button class="btn btn-primary btn-round" type="button" name="button">Make<bR>Offer!</button></li><br>
+    <input type="hidden" name="item-id" value="<%=item._id %>">
+    <input type="text" name="user-id" value="<%=currentUser._id %>">
+    <li><button id="makeoffer" class="btn btn-primary btn-round" type="button" name="button">Make<bR>Offer!</button></li><br>
     <li><strong> Highest Offer: </strong><div id="highestoffer"><br>
       No Offers
     </div></li>
@@ -30,15 +34,7 @@
 </form>
   <% } %>
   <% } else { %>
-    <form class="makeoffer" action="/offer/<%= item._id %>" method="post">
-    <ul>
-      <li><label for="makeoffer">Offer Amount (EUR): </label><input type="number" style="text-align: center; font-size: 20px;" name="makeoffer" value="0"></li><br>
-      <li><button class="btn btn-primary btn-round" type="submit" name="button">Make<bR>Offer!</button></li><br>
-      <li><strong> Highest Offer: </strong><div id="highestoffer"><br>
-        No Offers
-      </div></li>
-    </ul>
-  </form>
+    <p class="login-flash"><a href="/">LOG IN</a><br>TO MAKE<br>AN OFFER</p>
   <% } %>
 </div>
 </div>

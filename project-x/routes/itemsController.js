@@ -145,30 +145,6 @@ itemsController.post('/:id/delete', auth.checkLoggedIn("/logout"), (req, res, ne
     });
   });
 
-//
-// itemsController.get('/:id/offer', (req, res, next) => {
-//   console.log("success");
-// });
-//
-// itemsController.post('/:id/', auth.checkLoggedIn("/logout"), (req, res, next)=> {
-//   let offerInfo = {};
-//   console.log(req.body.makeoffer);
-//   if (req.body.makeoffer.val() !== 0) {
-//     offerInfo = {
-//       currentOffer: req.body.makeoffer.val(),
-//       bidder: req.user._id
-//     };
-//   }
-//   console.log(offerInfo);
-//   console.log(req.params.id);
-//
-//   Item.findByIdAndUpdate(req.params.id, {$push:{currentOffers: offerInfo}}, (err, item) => {
-//     if (err) next(err);
-//     console.log("change saved");
-//     res.redirect("/items",{item: item[0]});
-//   });
-//
-// });
 
 
 module.exports = itemsController;

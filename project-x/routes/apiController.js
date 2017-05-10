@@ -71,7 +71,14 @@ router.patch("/users/:user_id", (req, res) => {
 		});
 	});
 
-
+	router.patch("/items/:item_id", (req, res) => {
+			console.log("patch called");
+			console.log(req.body);
+			Item.findByIdAndUpdate(req.params.item_id, {$push:{currentOffers: req.body}}, {new: true}, (err, user) => {
+				if(err) res.status(500).json({message: err});
+				else res.status(200).json("user updated");
+		  });
+		});
   // router.route('/search')
   // 	.get((req, res) => {
   // 		const latitude = req.query.lat;
