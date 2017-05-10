@@ -28,9 +28,21 @@ class APIHandler {
       method: "GET",
       dataType: "json",
       success: (response)=> {
-        if(type == "items");
         if(typeof(callback) === "undefined") console.log("no callback");
         else callback(response, response.status);
+      },
+      error: (error) => console.log(`${id} not found`),
+    });
+  }
+
+  getOneExpert(id, callback = undefined){
+    $.ajax({
+      url: this.BASE_URL + "/api/experts/" + String(id),
+      method: "GET",
+      dataType: "json",
+      success: (response) => {
+        if(typeof(callback) === "undefined") console.log("no callback");
+        else callback(response);
       },
       error: (error) => console.log(`${id} not found`),
     });

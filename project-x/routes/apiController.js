@@ -3,6 +3,7 @@ const router = express.Router();
 const User = require('../models/user');
 const Item = require('../models/item');
 const Feedback = require("../models/feedback");
+const Expert = require("../models/expert");
 
 router.route("/test", (req, res, next) => {
 	res.render("test");
@@ -16,6 +17,20 @@ router.route('/users')
 	  	 else res.status(200).json(users);
 	  });
 	});
+
+router.get("/experts", (req, res, next)=> {
+	Expert.find((error, users) => {
+		if (error) res.status(500).json({message: error});
+		 else res.status(200).json(users);
+	});
+});
+
+router.get("/experts/:experts_id", (req, res, next)=> {
+	Expert.find({"userId": req.params.experts_id}, (error, users)=>{
+		if (error) res.status(500).json({message: error});
+		 else res.status(200).json(users[0]);
+	});
+});
 
   router.route('/items')
   	.get((req, res) => {
