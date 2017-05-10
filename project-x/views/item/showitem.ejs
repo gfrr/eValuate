@@ -17,7 +17,9 @@
     <li><strong>Type: </strong><%=item.type %></li>
     <li><strong>Description: </strong><%= item.description%></li>
     <li><strong>Item's Estimated Age: </strong><%=item.approxAge %></li>
-    <li><strong>Owner: </strong><%=item.approxAge %></li>
+    <li><strong> </strong><%=item.approxAge %></li>
+    <li><strong>Owner: </strong><a href="/users/<%=item.userId%>" class="linkview">see details
+  </a></li>
 </div>
 <div class="col-sm-2">
   <% if(isUserLoggedIn) { %>
