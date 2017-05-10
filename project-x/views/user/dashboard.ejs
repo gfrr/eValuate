@@ -90,26 +90,43 @@
 
 
   <!-- if accepted  to be expert display this-->
-<% if (user.role == "Professional"){ %>
+<% if (currentUser.role == "Professional"){ %>
+  <script>
+    $(document).ready(()=>{
+      const dbAPI = new APIHandler("http://localhost:3000");
+      dbAPI.getOneExpert($("#currentUserId").val(), logresult);
+    });
+
+    function logresult(res){
+      if(res.pending.length > 0){
+        res.pending.forEach((item)=>{
+          dbAPI.getOneRegister("items", item)
+        });
+        $("#forevaluation").append(`
+          <div class="row">
+            <div class="col-sm-6 col-md-4">
+              <div class="thumbnail">
+                <img src="" >
+                <div class="caption">
+                  <h3>Item 1</h3>
+                    <p>owner of the item</p>
+                    <p> you will earn €10 for on-line evaluation<p>
+                    <a href="#" class="btn btn-default" role="button">Accept</a>
+                    <a href="#" class="btn btn-primary" role="button">Reject</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          `)
+      }
+    }
+  </script>
 <div class="panel panel-default">
   <h3> Items for Evaluation </h3>
 </div>
 <div class="container" id="forevaluation">
-  <div class="row">
-    <div class="col-sm-6 col-md-4">
-      <div class="thumbnail">
-        <img src="" >
-        <div class="caption">
-          <h3>Item 1</h3>
-            <p>owner of the item</p>
-            <p> you will earn €10 for on-line evaluation<p>
-            <a href="#" class="btn btn-default" role="button">Accept</a>
-            <a href="#" class="btn btn-primary" role="button">Reject</a>
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
+
 </div>
 <%}%>
 

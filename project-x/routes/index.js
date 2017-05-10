@@ -91,7 +91,30 @@ router.post('/signup', (req, res, next) => {
 });
 });
 
-router.get('/search', (req, res, next)=>{
+router.get('/search/:word?', (req, res) => {
+    var word = req.query.word.split(",")[0];
+    var type = req.query.word.split(",")[1];
+    console.log(word,type);
+   if (String(type) == "Users"){
+     console.log("1");
+  		User.find({lastName: word}, (error, item) => {
+  			if (error) res.status(500).json({message: error});
+  			else console.log(item)
+        res.status(200).json(item);
+        	});
+        };
+if (String(type) == "Items"){
+  word = word.split("%20").join(" ");
+  console.log(word);
+   Item.find({title: String(word)}, (error, item) => {
+     if (error) res.status(500).json({message: error});
+     else console.log(item)
+     res.status(200).json(item);
+       });
+     };
+  });
+
+router.post('/search', (req, res, next)=>{
    res.redirect("/")
 })
 
