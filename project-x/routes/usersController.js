@@ -29,7 +29,6 @@ userController.get("/", (req, res, next)=>{
     });
 });
 
-
 //public info about an specific users -more details
 userController.get('/:id', (req, res, next) => {
   User.findById(req.params.id, (err,user)=> {
@@ -89,10 +88,12 @@ userController.get("/:id/expert", auth.checkLoggedIn("/logout"), (req, res, next
   });
 });
 
+
 userController.get('/:id/map',auth.checkLoggedIn("/logout"), (req, res, nect)=> {
   User.find({"_id": req.params.id}, (err, user)=>{
     if(err) next(err);
     res.render("user/expertsmap",{user: user[0]});
+
   });
 });
 
