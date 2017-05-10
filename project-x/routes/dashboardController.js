@@ -9,7 +9,7 @@ const auth = require("../helpers/auth");
 
 //to go to dashboard  personal data and chek if is logged in
 router.get('/dashboard', auth.checkLoggedIn("/logout"), (req, res, next)=> {
-  User.find({"_id": req.user._id},(err, users)=>{
+  User.find({"_id": req.user._id},(err, users) => {
     if(err) next(err);
     res.render('user/dashboard', {user: users[0]});
   });
