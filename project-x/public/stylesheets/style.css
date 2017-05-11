@@ -8,8 +8,19 @@ ul {
   list-style: none;
 }
 
-input{
-  width: 100%;
+input {
+  width: 300px;
+  height: 30px;
+  border: 1px solid gray;
+  border-radius: 7px;
+  box-shadow: inset 1px 1px 1px rgb(159, 159, 159);
+  padding-left: 7px;
+}
+
+#search {
+  box-shadow: inset 1px 1px 1px rgb(159, 159, 159);
+  border-radius: 7px;
+
 }
 
 
@@ -69,7 +80,13 @@ li.active {
   font-style: italic;
   color: gray;
   font-size: 11px;
-  margin-top: -20px;
+  margin-top: -15px;
+}
+
+input[type=checkbox] {
+  width: 22px;
+  height: 22px;
+  border-color: none;
 }
 
   .main {
@@ -353,4 +370,14 @@ fieldset[disabled] .custom-file-input::-webkit-file-upload-button.focus {
 
 #selectradius {
   margin: 0 auto;
+}
+
+.navbar-brand {
+  font-size: 20px;
+  font-weight: bold;
+  color: #2C3E50 !important;
+}
+
+.evaluate {
+  font-size: 14px;
 }
