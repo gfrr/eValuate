@@ -81,38 +81,5 @@ function click(id){
   $('.rm').on('click', (e) => {
       console.log($(".rm"));
       console.log($(this).text());
-      // console.log($(".currentUserId").val(), $(".itemId").val());
-      // var userId = $(".currentUserId").val(), itemId = $(".itemId").val();
-    //  dbAPI.updateOneRegister("users", userId, itemId);
-    //  dbAPI.deleteOneRegister("items", itemId);
    });
 }
-
-// function printName (result) {
-//   let fullName = result.firstName + " " + result.lastName;
-//   return fullName;
-// }
-
-/*
-<div class="container" id="evaluated">
-  <div class="row">
-
-    <div class="col-sm-6 col-md-4">
-      <div class="thumbnail">
-        <img src="">
-        <div class="caption">
-          <h3></h3>
-          <p>keywords</p>
-          <p>
-            <a href="#" class="btn btn-default" role="button">Details</a>
-            <a href="#" class="btn btn-default" role="button">Edit</a>
-            <a href="#" class="btn btn-default" role="button">Remove</a>
-            <a href="#" class="btn btn-primary" role="button">Sell it!</a>
-          </p>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</div>
-*/

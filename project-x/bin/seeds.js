@@ -109,18 +109,6 @@ for(var i = 0; i < number; i++){
   }
 }
 
-/*
-const expertSchema = new Schema({
-  cv: String,
-  photo: String,
-  website: String,
-  focus: [], // i.e. Stamps, Coins etc. It can be one or more.
-  pending: [],
-  completed: [],
-  userId: { type: Schema.Types.ObjectId, ref: 'User' }
-});
-*/
-
 function createExpert(){
 let expertise =  Math.floor(Math.random() * 2) ? ["Coins"] : ["Stamps"];
   return {

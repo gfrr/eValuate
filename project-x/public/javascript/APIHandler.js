@@ -49,10 +49,6 @@ class APIHandler {
           console.log("no callback");
         } else {
             callback(response, console.log(response));
-            // for(var user in response){
-            //     biddersArray.push(user);
-            //     console.log(user);
-            // }
             $(".current-offers").append(`€&nbsp
             ${offer}:&nbsp<a href="/users/${response._id}">${response.firstName}&nbsp${response.lastName}</a><br><br>`);
         }
@@ -60,15 +56,6 @@ class APIHandler {
       error: (error) => console.log(`${id} not found`),
     });
   }
-
-// printOnPage(response, offers) {
-//   response.forEach((user)=>{
-//     biddersArray.push(user.firstName + " " + user.lastName);
-//   });
-//   $(".current-offers").append(`<h3> Offers </h3>
-//     ${offers.join("<br><br>")}
-//     ${biddersArray.join("<br><br>")}`);
-// }
 
   getUserItems(id, callback) {
     $.ajax ({
@@ -164,27 +151,5 @@ class APIHandler {
       }
     });
   }
-
-
-  // createOneRegister (userData) {
-  //  $.ajax ({
-  //    url: this.BASE_URL + "/characters",
-  //    method: "POST",
-  //    data: userData,
-  //    success: () => {
-  //      $('#new-character-form button').removeClass("fail");
-  //      $('#new-character-form button').addClass("success");
-  //
-  //  },
-  //    error: (error) => {
-  //      $('#new-character-form button').removeClass("success");
-  //      $('#new-character-form button').addClass("fail");
-  //
-  //    },
-  //  });
-  // }
-  //
-
-  //
 
 }
