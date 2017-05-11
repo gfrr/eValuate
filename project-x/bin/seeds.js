@@ -121,8 +121,17 @@ const expertSchema = new Schema({
 });
 */
 
-function generateExpert(){
-  
+function createExpert(){
+let expertise =  Math.floor(Math.random() * 2) ? ["Coins"] : ["Stamps"];
+  return {
+    cv: "images/cv.png",
+    photo: faker.internet.avatar(),
+    website: faker.internet.url(),
+    focus: expertise,
+    pending: [],
+    completed: [],
+    userId: undefined,
+  };
 }
 
 function generateExperts(number){
@@ -133,26 +142,21 @@ function generateExperts(number){
     user.save();
     let expertData = createExpert();
     expertData.userId = user._id;
-    console.log(itemData);
-    let item = Item(itemData);
-    Expert.save((error) => {
-      if (!error) Item.find({"title": item.title}).populate('userId');
-      });
-    user.itemsUser = item._id;
+    let expert = Expert(expertData);
+    expert.save();
     console.log(user);
+    console.log(expert);
     }
 }
 
 //initializing db with fake data
-generateOwnersAndItems(30);
+generateOwnersAndItems(100);
 const usersData = createUserType(20, "User");
-const professionalsData = createUserType(15, "Professional");
+// const professionalsData = createUserType(15, "Professional");
+generateExperts(30);
 
 
 User.create(usersData, (err, docs)=> {
   if(err) throw err;
-});
-User.create(professionalsData, (err, docs)=> {
-  if(err) { throw err;}
   mongoose.connection.close();
 });
