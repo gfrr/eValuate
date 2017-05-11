@@ -57,13 +57,10 @@ router.get('/users/:user_id', (req, res) => {
 	});
 
 router.patch("/users/:user_id", (req, res) => {
-		console.log("patch called");
-		console.log(req.body);
 		let itemId;
 		for(let prop in req.body){
 			itemId = prop;
 		}
-		console.log(itemId);
 		User.findByIdAndUpdate(req.params.user_id, {$pull:{itemsUser: itemId}}, (err, user) => {
 			if(err) res.status(500).json({message: err});
 			else res.status(200).json("user updated");
