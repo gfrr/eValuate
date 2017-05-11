@@ -17,10 +17,19 @@ $(document).ready(()=>{
 function test(result, target){
   console.log(target.toLowerCase());
   let offers = [];
+  let bidders = [];
   if (result.currentOffers.length > 0) {
     result.currentOffers.forEach((offer)=>{
       console.log(offer.amount);
       offers.push(offer.amount);
+      // console.log("bidder: "+tmpBidder);
+      let tmpBidder = offer.bidder;
+      bidders.push(tmpBidder);
+    });
+    let i = 0;
+    bidders.forEach((bidderID)=>{
+      dbAPI.getBidder("users", bidderID, offers[i], (response)=> response);
+      i++;
     });
   } else {
     offers = [`<p> No Current Offers </p>`];
@@ -46,8 +55,7 @@ function test(result, target){
        </div>
      </div>
      <div class="current-offers col-sm-4 col-md-4">
-        <h3> Offers </h3>
-        ${offers.join("<br><br>")}
+<h3> Offers </h3>
        </div>
        </div>
        </div>
@@ -80,7 +88,10 @@ function click(id){
    });
 }
 
-
+// function printName (result) {
+//   let fullName = result.firstName + " " + result.lastName;
+//   return fullName;
+// }
 
 /*
 <div class="container" id="evaluated">
