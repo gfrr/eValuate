@@ -18,8 +18,13 @@
     <li><strong>Description: </strong><%= item.description%></li>
     <li><strong>Item's Estimated Age: </strong><%=item.approxAge %></li>
     <li><strong> </strong><%=item.approxAge %></li>
-    <li><strong>Owner: </strong><a href="/users/<%=item.userId%>" class="linkview">see details
-  </a></li>
+    <li><strong>Owner: </strong><a href="/users/<%=item.userId%>" class="linkview">see details</a>
+    <% let status = "glyphicon-question-sign"; %>
+    <% if(item.status == "Pending") status = "glyphicon-hourglass" %>
+    <% if(item.status == "Evaluated") status = "glyphicon-ok-sign" %>
+    <% if(item.status == "Rejected") status = "glyphicon-remove-sign" %>
+    <p>Status: <span class="glyphicon  <%= status %>"></span></p>
+  </li>
 </div>
 <div class="col-sm-2">
   <% if(isUserLoggedIn) { %>
