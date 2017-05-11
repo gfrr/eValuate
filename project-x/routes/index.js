@@ -97,26 +97,29 @@ router.get('/search/:word?', (req, res) => {
     console.log(word,type);
    if (String(type) == "Users"){
      console.log("1");
-  		User.find({lastName: word}, (error, item) => {
+  		User.find({lastName: word}, (error, user) => {
   			if (error) res.status(500).json({message: error});
-  			else console.log(item)
-        res.status(200).json(item);
+  			else console.log(user);
+        // res.status(200).json(user);
+        res.render("user/showuser", {user: user[0]});
+
         	});
-        };
+        }
 if (String(type) == "Items"){
   word = word.split("%20").join(" ");
   console.log(word);
    Item.find({title: String(word)}, (error, item) => {
      if (error) res.status(500).json({message: error});
-     else console.log(item)
-     res.status(200).json(item);
+     else console.log(item);
+    //  res.status(200).json(item);
+    res.render("item/showitem", {item: item[0]});
        });
-     };
+     }
   });
 
-router.post('/search', (req, res, next)=>{
-   res.redirect("/")
-})
+// router.post('/search', (req, res, next)=>{
+//    res.redirect("/");
+// });
 
 router.get("/logout", (req, res) => {
   req.logout();

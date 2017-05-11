@@ -16,6 +16,7 @@
     <li><strong>Country: </strong><%= user.address.country%></li>
         <% if (user.role === "Professional"){ %>
             <% if(isUserLoggedIn){ %>
+              <input type="hidden" id="userId" value=<%= currentUser._id%>>
             <% if (String(user._id) !== String(currentUser._id)){ %>
             <li><button type="submit" id="evaluate" class="btn btn-primary" name="button"> Request evaluation  </button></li>
             <input type="hidden" id="expertId" value=<%= user._id %>>
@@ -26,13 +27,6 @@
     <li><strong>Certificates: </strong> <a href="#" class="linkview">View</a></li>
     <li><strong>Items evaluated: </strong> <a href="#" class="linkview">View</a></li>
 <% }; %>
-
-
-    <input type="hidden" id="userId" value=<%= currentUser._id%>>
-
-
-
-
         <% if ( user.itemsUser.length > 0){ %>
     <li><strong>Collections: </strong><a href="/items/<%=user.itemsUser[0]%>" class="linkview">Item
   </a></li>

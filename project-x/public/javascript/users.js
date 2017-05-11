@@ -6,6 +6,7 @@ test();
 
 function test() {
 $("#evaluate").click(()=>{
+  $("#items").html("");
   console.log("click");
   dbAPI.getUserItems($("#userId").val(), printItems );
 });
