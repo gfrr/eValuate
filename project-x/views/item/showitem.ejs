@@ -19,14 +19,20 @@
     <li><strong>Type: </strong><%=item.type %></li>
     <li><strong>Description: </strong><%= item.description%></li>
     <li><strong>Item's Estimated Age: </strong><%=item.approxAge %></li>
-    <li><strong> </strong><%=item.approxAge %></li>
-    <li><strong>Owner: </strong><a href="/users/<%=item.userId%>" class="linkview">see details</a>
+    <li><strong>Owner: </strong><a href="/users/<%=item.userId%>" class="linkview">see details</a></li>
     <% let status = "glyphicon-question-sign"; %>
     <% if(item.status == "Pending") status = "glyphicon-hourglass" %>
-    <% if(item.status == "Evaluated") status = "glyphicon-ok-sign" %>
+    <% if(item.status == "Evaluated"){ %>
+        <%  status = "glyphicon-ok-sign"; %>
+        <script src="../javascript/itemhandler.js"></script>
+
+        <li id="suggestedValue"></li>
+        <li id="reviewer"></li>
+        <li id="comment"></li>
+        <% } %>
     <% if(item.status == "Rejected") status = "glyphicon-remove-sign" %>
     <p>Status: <span class="glyphicon  <%= status %>"></span></p>
-  </li>
+
 </div>
 <div class="col-sm-2">
   <% if(isUserLoggedIn) { %>
@@ -60,12 +66,8 @@
 </div>
 <br><br><br>
 
-<form class="login" action="/" method="post">
-<label for="feedback">Feedback: </label>
-<input type="feedback" id="feedback" name="feedback" placeholder="Enter your feedback"><br>
-<br>
-<button type="submit" name="button">Post feedback</button>
-</form>
-<br>
+
 <p> <a href="/items">All the stamps</a> <br>Check them out! </p>
 </div>
+
+<input type="hidden" id="itemId" value= <%=item._id%>>
