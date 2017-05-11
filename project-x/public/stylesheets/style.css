@@ -93,9 +93,9 @@ input[type=checkbox] {
   .main {
   display: flex;
   flex-flow: column;
+  justify-content: center;
   width: 100%;
-  align-items: left;
-  justify-content: left;
+  align-items: center;
 }
 
 .sub {
