@@ -9,6 +9,8 @@ const User  = require("../models/user");
 const Item  = require("../models/item");
 const Picture = require('../models/picture');
 const Feedback= require("../models/feedback");
+const Expert = require("../models/expert");
+
 
 //public information of all items
 itemsController.get("/",(req, res, next)=>{
@@ -126,11 +128,28 @@ itemsController.post('/:id/delete', auth.checkLoggedIn("/logout"),(req, res, nex
 
 
 itemsController.get("/:id/requesteval", auth.checkLoggedIn("/logout"), (req, res, next)=>{
-  console.log(req.query);
+
+  console.log(req.params.id);
    let expertId;
   for(let query in req.query){
     expertId = query;
   }
+  const itemStatus = {
+    status: "Pending",
+  };
+  console.log(typeof(expertId));
+  if(expertId){
+    Item.findByIdAndUpdate(req.params.id, itemStatus, {new: true}, (err, item) => {
+      if (err) next(err);
+      console.log(item);
+
+  });
+      Expert.find({userId: expertId}, (err, experts)=>{
+        if(err) next(err);
+        console.log(experts[0]);
+      });
+  }
+
   res.redirect("/users?experts");
 });
 

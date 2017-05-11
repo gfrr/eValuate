@@ -5,6 +5,7 @@ const bcryptSalt = 10;
 const User = require("../models/user");
 const Item = require("../models/item");
 const Feedback = require("../models/feedback");
+const Expert = require("../models/expert");
 
 mongoose.connect('mongodb://localhost:27017/antiques');
 
@@ -108,10 +109,45 @@ for(var i = 0; i < number; i++){
   }
 }
 
+/*
+const expertSchema = new Schema({
+  cv: String,
+  photo: String,
+  website: String,
+  focus: [], // i.e. Stamps, Coins etc. It can be one or more.
+  pending: [],
+  completed: [],
+  userId: { type: Schema.Types.ObjectId, ref: 'User' }
+});
+*/
+
+function generateExpert(){
+  
+}
+
+function generateExperts(number){
+  for(var i = 0; i < number; i++){
+    let userData = createUserType(1, "Professional")[0];
+    let user = User(userData);
+    var test;
+    user.save();
+    let expertData = createExpert();
+    expertData.userId = user._id;
+    console.log(itemData);
+    let item = Item(itemData);
+    Expert.save((error) => {
+      if (!error) Item.find({"title": item.title}).populate('userId');
+      });
+    user.itemsUser = item._id;
+    console.log(user);
+    }
+}
+
 //initializing db with fake data
 generateOwnersAndItems(30);
 const usersData = createUserType(20, "User");
 const professionalsData = createUserType(15, "Professional");
+
 
 User.create(usersData, (err, docs)=> {
   if(err) throw err;
