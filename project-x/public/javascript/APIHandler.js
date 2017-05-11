@@ -87,19 +87,33 @@ class APIHandler {
   }
 
   updateOneItem (newItemInfo,id) {
-      $.ajax({
-          url: this.BASE_URL + "/api/items/" + String(id),
-          method: 'PATCH',
-          data: newItemInfo,
-          success: (patchResponse) => {
-            console.log("success");
-          },
-          error: (error)=> {
-              console.log("patching failed");
-          }
-      });
-    }
+    $.ajax({
+        url: this.BASE_URL + "/api/items/" + String(id),
+        method: 'PATCH',
+        data: newItemInfo,
+        success: (patchResponse) => {
+          console.log("success");
+        },
+        error: (error)=> {
+            console.log("patching failed");
+        }
+    });
+  }
 
+  getIdByEmail (email, callback = undefined) {
+    $.ajax({
+      url: this.BASE_URL + "/api/users/email/" + email,
+      method: 'GET',
+      dataType: 'JSON',
+      success: (response) => {
+        if(typeof(callback) === "undefined") console.log("no callback");
+        else callback(response);
+      },
+      error: (error) => {
+        console.log("error dude");
+      }
+    });
+  }
 
 
   // createOneRegister (userData) {

@@ -1,4 +1,4 @@
-
+const expertAPI = new APIHandler("http://localhost:3000");
 
   function startMap() {
 
@@ -17,6 +17,9 @@
     } else if (tmpRadius === "100") {
       radius = 100000;
       zoomIndex = 8;
+    } else if (tmpRadius === "250") {
+      radius = 2500000;
+      zoomIndex = 7;
     } else {
       radius = 10000;
       zoomIndex = 12;
@@ -33,9 +36,11 @@
       document.getElementById('map'),
         {
           zoom: zoomIndex,
-          center: position
+          center: position,
+          disableDefaultUI: true
         }
     );
+    map.setOptions({draggable: false, zoomControl: false, scrollwheel: false, disableDoubleClickZoom: true});
     var myMarker = new google.maps.Marker({
       position: position,
       map: map,
@@ -44,15 +49,6 @@
     updateMap(map,position,radius,zoomIndex);
   }
 
-  //
-  //
-  // infowindow = new google.maps.InfoWindow();
-  // var service = new google.maps.places.PlacesService(map);
-  // service.nearbySearch({
-  //   location: position,
-  //   radius: radius,
-  //   type: type,
-  // }, callback);
 function updateMap(map,position,radius,zoomIndex) {
   let markers = [];
   experts.forEach(function(expert){
@@ -78,45 +74,29 @@ function updateMap(map,position,radius,zoomIndex) {
         icon: icon
       });
       markers.push(pin);
-
-    }
+      google.maps.event.addListener(pin, 'click', function() {
+        console.log(expert.email);
+        console.log(expertAPI.getIdByEmail(expert.email));
+        //  let image= "";
+        //  if(place.hasOwnProperty("photos")) image = place.photos[0].getUrl({'maxWidth': 100, 'maxHeight': 100});
+         $("#click-info").html(`
+           <div><img src="/images/arrowdown.svg"></div>
+           <div><strong>${expert.firstName}&nbsp${expert.lastName}</strong></div>
+           <div><a href="">Go to Profile</a></div>
+           <div><input id="expertemail" type="hidden" value="${expert.email}" ></div>
+           `);
+       });
+     }
   });
-
-  //  function callback(results, status) {
-  //      if (status === google.maps.places.PlacesServiceStatus.OK) {
-  //        for (var i = 0; i < results.length; i++) {
-  //          createMarker(results[i]);
-  //        }
-  //      }
-  //    }
-  //  function createMarker(place) {
-  //      var placeLoc = place.geometry.location;
-  //      var marker = new google.maps.Marker({
-  //        map: map,
-  //        position: place.geometry.location
-  //      });
-  //      google.maps.event.addListener(marker, 'click', function() {
-  //        console.log(place);
-  //        let image= "";
-  //        if(place.hasOwnProperty("photos")) image = place.photos[0].getUrl({'maxWidth': 100, 'maxHeight': 100});
-  //        $("#click-info").html(`
-  //          <div>${place.name}</div>
-  //          <div>${place.vicinity}</div>
-  //          <div><img src="${image}"></div>
-  //          <div>${place.types.join(" ")}</div>
-  //          `);
-  //      });
-  //    }
 }
 
 function getDistance(lat1, lon1, lat2, lon2) {
-
+// haversine formular, to measure distance between two points on earth
      Number.prototype.toRad = function() {
         return this * Math.PI / 180;
      };
 
-     var R = 6371; // km
-     //has a problem with the .toRad() method below.
+     var R = 6371; // earth radius in KM
      var x1 = lat2-lat1;
      var dLat = x1.toRad();
      var x2 = lon2-lon1;
@@ -127,16 +107,11 @@ function getDistance(lat1, lon1, lat2, lon2) {
      var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
      var d = R * c;
      console.log(d);
-     return d;
+     return d; // distance in KM
 }
 
 $(document).ready(()=>{
-
-
   startMap();
-
-
-
 });
 
 function restartMap() {
@@ -163,21 +138,20 @@ $(document).ready(()=>{
     radius = 10000;
     zoomIndex = 12;
   }
-  console.log("this is the radius " + radius);
 
   var position = {
       lat: Number(document.getElementById("latitude").value),
       lng: Number(document.getElementById("longitude").value)
   };
-  console.log("this is the position: " + position);
-  console.log(position);
   const map = new google.maps.Map(
     document.getElementById('map'),
       {
         zoom: zoomIndex,
-        center: position
+        center: position,
+        disableDefaultUI: true
       }
   );
+  map.setOptions({draggable: false, zoomControl: false, scrollwheel: false, disableDoubleClickZoom: true});
   var myMarker = new google.maps.Marker({
     position: position,
     map: map,
