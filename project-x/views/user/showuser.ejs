@@ -19,19 +19,18 @@
     <li><strong>CV (Resume): </strong> <a href="#" class="linkviewcv">View</a></li>
     <li><strong>Certificates: </strong> <a href="#" class="linkview">View</a></li>
     <li><strong>Items evaluated: </strong> <a href="#" class="linkview">View</a></li>
-<% }; %>
-  <% if(isUserLoggedIn){ %>
+        <% }; %>
+        <% if(isUserLoggedIn){ %>
     <input type="hidden" id="expertId" value=<%= user._id %>>
     <input type="hidden" id="userId" value=<%= currentUser._id%>>
             <% if (String(user._id) !== String(currentUser._id)){ %>
     <li><button type="submit" id="evaluate" class="btn btn-primary" name="button"> Request evaluation  </button></li>
+            <% }; %>
 
-        <% }; %>
-
-        <% if ( user.itemsUser.length > 0){ %>
+            <% if ( user.itemsUser.length > 0){ %>
     <li><strong>Collections: </strong><a href="/items/<%=user.itemsUser[0]%>" class="linkview">Item
   </a></li>
-        <% }; %>
+            <% }; %>
         <% }; %>
     <li><strong><a href="#">Contact</a> </strong></li>
   </ul>
