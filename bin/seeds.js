@@ -7,7 +7,8 @@ const Item = require("../models/item");
 const Feedback = require("../models/feedback");
 const Expert = require("../models/expert");
 
-mongoose.connect('mongodb://localhost:27017/antiques');
+mongoose.connect("mongodb://heroku_c9qs98hm:53q40fqujqus2h98savfnqro5j@ds133981.mlab.com:33981/heroku_c9qs98hm");
+// mongoose.connect('mongodb://localhost:27017/antiques');
 
 //returns an array of random users with the userType role
 function createUserType(number, userType,  password = "test" ){

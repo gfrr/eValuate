@@ -21,7 +21,8 @@ const dashboardController = require("./routes/dashboardController");
 
 const app = express();
 
-mongoose.connect("mongodb://localhost:27017/antiques");
+mongoose.connect("mongodb://heroku_c9qs98hm:53q40fqujqus2h98savfnqro5j@ds133981.mlab.com:33981/heroku_c9qs98hm");
+// mongoose.connect("mongodb://localhost:27017/antiques");
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
