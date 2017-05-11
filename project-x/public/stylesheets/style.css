@@ -2,6 +2,7 @@ body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   box-sizing: border-box;
+  background-image: url("../images/site/backgroundbw.jpg");
 }
 
 ul {
@@ -378,6 +379,22 @@ fieldset[disabled] .custom-file-input::-webkit-file-upload-button.focus {
   color: #2C3E50 !important;
 }
 
+
+#imagecontainer{
+  padding: 5%;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  background-color: rgba(255,255,255,0.90);
+  box-shadow: 3px 3px 3px rgb(159, 159, 159);
+  background-repeat: none;
+  text-align: center;
+}
+
+.login{
+  font: helvetica;
+}
 .evaluate {
   font-size: 14px;
+
 }
