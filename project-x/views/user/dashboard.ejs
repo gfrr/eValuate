@@ -97,28 +97,32 @@
       dbAPI.getOneExpert($("#currentUserId").val(), logresult);
     });
 
-    function logresult(res){
-      if(res.pending.length > 0){
-        res.pending.forEach((item)=>{
-          dbAPI.getOneRegister("items", item)
-        });
-        $("#forevaluation").append(`
-          <div class="row">
-            <div class="col-sm-6 col-md-4">
-              <div class="thumbnail">
-                <img src="" >
-                <div class="caption">
-                  <h3>Item 1</h3>
-                    <p>owner of the item</p>
-                    <p> you will earn €10 for on-line evaluation<p>
-                    <a href="#" class="btn btn-default" role="button">Accept</a>
-                    <a href="#" class="btn btn-primary" role="button">Reject</a>
-                  </p>
-                </div>
+    function itemsAction(result){
+      console.log(result);
+      $("#forevaluation").append(`
+        <div class="row">
+          <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+              <img src=${result.images[0].image}>
+              <div class="caption">
+                <h3>${result.title}</h3>
+
+                  <a href="#" class="btn btn-default" role="button">Accept</a>
+                  <a href="#" class="btn btn-primary" role="button">Reject</a>
+                </p>
               </div>
             </div>
           </div>
-          `)
+        </div>
+        `)
+    }
+
+    function logresult(res){
+      if(res.pending.length > 0){
+        res.pending.forEach((item)=>{
+          dbAPI.getOneRegister("items", item, itemsAction)
+        });
+
       }
     }
   </script>

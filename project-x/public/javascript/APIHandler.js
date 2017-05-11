@@ -28,7 +28,7 @@ class APIHandler {
       method: "GET",
       dataType: "json",
       success: (response)=> {
-        if(typeof(callback) === "undefined") console.log("no callback");
+        if(typeof(callback) === "undefined") console.log(response);
         else callback(response, response.status);
       },
       error: (error) => console.log(`${id} not found`),
