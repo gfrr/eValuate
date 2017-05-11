@@ -51,8 +51,12 @@ router.get("/experts/:experts_id", (req, res, next)=> {
 
 router.get('/users/:user_id', (req, res) => {
 		User.findById(req.params.user_id, (error, user) => {
-			if (error) res.status(500).json({message: error});
-			 else res.status(200).json(user);
+			if (error) {
+				res.status(500).json({message: error});
+			} else {
+				console.log(user);
+				res.status(200).json(user);
+			}
 		});
 	});
 

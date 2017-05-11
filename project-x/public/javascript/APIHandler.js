@@ -2,6 +2,8 @@ class APIHandler {
   constructor (baseUrl) {
     this.BASE_URL = baseUrl;
   }
+
+
  //IMPORTANT *** pass type as plural: ie. users / items / feedback
   getFullList (type) {
     $.ajax ({
@@ -34,6 +36,39 @@ class APIHandler {
       error: (error) => console.log(`${id} not found`),
     });
   }
+
+  getBidder(type, id, offer, callback = undefined){
+    console.log(offer);
+    let biddersArray = [];
+    $.ajax ({
+      url: this.BASE_URL + "/api/" + type + "/" + String(id),
+      method: "GET",
+      dataType: "json",
+      success: (response)=> {
+        if (typeof(callback) === "undefined") {
+          console.log("no callback");
+        } else {
+            callback(response, console.log(response));
+            // for(var user in response){
+            //     biddersArray.push(user);
+            //     console.log(user);
+            // }
+            $(".current-offers").append(`€&nbsp
+            ${offer}:&nbsp<a href="/users/${response._id}">${response.firstName}&nbsp${response.lastName}</a><br><br>`);
+        }
+      },
+      error: (error) => console.log(`${id} not found`),
+    });
+  }
+
+// printOnPage(response, offers) {
+//   response.forEach((user)=>{
+//     biddersArray.push(user.firstName + " " + user.lastName);
+//   });
+//   $(".current-offers").append(`<h3> Offers </h3>
+//     ${offers.join("<br><br>")}
+//     ${biddersArray.join("<br><br>")}`);
+// }
 
   getUserItems(id, callback) {
     $.ajax ({
@@ -101,6 +136,21 @@ class APIHandler {
   }
 
   getIdByEmail (email, callback = undefined) {
+    $.ajax({
+      url: this.BASE_URL + "/api/users/email/" + email,
+      method: 'GET',
+      dataType: 'JSON',
+      success: (response) => {
+        if(typeof(callback) === "undefined") console.log("no callback");
+        else callback(response);
+      },
+      error: (error) => {
+        console.log("error dude");
+      }
+    });
+  }
+
+  getNameById (id, callback = undefined) {
     $.ajax({
       url: this.BASE_URL + "/api/users/email/" + email,
       method: 'GET',
