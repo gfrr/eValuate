@@ -81,7 +81,13 @@ li.active {
   font-style: italic;
   color: gray;
   font-size: 11px;
-  margin-top: -20px;
+  margin-top: -15px;
+}
+
+input[type=checkbox] {
+  width: 22px;
+  height: 22px;
+  border-color: none;
 }
 
   .main {
@@ -373,6 +379,7 @@ fieldset[disabled] .custom-file-input::-webkit-file-upload-button.focus {
   color: #2C3E50 !important;
 }
 
+
 #imagecontainer{
   padding: 5%;
   display: flex;
@@ -386,4 +393,8 @@ fieldset[disabled] .custom-file-input::-webkit-file-upload-button.focus {
 
 .login{
   font: helvetica;
+}
+.evaluate {
+  font-size: 14px;
+
 }

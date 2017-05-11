@@ -127,6 +127,38 @@ itemsController.post('/:id/delete', auth.checkLoggedIn("/logout"),(req, res, nex
   });
 
 
+itemsController.post("/:id/evaluated", auth.checkLoggedIn("/logout"), (req, res, next)=>{
+  console.log(req.body);
+  console.log(req.user._id);
+  Expert.find({userId: req.user._id}, (err, experts)=>{
+    if(err) next(err);
+    let index = experts[0].pending.indexOf(req.params.id);
+    experts[0].pending.splice(index, 1);
+    experts[0].completed.push(req.params.id);
+    console.log(experts[0]);
+    experts[0].save();
+
+  });
+  const status = req.body.options ? "Evaluated" : "Rejected";
+  const itemStatus = {
+    status,
+  };
+    Item.findByIdAndUpdate(req.params.id, itemStatus, {new: true}, (err, item) => {
+      if (err) next(err);
+      console.log(item);
+  });
+  const feedbackInfo = {
+    comments: req.body.feedback,
+    estimatedValue: Number(req.body.evaluation),
+    userId: req.user._id,
+    itemId: req.params.id,
+  };
+
+  const feedback = Feedback(feedbackInfo);
+  feedback.save();
+  res.redirect("/dashboard");
+});
+
 itemsController.get("/:id/requesteval", auth.checkLoggedIn("/logout"), (req, res, next)=>{
 
   console.log(req.params.id);
@@ -152,7 +184,7 @@ itemsController.get("/:id/requesteval", auth.checkLoggedIn("/logout"), (req, res
       });
   }
 
-  res.redirect("/users?experts");
+  res.redirect("/dashboard");
 });
 
 
