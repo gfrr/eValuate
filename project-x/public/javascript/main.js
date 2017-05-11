@@ -75,14 +75,14 @@ function updateMap(map,position,radius,zoomIndex) {
       });
       markers.push(pin);
       google.maps.event.addListener(pin, 'click', function() {
-        console.log(expert.email);
-        console.log(expertAPI.getIdByEmail(expert.email));
+        let tmpId = expertAPI.getIdByEmail(expert.email, printID);
+        console.log(tmpId);
         //  let image= "";
         //  if(place.hasOwnProperty("photos")) image = place.photos[0].getUrl({'maxWidth': 100, 'maxHeight': 100});
          $("#click-info").html(`
            <div><img src="/images/arrowdown.svg"></div>
            <div><strong>${expert.firstName}&nbsp${expert.lastName}</strong></div>
-           <div><a href="">Go to Profile</a></div>
+           <div><a id="targetId" href="">Go to Profile</a></div>
            <div><input id="expertemail" type="hidden" value="${expert.email}" ></div>
            `);
        });
@@ -159,4 +159,10 @@ $(document).ready(()=>{
   });
   updateMap(map,position,radius,zoomIndex);
 });
+}
+
+function printID (result) {
+  console.log("test: " + result._id);
+  $('#targetId').attr("href","/users/" + result._id);
+  return result._id;
 }
