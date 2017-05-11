@@ -5,6 +5,7 @@ const passport       = require("../helpers/passport");
 const flash          = require("connect-flash");
 const User           = require("../models/user");
 const Item           = require("../models/item");
+const Expert         = require("../models/expert");
 
 
 //public info page with all the users
@@ -29,22 +30,33 @@ userController.get("/", (req, res, next)=>{
     });
 });
 
-//public info about an specific users -more details
+//public info about specific users -more details
 userController.get('/:id', (req, res, next) => {
   User.findById(req.params.id, (err,user)=> {
     if (err) { next(err); }
     let items = [];
+    var evaluations = [];
     user.itemsUser.forEach((item)=>{
       Item.findById(item,(err,itm)=>{
         if (err) next(err);
-        // console.log(itm);
         items.push(itm);
-        console.log(items);
       });
     });
+    if (user.role === "Professional") {
+      Expert.find({"userId": req.params.id}, (err,expert)=>{
+        console.log("test: "+ expert[0]);
+        expert[0].completed.forEach((complete)=>{
+          Item.findById(complete,(err,cmpl)=>{
+            if (err) next (err);
+              evaluations.push(cmpl);
+          });
+        });
+        console.log("the completed evaluations: " + evaluations);
+      });
+    }
     console.log("items",items);
     console.log("the user: " + user);
-    res.render('user/showuser',{user: user});
+    res.render('user/showuser',{user: user, evaluations: evaluations});
   });
 });
 
