@@ -91,7 +91,7 @@ userController.get("/:id/expert", auth.checkLoggedIn("/logout"), (req, res, next
 userController.get("/:id/delete", auth.checkLoggedIn("/logout"), (req, res, next)=> {
   User.remove({_id: req.params.id}, (err)=> {
     if(err) next(err);
-    res.redirect("/users");
+    res.redirect("/");
   });
 });
 
