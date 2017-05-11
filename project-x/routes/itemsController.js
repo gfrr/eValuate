@@ -146,7 +146,9 @@ itemsController.get("/:id/requesteval", auth.checkLoggedIn("/logout"), (req, res
   });
       Expert.find({userId: expertId}, (err, experts)=>{
         if(err) next(err);
+        experts[0].pending.push(req.params.id);
         console.log(experts[0]);
+        experts[0].save();
       });
   }
 
