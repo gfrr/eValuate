@@ -24,6 +24,7 @@ function updatePage (response) {
   console.log(response.currentOffers);
   let tmpArray = [];
   let highOffer;
+  let bidder = response.currentOffers.bidder;
   let cOffers = response.currentOffers;
   if (cOffers.length === 0) { highOffer = "No Offers";} else {
     cOffers.forEach((offer)=>{
@@ -31,7 +32,11 @@ function updatePage (response) {
     });
     highOffer = Math.max.apply(null, tmpArray);
   }
-  $('#offer-label').html(highOffer);
+  if (bidder !== undefined) {
+    $('#offer-label').html(highOffer + " " + bidder);
+  } else {
+    $('#offer-label').html(highOffer);
+  }
 }
 
 function showFeedback (postResponse) {
