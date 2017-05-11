@@ -6,34 +6,35 @@
     <% } %>
 <form class="signup" action="/signup" method="post">
   <ul>
-  <li><label for="name">First Name: </label>
+  <li><label for="name">First Name: </label><br>
   <input type="text" id="name" name="name" required placeholder="Type your first name"></li><br>
-  <li><label for="lastName">Last Name: </label>
+  <li><label for="lastName">Last Name: </label><br>
   <input type="text" id="lastName" name="lastName" required placeholder="Type your last name"></li><br>
-  <li><label for="email">E-mail: </label>
+  <li><label for="email">E-mail: </label><br>
   <input type="email" id="email" name="email" required placeholder="Type your email"></li><br>
-  <li><label for="password">Password: </label>
+  <li><label for="password">Password: </label><br>
   <input type="password" id="password" name="password" required placeholder="Choose a secure password"></li><br>
-  <li><label for="confirmPassword">Confirm Password: </label>
+  <li><label for="confirmPassword">Confirm Password: </label><br>
   <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Type your password again"></li><br>
-  <li><label for=""><strong>Write full address here</strong></label>
+  <li><label for=""><strong>Write full address here</strong></label><br>
   <input type="address" id="address" name="address" required placeholder="Type your address"></li><br>
 
 
-  <input type="hidden" id="street" name="street"></li><br>
-  <input type="hidden" id="postCode" name="postCode"></li><br>
-  <input type="hidden" id="city" name="city" ></li><br>
-  <input type="hidden" id="country" name="country"></li><br>
-  <input type="hidden" id="lat" name="lat"></li><br>
-  <input type="hidden" id="lng" name="lng"></li><br>
+  <input type="hidden" id="street" name="street"></li>
+  <input type="hidden" id="postCode" name="postCode"></li>
+  <input type="hidden" id="city" name="city" ></li>
+  <input type="hidden" id="country" name="country"></li>
+  <input type="hidden" id="lat" name="lat"></li>
+  <input type="hidden" id="lng" name="lng"></li>
 
-</select></li><br>
+</li><br>
+<li><button type="submit" class="btn btn-primary" name="button">Register</button></li>
+
 </ul>
-  <button type="submit" name="button">Register</button>
 </form>
 <br>
 
 
-<script src="https://maps.googleapis.com/maps/api/js?key=KEY&libraries=places"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxDbTNtCBeB0R7MEYc_O3SNsAy_2zyL9Y&libraries=places"></script>
 
 <script type="text/javascript" src="./javascript/autocomplete.js"></script>
