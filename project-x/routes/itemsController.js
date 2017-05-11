@@ -152,7 +152,7 @@ itemsController.get("/:id/requesteval", auth.checkLoggedIn("/logout"), (req, res
       });
   }
 
-  res.redirect("/users?experts");
+  res.redirect("/dashboard");
 });
 
 
