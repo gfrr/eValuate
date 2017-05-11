@@ -4,16 +4,18 @@ body {
   box-sizing: border-box;
 }
 
-a {
-  color: #00B7FF;
-}
-
 ul {
   list-style: none;
 }
 
 input{
   width: 100%;
+}
+
+
+li.active {
+  color: #ECF0F1;
+  background-color: #34495E;
 }
 
 #jumbo {
@@ -128,7 +130,7 @@ input{
 
 .col-xs-4 {
   display: inline;
-  border: 1px solid rgb(186, 186, 186);
+  border: 1px solid lightgray;
   border-radius: 20px;
   text-align: center;
   align-items: center;
@@ -148,7 +150,7 @@ input{
 
 .nav-tabs {
     text-align:center;
-    font-size: 20px;
+    font-size: 22px;
 }
 
 .avatar-thumb {
@@ -330,14 +332,24 @@ fieldset[disabled] .custom-file-input::-webkit-file-upload-button.focus {
 
 .centered {
   width: 100%;
-  display: inline-flex;
+  display: flex;
+  flex-flow: column;
   align-content: center;
+  justify-content: center;
 }
 
 .map-style {
-  height: 500px;
-  width: 700px;
+  flex: 3;
+  height: 450px;
+  width: 650px;
   margin: 0 auto;
+}
+
+#click-info {
+  flex: 1;
+  text-align: center;
+  font-size: 20px;
+  line-height: 30px;
 }
 
 #selectradius {

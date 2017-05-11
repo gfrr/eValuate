@@ -116,4 +116,11 @@ router.patch("/users/:user_id", (req, res) => {
   //
 
 
+router.get("/users/email/:id",(req,res)=>{
+	User.find({"email": req.params.id}, (err, user)=>{
+		if(err) res.status(500).json({message: err});
+		else res.status(200).json(user[0]);
+	});
+});
+
 module.exports = router;
