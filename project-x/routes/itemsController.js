@@ -127,6 +127,10 @@ itemsController.post('/:id/delete', auth.checkLoggedIn("/logout"),(req, res, nex
   });
 
 
+itemsController.post("/:id/getevaluated", auth.checkLoggedIn("/logout"), (req, res, next)=>{
+  console.log(req.body);
+});
+
 itemsController.get("/:id/requesteval", auth.checkLoggedIn("/logout"), (req, res, next)=>{
 
   console.log(req.params.id);
