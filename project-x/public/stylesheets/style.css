@@ -407,5 +407,8 @@ fieldset[disabled] .custom-file-input::-webkit-file-upload-button.focus {
 }
 .evaluate {
   font-size: 14px;
+}
 
+.btn-size {
+  width: 200px !important;
 }

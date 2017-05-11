@@ -24,24 +24,38 @@
 
 </ul>
 
-<form class="dashboard" action="users/<%=user._id%>/edit" method="get">
-  <button class="btn btn-primary" name="button">Edit Information</button>
-</form>
+<div class="row">
+  <div class="col-sm-4">
+    <form class="dashboard" action="users/<%=user._id%>/edit" method="get">
+      <button class="btn btn-primary btn-size" name="button">Edit Information</button>
+    </form>
+    <br>
+  </div>
+  <div class="col-sm-4">
+    <form class="dashboard" action="users/<%=user._id%>/delete" method="get">
+      <button id="buttonfordelete" class="btn btn-warning btn-size" name="button-delete">Delete account</button>
+    </form>
+    <br>
+  </div>
+  <div class="col-sm-4">
+    <% if (user.role !== "Professional"){ %>
+    <form class="dashboard" action="users/<%=user._id%>/expert" method="get">
+      <button class="btn btn-primary btn-size" name="button">Become an Expert</button>
+    </form>
+    <br>
+    <%}%>
+  </div>
+</div>
+
 
 <br>
 <br>
 
-<form class="dashboard" action="users/<%=user._id%>/delete" method="get">
-  <button id="buttonfordelete" class="btn btn-warning" name="button-delete">Delete account</button>
-</form>
+
 
 <br>
 <br>
-<% if (user.role !== "Professional"){ %>
-<form class="dashboard" action="users/<%=user._id%>/expert" method="get">
-  <button class="btn btn-primary" name="button">Become an Expert</button>
-</form>
-<%}%>
+
 
 <br>
 <br>
