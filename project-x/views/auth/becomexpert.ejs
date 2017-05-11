@@ -1,0 +1,29 @@
+<div id="imagecontainerleft" class="main">
+<h3>Fill in the Form to Become an expert </h3><br>
+    <% if (typeof(errorMessage) != "undefined") { %>
+      <div class="error-message"><%= errorMessage %></div>
+    <% } %>
+<form class="becomexpert" action="/dashboard" method="post">
+
+<ul>
+  <li><label for="focus"> Type of Expert: </label><br></li>
+  <div class="checkboxcontainer">
+    <ul class="checkbox-list">
+      <li class="checkbox-list"><input type="checkbox" name="focus" value="Stamps" checked="checked"> Stamps </li>
+      <li class="checkbox-list"><input type="checkbox" name="focus" value="Coins"> Coins </li>
+    </ul>
+  </div>
+
+  <li><label for="CV">Upload your CV</label><br>
+  <input type="text" id="cv"  name="cv" required placeholder="Paste your cv url"></li><br><br>
+  <li><label for="CV">Upload photo</label><br>
+  <input type="text" id="photo" name="photo" required placeholder="Paste your photo url"></li><br><br>
+
+  <li><label for="website"> Website: </label><br>
+  <input type="text" id="website" name="website" required placeholder="Type your website"></li><br><br>
+  <li><button type="submit" class="btn btn-primary" name="button">Register as Expert</button><br></li><br>
+  <li><label> Confirmation takes up to two days</label></li>
+  </ul>
+</form>
+</div>
+<br>

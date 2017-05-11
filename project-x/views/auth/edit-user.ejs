@@ -1,0 +1,96 @@
+<div id="imagecontainerleft"class="main">
+<h3>Fill in the Form to Sign Up</h3><br>
+    <% if (typeof(errorMessage) != "undefined") { %>
+      <div class="error-message"><%= errorMessage %></div>
+    <% } %>
+<form class="signup" action="/users/<%= user._id %>" method="post">
+  <ul>
+  <li><label for="name">First Name: </label>
+  <input type="text" id="name" name="name" value=<%= user.firstName %>></li><br>
+  <li><label for="lastName">Last Name: </label>
+  <input type="text" id="lastName" name="lastName" value=<%= user.lastName %>></li><br>
+  <li><label for="email">E-mail: </label>
+  <input type="email" id="email" name="email" value=<%= user.email %>></li><br>
+  <li><label for=""><strong>Write full address here</strong></label>
+  <input type="address" id="address" name="address" required value= "<%= user.address.street%>, <%=user.address.city%>" %>></li><br>
+  <input type="hidden" id="street" name="street"></li>
+  <input type="hidden" id="postCode" name="postCode"></li>
+  <input type="hidden" id="city" name="city" ></li>
+  <input type="hidden" id="country" name="country"></li>
+  <input type="hidden" id="lat" name="lat"></li>
+  <input type="hidden" id="lng" name="lng"></li>
+</select></li><br><br>
+<li><button type="submit" name="button">Confirm</button></li>
+
+</ul>
+</form>
+<br>
+</div>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBfoq10hEIrXusRVghwBQMrPbqpKGtnow&libraries=places"></script>
+
+
+<script>
+    $(document).ready(() => {
+        init();
+        google.maps.event.addDomListener(window, 'load', init);
+    });
+
+
+
+    function init() {
+      const input = document.getElementById('address');
+      const autocomplete = new google.maps.places.Autocomplete(input);
+      autocomplete.addListener('place_changed', () => {
+        const place = autocomplete.getPlace();
+        if (!place.geometry) {
+          window.alert('Autocomplete’s returned place contains no geometry');
+          return;
+        }
+        const location = {};
+        // Location details
+        for (let i = 0; i < place.address_components.length; i++) {
+          if (place.address_components[i].types[0] === 'postal_code') {
+          location.postalcode = place.address_components[i].long_name;
+          }
+          if (place.address_components[i].types[0] === 'country') {
+          location.country = place.address_components[i].long_name;
+          }
+          if (place.address_components[i].types[0] === 'route') {
+          location.street = place.address_components[i].long_name;
+          }
+          if (place.address_components[i].types[0] === 'street_number') {
+          location.streetNo = place.address_components[i].long_name;
+          }
+          if (place.address_components[i].types[0] === 'sublocality_level_1') {
+          location.neighborhood = place.address_components[i].long_name;
+          }
+          if (place.address_components[i].types[0] === 'locality') {
+          location.city = place.address_components[i].long_name;
+          }
+          if (place.address_components[i].types[0] === 'administrative_area_level_1') {
+          location.state = place.address_components[i].long_name;
+          }
+          if (place.address_components[i].types[0] === 'administrative_area_level_1') {
+          location.state = place.address_components[i].long_name;
+          }
+        }
+        location.lat = place.geometry.location.lat();
+        location.lng = place.geometry.location.lng();
+        var test = location.city;
+
+        $( "#city" ).val(test);
+        $( "#street" ).val(location.street);
+        $( "#postCode" ).val(location.postalcode);
+        $( "#country" ).val(location.country);
+        $("#lat").val(location.lat);
+        $("#lng").val(location.lng);
+        if(!location.hasOwnProperty("street")) {
+          $("#address").val("");
+        }
+        console.log($("#street").val());
+        console.log(location);
+        console.log(location.lat, location.lng);
+      });
+    }
+
+</script>

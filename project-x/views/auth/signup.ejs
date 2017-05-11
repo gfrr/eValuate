@@ -1,0 +1,43 @@
+
+<div id="imagecontainer"class="main">
+<h3 class="customh3">Fill in the Form to Sign Up</h3><br>
+    <% if (typeof(errorMessage) != "undefined") { %>
+      <div class="error-message"><%= errorMessage %></div>
+    <% } %>
+
+<form class="signup" action="/signup" method="post">
+  <ul>
+  <li><label for="name">First Name: </label><br>
+  <input type="text" id="name" name="name" required placeholder="Type your first name"></li><br>
+  <li><label for="lastName">Last Name: </label><br>
+  <input type="text" id="lastName" name="lastName" required placeholder="Type your last name"></li><br>
+  <li><label for="email">E-mail: </label><br>
+  <input type="email" id="email" name="email" required placeholder="Type your email"></li><br>
+  <li><label for="password">Password: </label><br>
+  <input type="password" id="password" name="password" required placeholder="Choose a secure password"></li><br>
+  <li><label for="confirmPassword">Confirm Password: </label><br>
+  <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Type your password again"></li><br>
+  <li><label for=""><strong>Write full address here</strong></label><br>
+  <input type="address" id="address" name="address" required placeholder="Type your address"></li><br>
+
+
+  <input type="hidden" id="street" name="street"></li>
+  <input type="hidden" id="postCode" name="postCode"></li>
+  <input type="hidden" id="city" name="city" ></li>
+  <input type="hidden" id="country" name="country"></li>
+  <input type="hidden" id="lat" name="lat"></li>
+  <input type="hidden" id="lng" name="lng"></li>
+
+</li><br>
+<li><button type="submit" class="btn btn-primary" name="button">Register</button></li>
+
+  <!-- <img class="items-img" src= "images/site/jumbo.png" ></img> -->
+
+</ul>
+</form>
+<br>
+</div>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=KEY&libraries=places"></script>
+
+<script type="text/javascript" src="./javascript/autocomplete.js"></script>

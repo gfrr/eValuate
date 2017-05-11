@@ -1,0 +1,27 @@
+
+<br>
+<div id="imagecontainerleft"class="main">
+<h1 class="header-center"> Browse </h1>
+<br><br>
+
+<ul class="nav nav-tabs">
+  <li role="presentation" class="active"><a href="#">Items</a></li>
+  <li role="presentation"><a href="/users?experts">Experts</a></li>
+  <li role="presentation"><a href="/users?owners">Owners</a></li>
+</ul>
+<div class="row-fluid">
+<ul>
+  <% items.forEach((item)=>{ %>
+    <div class="col-xs-4">
+      <br>
+    <li>
+      <img class="imgbrowse" src= <%= item.images[0].image %> alt="">
+      <br>
+      <%= item.title %>
+      <br><a class="btn btn-primary" href="/items/<%= item._id %>" >View More</a>
+     </li>
+   </div>
+  <% }) %>
+</ul>
+</div>
+</div>

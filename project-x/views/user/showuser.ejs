@@ -1,0 +1,52 @@
+<script src="/javascript/popup.js"></script>
+
+<div id="imagecontainerleft"class="main">
+<h1> <%= user.firstName %>&nbsp<%= user.lastName %> </h1>
+
+<br>
+<br>
+<div class="itemholder">
+<div class="image-holder">
+  <img class="profile-img" src="/images/user.svg" alt="" ></img>
+</div>
+<div class="description-holder">
+  <ul>
+    <li><strong>Name: </strong><%=user.firstName %>&nbsp<%=user.lastName %></li>
+    <li><strong>City: </strong><%=user.address.city %></li>
+    <li><strong>Country: </strong><%= user.address.country%></li>
+        <% if (user.role === "Professional"){ %>
+            <% if(isUserLoggedIn){ %>
+              <input type="hidden" id="userId" value=<%= currentUser._id%>>
+            <% if (String(user._id) !== String(currentUser._id)){ %>
+            <li><button type="submit" id="evaluate" class="btn btn-primary" name="button"> Request evaluation  </button></li>
+            <input type="hidden" id="expertId" value=<%= user._id %>>
+              <% }; %>
+            <% }; %>
+    <li><strong>Qualifications: </strong>lorem ipsum text and ipsum lorem</li>
+    <li><strong>CV (Resume): </strong> <a href="#" class="linkviewcv">View</a></li>
+    <li><strong>Items evaluated: </strong> <a href="#" class="linkview">View</a></li>
+<% }; %>
+        <% if ( user.itemsUser.length > 0){ %>
+    <li><strong>Collections: </strong><a href="/items/<%=user.itemsUser[0]%>" class="linkview">Item
+  </a></li>
+        <% }; %>
+
+    <li><strong><a href="#">Contact</a> </strong></li>
+  </ul>
+</div>
+</div>
+<div id="items"></div>
+<br><br><br>
+
+<form class="login" action="/" method="post">
+<label for="feedback">Feedback: </label
+<input type="feedback" id="feedback" name="feedback" placeholder="Enter your feedback"><br>
+<br>
+<button type="submit" class="btn btn-primary" name="button">Post feedback</button>
+</form>
+<br>
+<p> <a href="/users">All the experts </a> <br>Check them out! </p>
+</div>
+
+<script src="../javascript/APIHandler.js"></script>
+<script src="../javascript/users.js"></script>

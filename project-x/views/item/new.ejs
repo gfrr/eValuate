@@ -1,0 +1,31 @@
+<br>
+<br>
+<div id="imagecontainerleft"class="main">
+<h3>Fill in the following form to add a new item: </h3><br>
+    <% if (typeof(errorMessage) != "undefined") { %>
+      <div class="error-message"><%= errorMessage %></div>
+    <% } %>
+<form class="additem" action="/items/new" method="post" enctype="multipart/form-data">
+  <ul>
+  <li><label for="title">Title: </label><br>
+  <input type="text" id="title" name="title" required placeholder="Type a title for your item"></li><br>
+  <li><label for="description">Description: </label><br>
+  <input type="text" id="description" name="description" required placeholder="Type a detailed desciption"></li><br>
+  <li><label for="type">Type: </label><br>
+  <select name="type" required>
+    <option value="">Select a Type...</option>
+    <option value="Coin">Coin</option>
+    <option value="Stamp">Stamp</option>
+  </select><br><br>
+  <li><label for="keywords">Keywords: </label><br>
+  <input type="text" id="keywords" name="keywords" required placeholder="Add keywords related to item"></li><br>
+  <p class="note">* Insert single word tags separated by a space related to your item's description i.e. sky blue dog australia president jfk etc.</p>
+  <li><label for="approxAge">Item's estimated age: </label><br>
+  <input type="number" id="approxAge" name="approxAge" required placeholder="Insert items age in years"></li><br>
+  <li><label for="photo">Image: </label><br>
+  <input class="custom-file-input" type="file" id="photo" name="photo" required placeholder="Choose picture(s)"></li><br>
+  <li><button class="btn btn-primary" type="submit" name="button">Add</button></li>
+  </ul>
+</form>
+<br>
+</div>

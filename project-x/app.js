@@ -9,7 +9,15 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 const index = require('./routes/index');
 const usersController = require('./routes/usersController');
-const itemsController = require("./routes/itemsController");
+const itemsController = require('./routes/itemsController');
+const passport = require("./helpers/passport.js");
+const LocalStrategy = require("passport-local").Strategy;
+const auth = require('./helpers/auth.js');
+const bcrypt = require('bcrypt');
+const flash = require('connect-flash');
+const MongoStore = require("connect-mongo")(session);
+const apiController = require("./routes/apiController");
+const dashboardController = require("./routes/dashboardController");
 
 const app = express();
 
@@ -29,18 +37,36 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+//session and passport
+app.use(session({
+  secret: "our-passport-local-strategy-app",
+  resave: true,
+  saveUninitialized: true
+}));
+
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(auth.setCurrentUser);
+
+
 app.use('/', index);
+app.use("/", dashboardController);
+app.use('/items', itemsController);
 app.use('/users', usersController);
+app.use("/api", apiController);
+
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use((req, res, next) =>{
   const err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use((err, req, res, next) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
