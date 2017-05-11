@@ -27,7 +27,12 @@
   <button class="btn btn-primary" name="button">Edit Information</button>
 </form>
 
+<br>
+<br>
 
+<form class="dashboard" action="users/<%=user._id%>/delete" method="get">
+  <button class="btn btn-warning" name="button-delate">Delete account</button>
+</form>
 
 <br>
 <br>
@@ -70,6 +75,7 @@
 </div>
 <br>
 <br>
+<h4> <span class="panel-color glyphicon glyphicon-hourglass" aria-hidden="true"></span> Pending </h4>
 <br>
 <br>
 <div class="container" id="pending">
