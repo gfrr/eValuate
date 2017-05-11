@@ -94,8 +94,8 @@ input[type=checkbox] {
   display: flex;
   flex-flow: column;
   width: 100%;
-  align-items: center;
-  justify-content: center;
+  align-items: left;
+  justify-content: left;
 }
 
 .sub {
@@ -389,6 +389,17 @@ fieldset[disabled] .custom-file-input::-webkit-file-upload-button.focus {
   box-shadow: 3px 3px 3px rgb(159, 159, 159);
   background-repeat: none;
   text-align: center;
+}
+
+#imagecontainerleft{
+  padding: 5%;
+  display: flex;
+  flex-flow: column;
+  justify-content: left;
+  background-color: rgba(255,255,255,0.90);
+  box-shadow: 3px 3px 3px rgb(159, 159, 159);
+  background-repeat: none;
+  text-align: left
 }
 
 .login{
