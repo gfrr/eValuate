@@ -24,6 +24,19 @@ class APIHandler {
     });
   }
 
+  getFeedbackInfo(itemId, callback = undefined){
+    $.ajax ({
+      url: this.BASE_URL + "/api/feedbacks/itemid/" + String(itemId),
+      method: "GET",
+      dataType: "json",
+      success: (response)=> {
+        if(typeof(callback) === "undefined") console.log(response);
+        else callback(response[0]);
+      },
+      error: (error) => console.log(`${itemId} not found`),
+    });
+  }
+
   getOneRegister (type, id, callback = undefined) {
     $.ajax ({
       url: this.BASE_URL + "/api/" + type + "/" + String(id),

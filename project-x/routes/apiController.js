@@ -48,6 +48,12 @@ router.get("/experts/:experts_id", (req, res, next)=> {
     	  });
     	});
 
+router.get("/feedbacks/itemid/:item_id", (req, res)=>{
+	Feedback.find({itemId: req.params.item_id}, (error, feedbacks)=>{
+		if (error) res.status(500).json({message: error});
+			else res.status(200).json(feedbacks);
+	});
+});
 
 router.get('/users/:user_id', (req, res) => {
 		User.findById(req.params.user_id, (error, user) => {
