@@ -43,15 +43,6 @@ router.post("/dashboard", auth.checkLoggedIn("/logout"), (req, res, next)=> {
 
   });
 
-  // const expertSchema = new Schema({
-  //   cv: String,
-  //   photo: String,
-  //   website: String,
-  //   focus: [], // i.e. Stamps, Coins etc. It can be one or more.
-  //   pending: [],
-  //   completed: [],
-  //   userId: [{ type: Schema.Types.ObjectId, ref: 'User' }]
-  // });
 });
 
 // Still need to secure the route!! remember before deploying
@@ -64,13 +55,6 @@ router.get("/dashboard/remove/:item_id", auth.checkLoggedIn("/logout"), (req, re
     res.redirect("/dashboard");
   });
 });
-
-
-
-/*
-if(req.user._id == String(item[0].userId) || req.user.role == "Admin") res.render("auth/edit-item", {item: item[0]});
-else res.redirect("/logout");
-*/
 
 
 module.exports = router;

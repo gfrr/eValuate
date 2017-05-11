@@ -33,8 +33,3 @@ $(document).ready(() => {
         $('#popup-offer').remove();
     });
 });
-
-
-// $(".popup").fadeIn(300,function(){$(this).focus();});
-//     $()
-// });

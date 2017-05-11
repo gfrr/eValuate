@@ -100,22 +100,6 @@ router.patch("/users/:user_id", (req, res) => {
 				else res.status(200).json("user updated");
 		  });
 		});
-  // router.route('/search')
-  // 	.get((req, res) => {
-  // 		const latitude = req.query.lat;
-  // 		const longitude = req.query.lng;
-  // 		const maxDistance = req.query.dis;
-  // 		Restaurant.where('location')
-  // 							.near({ center: { coordinates: [longitude, latitude], type: 'Point' }, maxDistance: maxDistance })
-  // 							.find((error, restaurants) => {
-  // 								if (error) {
-  // 									res.status(500).json({message: error});
-  // 								} else {
-  // 									res.status(200).json(restaurants);
-  // 								}
-  // 							});
-  //
-
 
 router.get("/users/email/:id",(req,res)=>{
 	User.find({"email": req.params.id}, (err, user)=>{

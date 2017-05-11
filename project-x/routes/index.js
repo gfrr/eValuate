@@ -122,24 +122,11 @@ if (String(type) == "Items"){
      }
   });
 
-// router.post('/search', (req, res, next)=>{
-//    res.redirect("/");
-// });
 
 router.get("/logout", (req, res) => {
   req.logout();
   res.redirect("/");
 });
-
-
-
-// router.get('/items', function(req, res, next) {
-//   res.render('item/showitems');
-// });
-//
-// router.get('/items/:id/', function(req, res, next) {
-//   res.render('item/showitem');
-// });
 
 
 

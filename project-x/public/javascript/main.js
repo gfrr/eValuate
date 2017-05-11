@@ -77,8 +77,6 @@ function updateMap(map,position,radius,zoomIndex) {
       google.maps.event.addListener(pin, 'click', function() {
         let tmpId = expertAPI.getIdByEmail(expert.email, printID);
         console.log(tmpId);
-        //  let image= "";
-        //  if(place.hasOwnProperty("photos")) image = place.photos[0].getUrl({'maxWidth': 100, 'maxHeight': 100});
          $("#click-info").html(`
            <div><img src="/images/arrowdown.svg"></div>
            <div><strong>${expert.firstName}&nbsp${expert.lastName}</strong></div>

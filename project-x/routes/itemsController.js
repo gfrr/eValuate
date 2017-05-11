@@ -58,14 +58,6 @@ itemsController.post("/new", upload.single('photo'), (req, res, next)=> {
             user[0].save();
             console.log(user[0]);
           });
-          // User.findOneAndUpdate({_id: req.user._id}, {$push:{itemsUser: newItem._id}}, (err, doc) =>{
-          //     if(err) console.log("Something wrong when updating data!");
-          //     console.log(doc);
-          // });
-          // User.findOneAndUpdate({_id: req.user._id}, {$set: {status: "Owner"}}, (err, doc)=>{
-          //     if(err) console.log("Something wrong when updating data!");
-          //     console.log(doc);
-          // });
           res.redirect(`/items/${item._id}`);
         }
       });
@@ -186,27 +178,6 @@ itemsController.get("/:id/requesteval", auth.checkLoggedIn("/logout"), (req, res
 
   res.redirect("/dashboard");
 });
-
-
-
-//check if the user or admin access item evaluation page
-// itemsController.get("/:id/", auth.checkLoggedIn("/logout"), (req, res, next)=> {
-//   User.find({"_id": req.params.id}, (err, user)=> {
-//     if(err) next(err);
-//     if(req.user._id == req.params.id || req.user.role == "Admin") res.render("auth/feedback", {item: item[0]});
-//     else res.redirect("/logout");
-//   });
-// });
-
-// //Item evaluated by user
-// itemsController.post("/:id/", auth.checkLoggedIn("/logout"), (req, res, next)=>{
-//   const itemFeedback = req.body.feedback;
-//   User.findByIdAndUpdate(req.params.id, itemFeedback, (err, item) => {
-//     if (err) next(err);
-//     console.log("change saved");
-//     res.redirect("/items",{item: item[0]});
-//   });
-// });
 
 //Item evaluation deleted by user
 itemsController.post('/:id/delete', auth.checkLoggedIn("/logout"), (req, res, next) => {
