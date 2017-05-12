@@ -1,4 +1,4 @@
-const expertAPI = new APIHandler("http://localhost:3000");
+const expertAPI = new APIHandler("https://ironhackevaluation.herokuapp.com");
 
   function startMap() {
 

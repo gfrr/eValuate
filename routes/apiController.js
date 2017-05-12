@@ -25,12 +25,16 @@ router.get("/experts", (req, res, next)=> {
 	});
 });
 
+
+//EXPERTSID REFERS TO THE USER ID, THIS ROUTE RETURNS THE EXPERT INFO WHEN GIVEN AN USER ID
 router.get("/experts/:experts_id", (req, res, next)=> {
 	Expert.find({"userId": req.params.experts_id}, (error, users)=>{
 		if (error) res.status(500).json({message: error});
 		 else res.status(200).json(users[0]);
 	});
 });
+
+
 
   router.route('/items')
   	.get((req, res) => {

@@ -8,21 +8,16 @@
     <% if (typeof(errorMessage) != "undefined") { %>
       <div class="error-message"><%= errorMessage %></div>
     <% } %>
-<ul>
-  <li><strong>First Name:</stong><%= user.firstName %> </li>
-  <li><strong>Last Name:</stong> <%= user.lastName %></li>
-  <li><strong>E-mail:</stong> <%= user.email %></li>
-  <br>
+  <p class="account-details"><strong>First Name: </strong><%= user.firstName %> </p>
+  <p class="account-details"><strong>Last Name: </strong> <%= user.lastName %></p>
+  <p class="account-details"><strong>E-mail: </strong> <%= user.email %></p>
   <br>
 
-  <li><strong>Address: </strong></li>
-  <li><strong>Street:</strong>  <%= user.address.street %></li>
-  <li><strong>Post Code:</strong>  <%= user.address.postCode %> </li>
-  <li><strong>City: </strong> <%= user.address.city %> </li>
-  <li><strong>Country:</strong>  <%= user.address.country %></li><br>
-
-
-</ul>
+  <p class="account-details" style="text-decoration: underline"><strong>Address: </strong></p>
+  <p class="account-details"><strong>Street: </strong>  <%= user.address.street %></p>
+  <p class="account-details"><strong>Post Code: </strong>  <%= user.address.postCode %> </p>
+  <p class="account-details"><strong>City: </strong> <%= user.address.city %> </p>
+  <p class="account-details"><strong>Country: </strong>  <%= user.address.country %></p><br>
 
 <div class="row">
   <div class="col-sm-4">
@@ -113,7 +108,7 @@
 <% if (currentUser.role == "Professional"){ %>
   <script>
     $(document).ready(()=>{
-      const dbAPI = new APIHandler("http://localhost:3000");
+      const dbAPI = new APIHandler("https://ironhackevaluation.herokuapp.com");
       dbAPI.getOneExpert($("#currentUserId").val(), logresult);
     });
 
