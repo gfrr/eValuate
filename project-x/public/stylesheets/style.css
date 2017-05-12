@@ -21,7 +21,7 @@ input {
 #search {
   box-shadow: inset 1px 1px 1px rgb(159, 159, 159);
   border-radius: 7px;
-z
+
 }
 
 
@@ -182,7 +182,7 @@ input[type=checkbox] {
 }
 
 #browselink {
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 200;
 
 }
@@ -431,13 +431,6 @@ fieldset[disabled] .custom-file-input::-webkit-file-upload-button.focus {
 .btn-size {
   width: 200px !important;
 }
-
-
-/*#searchOptions{
-  height: 35px;
-  background-color: white;
-  color:
-}*/
 
 .account-details {
   font-size: 18px;
