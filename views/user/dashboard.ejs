@@ -8,6 +8,13 @@
     <% if (typeof(errorMessage) != "undefined") { %>
       <div class="error-message"><%= errorMessage %></div>
     <% } %>
+
+    <% let imgUrl = user.avatar; %>
+      <% if(imgUrl == "") imgUrl = "/images/user.svg";%>
+      <img alt="" style="border-radius: 100%" src=<%= imgUrl%> >
+      <br>
+
+  <div class="col-xs-8">
   <p class="account-details"><strong>First Name: </strong><%= user.firstName %> </p>
   <p class="account-details"><strong>Last Name: </strong> <%= user.lastName %></p>
   <p class="account-details"><strong>E-mail: </strong> <%= user.email %></p>
@@ -18,7 +25,7 @@
   <p class="account-details"><strong>Post Code: </strong>  <%= user.address.postCode %> </p>
   <p class="account-details"><strong>City: </strong> <%= user.address.city %> </p>
   <p class="account-details"><strong>Country: </strong>  <%= user.address.country %></p><br>
-
+  </div>
 <div class="row">
   <div class="col-sm-4">
     <form class="dashboard" action="users/<%=user._id%>/edit" method="get">
