@@ -15,7 +15,9 @@
     <div class="col-xs-4">
       <br>
     <li>
-      <img class="avatar-thumb" src="/images/user.svg" %> alt="">
+      <% let imageUrl= user.avatar %>
+      <% if(user.avatar === "") imageUrl = "/images/user.svg"; %>
+      <img class="avatar-thumb"  alt="" src=<%= imageUrl %>>
       <br>
       <%= user.firstName %>&nbsp<%= user.lastName %> <br>
       <br><a class="btn btn-primary" href="/users/<%= user._id %>" >View More</a>

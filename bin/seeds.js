@@ -6,6 +6,10 @@ const User = require("../models/user");
 const Item = require("../models/item");
 const Feedback = require("../models/feedback");
 const Expert = require("../models/expert");
+const dotenv = require('dotenv');
+
+dotenv.config();
+dotenv.load();
 
 
 mongoose.connect(process.env.MONGODB_URI);
@@ -23,6 +27,7 @@ function createUserType(number, userType,  password = "test" ){
       firstName: name.split(" ")[0],
       lastName: name.split(" ")[1],
       email: faker.internet.email(name),
+      avatar: faker.internet.avatar(),
       password: hashPass,
       address: {
         street: address.streetC,
