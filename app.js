@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const logger = require('morgan');
+const favicon = require('serve-favicon')
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const expressLayouts = require("express-ejs-layouts");
@@ -37,6 +38,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(favicon(__dirname + '/public/favicon.ico'));
 
 
 //session and passport
