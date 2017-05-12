@@ -5,13 +5,13 @@
     <% } %>
 <form class="signup" action="/users/<%= user._id %>" method="post">
   <ul>
-  <li><label for="name">First Name: </label>
+  <li><label for="name">First Name: </label><br>
   <input type="text" id="name" name="name" value=<%= user.firstName %>></li><br>
-  <li><label for="lastName">Last Name: </label>
+  <li><label for="lastName">Last Name: </label><br>
   <input type="text" id="lastName" name="lastName" value=<%= user.lastName %>></li><br>
-  <li><label for="email">E-mail: </label>
+  <li><label for="email">E-mail: </label><br>
   <input type="email" id="email" name="email" value=<%= user.email %>></li><br>
-  <li><label for=""><strong>Write full address here</strong></label>
+  <li><label for=""><strong>Write full address here</strong></label><br>
   <input type="address" id="address" name="address" required value= "<%= user.address.street%>, <%=user.address.city%>" %>></li><br>
   <input type="hidden" id="street" name="street"></li>
   <input type="hidden" id="postCode" name="postCode"></li>
@@ -20,7 +20,7 @@
   <input type="hidden" id="lat" name="lat"></li>
   <input type="hidden" id="lng" name="lng"></li>
 </select></li><br><br>
-<li><button type="submit" name="button">Confirm</button></li>
+<li><button type="submit" name="button" class="btn btn-primary btn-size">Confirm</button></li>
 
 </ul>
 </form>

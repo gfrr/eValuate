@@ -446,8 +446,41 @@ fieldset[disabled] .custom-file-input::-webkit-file-upload-button.focus {
 
 .account-details {
   font-size: 18px;
+  color: #777
 }
 
 #evaluateTitle{
   font-size: 30px
+}
+
+select option {
+    margin: 40px;
+    background: rgba(0, 0, 0, 0.3);
+    color: #777;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+}
+
+#titledashboard{
+  color: #4d4d4d;
+  font-size: 40px;
+  font-weight: bolder;
+  font: helvetica
+}
+
+#maintitle{
+  color: #4d4d4d;
+  font-size: 60px;
+  font-weight: bolder;
+  font: helvetica
+}
+
+#mainsubtitle{
+  color: #4d4d4d;
+  font-size: 16px;
+  font-weight: lighter;
+  font: helvetica
+}
+
+#panelYouritems{
+  width: 1000px
 }
