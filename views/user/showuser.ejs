@@ -7,7 +7,10 @@
 <br>
 <div class="itemholder">
 <div class="image-holder">
-  <img class="profile-img" src="/images/user.svg" alt="" ></img>
+    <% let imgUrl = user.avatar; %>
+      <% if(imgUrl == "") imgUrl = "/images/user.svg";%>
+
+  <img class="profile-img" src=<%= imgUrl %> alt="" ></img>
 </div>
 <div class="description-holder">
   <ul>
@@ -22,28 +25,29 @@
             <input type="hidden" id="expertId" value=<%= user._id %>>
               <% }; %>
             <% }; %>
-    <li><strong>Qualifications: </strong>lorem ipsum text and ipsum lorem</li>
-    <li><strong>CV (Resume): </strong> <a href="#" class="linkviewcv">View</a></li>
-    <li><strong>Items evaluated: </strong> <a href="#" class="linkview">View</a></li>
+    <li><strong>Website: </strong><a href=<%= expert.website%>>link</a></li>
+    <li><strong>CV (Resume): </strong> <a class="linkviewcv" href=/images/<%= expert.cv %> >View</a></li>
+    <% if(expert.completed.length > 0){ %>
+      <li><strong>Items evaluated: </strong> </li>
+      <% expert.completed.forEach((item)=>{ %>
+         <a href="/items/<%=item%>" class="linkview">View</a>
+    <%   });%>
+  <%  } %>
+
 <% }; %>
         <% if ( user.itemsUser.length > 0){ %>
     <li><strong>Collections: </strong><a href="/items/<%=user.itemsUser[0]%>" class="linkview">Item
   </a></li>
         <% }; %>
-
-    <li><strong><a href="#">Contact</a> </strong></li>
+<a href="mailto:someone@yoursite.com">Email Us</a>
+    <li><strong><a href="mailto:<%=user.email%>">Contact</a> </strong></li>
   </ul>
 </div>
 </div>
 <div id="items"></div>
 <br><br><br>
 
-<form class="login" action="/" method="post">
-<label for="feedback">Feedback: </label
-<input type="feedback" id="feedback" name="feedback" placeholder="Enter your feedback"><br>
-<br>
-<button type="submit" class="btn btn-primary" name="button">Post feedback</button>
-</form>
+
 <br>
 <p> <a href="/users">All the experts </a> <br>Check them out! </p>
 </div>
