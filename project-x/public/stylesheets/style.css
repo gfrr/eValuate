@@ -69,6 +69,8 @@ li.active {
 }
 
 .panel-default{
+  width: 225px;
+  height: 65px;
   text-align: center;
   background-color: #e7e7e7;
 }
@@ -236,10 +238,10 @@ input[type=checkbox] {
   line-height: 30px;
 }
 
-
-/*.custom-file-input::-webkit-file-upload-button {
-  visibility: hidden;
-}*/
+.photo-up {
+  width: 200px;
+  margin: 0 auto;
+}
 
 .custom-file-input::-webkit-file-upload-button {
   border: none;
@@ -327,6 +329,12 @@ fieldset[disabled] .custom-file-input::-webkit-file-upload-button.focus {
   text-align: center;
 }
 
+.col-sm-8 {
+  text-align: left;
+  line-height: 24px;
+  font-size: 16px;
+}
+
 .profile-img {
   height: auto;
   width: 225px;
@@ -385,6 +393,10 @@ fieldset[disabled] .custom-file-input::-webkit-file-upload-button.focus {
   color: #2C3E50 !important;
 }
 
+.navbar {
+  font-size: 20px;
+}
+
 
 #imagecontainer{
   padding: 5%;
@@ -418,4 +430,8 @@ fieldset[disabled] .custom-file-input::-webkit-file-upload-button.focus {
 
 .btn-size {
   width: 200px !important;
+}
+
+.account-details {
+  font-size: 18px;
 }
