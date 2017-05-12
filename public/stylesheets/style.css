@@ -21,7 +21,7 @@ input {
 #search {
   box-shadow: inset 1px 1px 1px rgb(159, 159, 159);
   border-radius: 7px;
-
+z
 }
 
 
@@ -182,7 +182,7 @@ input[type=checkbox] {
 }
 
 #browselink {
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 200;
 
 }
@@ -388,13 +388,13 @@ fieldset[disabled] .custom-file-input::-webkit-file-upload-button.focus {
 }
 
 .navbar-brand {
-  font-size: 20px;
+  font-size: 24px;
   font-weight: bold;
   color: #2C3E50 !important;
 }
 
 .navbar {
-  font-size: 20px;
+  font-size: 16px;
 }
 
 
@@ -432,6 +432,17 @@ fieldset[disabled] .custom-file-input::-webkit-file-upload-button.focus {
   width: 200px !important;
 }
 
+
+#searchOptions{
+  height: 35px;
+  background-color: white;
+  color: #777
+}
+
 .account-details {
   font-size: 18px;
+}
+
+#evaluateTitle{
+  font-size: 30px
 }
