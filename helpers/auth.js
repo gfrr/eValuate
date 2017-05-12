@@ -1,14 +1,5 @@
-const dotenv = require('dotenv');
-
-dotenv.config();
-dotenv.load();
-
 module.exports = {
-  //apikey
-  setAPIkey:(req, res, next)=>{
-    res.locals.API_KEY = process.env.API_KEY;
-    next();
-  },
+
   //this method saves the current user in the global scope
   //so it can be accessed  without passing it while rendering the page
   setCurrentUser: (req, res, next)=> {
