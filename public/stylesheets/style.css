@@ -5,6 +5,18 @@ body {
   background-image: url("../images/site/backgroundbw.jpg");
 }
 
+@media only screen and (max-width: 400px) {
+    .map-style {
+        height: 375px;
+    }
+}
+
+.map-style {
+  height: 500px;
+  width: 80%;
+  margin: 0 auto;
+}
+
 ul {
   list-style: none;
 }
@@ -367,13 +379,6 @@ fieldset[disabled] .custom-file-input::-webkit-file-upload-button.focus {
 .customh3 {
   width: 100%;
   padding-left: 40px;
-}
-
-.map-style {
-  flex: 3;
-  height: 450px;
-  width: 650px;
-  margin: 0 auto;
 }
 
 #click-info {
