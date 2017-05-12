@@ -1,4 +1,4 @@
-const dbAPI = new APIHandler("http://localhost:3000");
+const dbAPI = new APIHandler("https://ironhackevaluation.herokuapp.com");
 
 $(document).ready(()=>{
   click();
