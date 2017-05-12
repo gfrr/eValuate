@@ -1,4 +1,4 @@
-const itemsAPI = new APIHandler("http://localhost:3000");
+const itemsAPI = new APIHandler("https://ironhackevaluation.herokuapp.com");
 
 $(document).ready(()=>{
 

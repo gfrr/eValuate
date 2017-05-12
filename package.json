@@ -2,6 +2,10 @@
   "name": "project-x",
   "version": "0.0.0",
   "private": true,
+  "engines": {
+    "node": "7.8.0",
+    "npm": "4.2.0"
+  },
   "scripts": {
     "start-dev": "nodemon ./bin/www",
     "connections": "node ./bin/connections.js",
@@ -29,6 +33,6 @@
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.1",
     "passport-local": "^1.0.0",
-    "serve-favicon": "~2.4.2"
+    "serve-favicon": "^2.4.2"
   }
 }
