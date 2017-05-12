@@ -12,7 +12,7 @@ dotenv.config();
 dotenv.load();
 
 
-mongoose.connect("mongodb://heroku_c9qs98hm:53q40fqujqus2h98savfnqro5j@ds133981.mlab.com:33981/heroku_c9qs98hm");
+mongoose.connect(process.env.MONGODB_URI);
 
 //returns an array of random users with the userType role
 function createUserType(number, userType,  password = "test" ){
