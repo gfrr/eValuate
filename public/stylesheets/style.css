@@ -484,3 +484,17 @@ select option {
 #panelYouritems{
   width: 1000px
 }
+
+#panelwithitems{
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  width: 100%;
+  align-items: center;
+  padding-left: 4%
+
+}
+
+#panelreqev{
+  height: 400px;
+}
