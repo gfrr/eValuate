@@ -33,9 +33,10 @@ userController.get("/", (req, res, next)=>{
 //public info about specific users -more details
 userController.get('/:id', (req, res, next) => {
   User.findById(req.params.id, (err,user)=> {
-    if (err) { next(err); }
-    let items = [];
+    if (err)  next(err);
+    var items = [];
     var evaluations = [];
+    var expert;
     user.itemsUser.forEach((item)=>{
       Item.findById(item,(err,itm)=>{
         if (err) next(err);
@@ -43,20 +44,14 @@ userController.get('/:id', (req, res, next) => {
       });
     });
     if (user.role === "Professional") {
-      Expert.find({"userId": req.params.id}, (err,expert)=>{
-        console.log("test: "+ expert[0]);
-        expert[0].completed.forEach((complete)=>{
-          Item.findById(complete,(err,cmpl)=>{
-            if (err) next (err);
-              evaluations.push(cmpl);
-          });
-        });
-        console.log("the completed evaluations: " + evaluations);
+      Expert.find({"userId": req.params.id}, (err,experts)=>{
+
+        expert = experts[0];
+        console.log("expert:", expert);
+        res.render('user/showuser', {user, items, expert});
       });
-    }
-    console.log("items",items);
-    console.log("the user: " + user);
-    res.render('user/showuser',{user: user, evaluations: evaluations});
+    } else res.render('user/showuser', {user, items});
+
   });
 });
 

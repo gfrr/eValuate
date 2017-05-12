@@ -19,9 +19,13 @@ const MongoStore = require("connect-mongo")(session);
 const apiController = require("./routes/apiController");
 const dashboardController = require("./routes/dashboardController");
 
+const dotenv = require('dotenv');
+
+dotenv.config();
+dotenv.load();
 const app = express();
 
-mongoose.connect("mongodb://localhost:27017/antiques");
+mongoose.connect(process.env.MONGODB_URI);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -48,6 +52,7 @@ app.use(session({
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(auth.setAPIkey);
 app.use(auth.setCurrentUser);
 
 
