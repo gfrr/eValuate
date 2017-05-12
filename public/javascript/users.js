@@ -20,19 +20,24 @@ function printItems(response){
     response.forEach((item)=>{
       console.log(item);
       $("#items").append(`
-        <div class="col-sm-2">
-          <img class="items-img" src=${item.images[0].image} alt="" ></img>
-        </div>
-        <div class="col-sm-8">
+        <br>
+        <br>
+        <div class="col-sm-4" id="panelreqev" >
+        <div class="col-m-4 id="panelreqev">
           <ul>
+            <li><img class="items-img" src=${item.images[0].image} alt="" height="150px" ></img></li>
+            <br>
             <li><strong>Title: </strong>${item.title}</li>
             <li><strong>Type: </strong>${item.type}</li>
             <li><strong>Description: </strong>${item.description}</li>
             <li><strong>Item's Estimated Age: </strong>${item.approxAge}</li>
             <li><strong> </strong>${item.approxAge}</li>
-            <a href="/items/${item._id}/requesteval?${expertId}" class="btn btn-default" role="button">Request Evaluation</a>
+            <br>
+            <a href="/items/${item._id}/requesteval?${expertId}" class="btn btn-primary" role="button">Request Evaluation</a>
           </a></li>
         </div>
+        </div>
+
         `);
 
     });

@@ -1,7 +1,7 @@
 <script src="/javascript/popup.js"></script>
 
 <div id="imagecontainer"class="main">
-<h1> Welcome to your dashboard <%= user.firstName %> ! &#128521; </h1>
+<p id="titledashboard"> Welcome to your dashboard <%= user.firstName %> ! &#128521; </p>
 
 <br>
 <br>
@@ -13,7 +13,7 @@
   <p class="account-details"><strong>E-mail: </strong> <%= user.email %></p>
   <br>
 
-  <p class="account-details" style="text-decoration: underline"><strong>Address: </strong></p>
+  <p class="account-details" ><strong>Address</strong></p>
   <p class="account-details"><strong>Street: </strong>  <%= user.address.street %></p>
   <p class="account-details"><strong>Post Code: </strong>  <%= user.address.postCode %> </p>
   <p class="account-details"><strong>City: </strong> <%= user.address.city %> </p>
@@ -55,7 +55,7 @@
 <br>
 <br>
 
-<div class="panel panel-default">
+<div id="panelYouritems" class="panel panel-default">
 
   <h3> Your Items </h3>
 </div>
